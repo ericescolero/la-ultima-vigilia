@@ -1,0 +1,115 @@
+backend:
+  name: github
+  repo: ericescolero/la-ultima-vigilia
+  branch: development
+  base_url: https://laultimavigilia.com
+  auth_endpoint: api/auth
+  commit_messages:
+    create: "cms: create {{collection}} {{slug}}"
+    update: "cms: update {{collection}} {{slug}}"
+    delete: "cms: delete {{collection}} {{slug}}"
+    uploadMedia: "cms: upload {{path}}"
+    deleteMedia: "cms: delete media {{path}}"
+
+site_url: https://laultimavigilia.com
+display_url: https://laultimavigilia.com
+logo_url: /assets/img/placeholders/LOGO_HEADER.svg
+locale: en
+publish_mode: editorial_workflow
+media_folder: website/assets/blog
+public_folder: /assets/blog
+
+slug:
+  encoding: ascii
+  clean_accents: true
+  sanitize_replacement: "-"
+
+collections:
+  - name: field_manuals
+    label: Field Manuals
+    label_singular: Field Manual
+    folder: content/field-manuals
+    create: true
+    delete: true
+    format: frontmatter
+    extension: md
+    slug: "{{slug}}"
+    identifier_field: title
+    summary: "{{title}} — {{status}} — {{publish_date}}"
+    preview_path: "blog/{{slug}}/"
+    sortable_fields:
+      - title
+      - publish_date
+      - status
+      - author
+    fields:
+      - label: Title
+        name: title
+        widget: string
+        required: true
+      - label: Slug
+        name: slug
+        widget: string
+        required: true
+        hint: "Use lowercase words separated by hyphens. This controls the Markdown filename and future URL."
+        pattern:
+          - "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+          - "Use lowercase letters, numbers, and hyphens only."
+      - label: Status
+        name: status
+        widget: select
+        required: true
+        default: draft
+        options:
+          - label: Draft
+            value: draft
+          - label: Published
+            value: published
+      - label: Publish Date
+        name: publish_date
+        widget: datetime
+        required: true
+        date_format: YYYY-MM-DD
+        time_format: HH:mm
+        format: YYYY-MM-DDTHH:mm:ss.SSSZ
+      - label: Author
+        name: author
+        widget: string
+        required: true
+        default: "Erick Escolero"
+      - label: Tags
+        name: tags
+        widget: list
+        required: false
+        allow_add: true
+        collapsed: false
+        field:
+          label: Tag
+          name: tag
+          widget: string
+      - label: Featured Image
+        name: featured_image
+        widget: image
+        required: false
+        choose_url: false
+        hint: "Uploads are stored in /assets/blog/."
+      - label: Featured Image Alt Text
+        name: featured_image_alt
+        widget: string
+        required: false
+      - label: SEO Title
+        name: seo_title
+        widget: string
+        required: false
+        hint: "Recommended maximum: 60 characters."
+      - label: SEO Description
+        name: seo_description
+        widget: text
+        required: false
+        hint: "Recommended maximum: 155 characters."
+      - label: Body
+        name: body
+        widget: markdown
+        required: true
+        editor_components:
+          - image
