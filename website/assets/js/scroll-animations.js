@@ -63,7 +63,7 @@
 
   function updateParallax() {
     ticking = false;
-    const hero = document.querySelector(".hero-cinematic");
+    const hero = document.querySelector(".hero-cinematic, .page-cinematic");
     if (!hero) return;
     const rect = hero.getBoundingClientRect();
     const progress = Math.min(Math.max(-rect.top / Math.max(rect.height, 1), 0), 1);
