@@ -1,0 +1,11 @@
+:root {
+  --color-black: #060606;
+  --color-charcoal: #0b0d0f;
+  --color-ash: #827b71;
+  --color-steel: #8fa1ad;
+  --color-gold: #d1a24e;
+  --color-ember: #b75e28;
+  --radius-panel: 8px;
+  --content-max: 1180px;
+}
+

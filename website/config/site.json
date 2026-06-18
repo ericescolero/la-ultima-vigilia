@@ -1,0 +1,24 @@
+{
+  "brand": {
+    "name": "La Ultima Vigilia",
+    "canonicalName": "La Última Vigilia",
+    "domain": "laultimavigilia.com",
+    "primaryLanguage": "es",
+    "secondaryLanguage": "en"
+  },
+  "mission": {
+    "purpose": "Awaken Christian men from spiritual sleep.",
+    "primaryCta": "Recibe La Guerra Silenciosa",
+    "community": "El Remanente"
+  },
+  "canon": {
+    "primaryDocs": [
+      "../docs/PROJECT_CONTEXT.md",
+      "../docs/UNIVERSE_CORE_BIBLE.md",
+      "../docs/MASTER_FILES_INDEX.md"
+    ],
+    "visualCanon": "../docs/VISUAL_REFERENCE_ARCHIVE.docx",
+    "writingCanon": "../docs/QUOTE_DATABASE.md",
+    "communityDoctrine": "../docs/WATCHMAN_CODE.md"
+  }
+}

@@ -1,0 +1,51 @@
+{
+  "page": [
+    "title",
+    "slug",
+    "description",
+    "status",
+    "seoTitle",
+    "seoDescription",
+    "canonicalUrl",
+    "primaryCta",
+    "sections",
+    "canonReferences"
+  ],
+  "article": [
+    "title",
+    "slug",
+    "excerpt",
+    "category",
+    "tags",
+    "author",
+    "publishedDate",
+    "updatedDate",
+    "status",
+    "featuredImage",
+    "seoTitle",
+    "seoDescription",
+    "canonicalUrl",
+    "relatedLeadMagnet",
+    "primaryCta",
+    "canonReferences"
+  ],
+  "leadMagnet": [
+    "title",
+    "subtitle",
+    "slug",
+    "description",
+    "deliveryPath",
+    "emailTag",
+    "sourceTags",
+    "status",
+    "seoTitle",
+    "seoDescription"
+  ],
+  "statusValues": [
+    "draft",
+    "in-review",
+    "canon-review",
+    "published",
+    "archived"
+  ]
+}

@@ -1,0 +1,9 @@
+{
+  "name": "La Ultima Vigilia",
+  "short_name": "La Vigilia",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#060606",
+  "theme_color": "#0b0b0b",
+  "lang": "es"
+}

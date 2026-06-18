@@ -1,0 +1,34 @@
+{
+  "mustPreserve": [
+    "Christian worldview",
+    "Masculine reconstruction",
+    "Spiritual vigilance",
+    "Discipline",
+    "Purpose",
+    "Truth",
+    "Resistance against Babylon",
+    "Dark cinematic realism"
+  ],
+  "visualAvoid": [
+    "cartoon aesthetics",
+    "superhero aesthetics",
+    "cyberpunk aesthetics",
+    "neon-heavy palettes",
+    "fantasy game armor",
+    "occult symbols",
+    "satanic symbols",
+    "generic AI art"
+  ],
+  "writingAvoid": [
+    "corporate language",
+    "self-help cliches",
+    "soft motivational language",
+    "excessive positivity",
+    "trend language",
+    "influencer masculinity"
+  ],
+  "watchman": {
+    "mustBeHooded": true,
+    "primaryVisualAnchor": true
+  }
+}

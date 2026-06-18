@@ -1,0 +1,65 @@
+{
+  "version1": [
+    {
+      "path": "/",
+      "file": "index.html",
+      "purpose": "Primary conversion page and mission introduction."
+    },
+    {
+      "path": "/la-guerra-silenciosa/",
+      "file": "la-guerra-silenciosa/index.html",
+      "purpose": "Dedicated lead magnet landing page."
+    },
+    {
+      "path": "/el-remanente/",
+      "file": "el-remanente/index.html",
+      "purpose": "Introduce the community and invite men toward the mission."
+    },
+    {
+      "path": "/mision/",
+      "file": "mision/index.html",
+      "purpose": "Explain the purpose, worldview, and call of La Ultima Vigilia."
+    },
+    {
+      "path": "/blog/",
+      "file": "blog/index.html",
+      "purpose": "Publish content around the ten content pillars."
+    },
+    {
+      "path": "/blog/la-guerra-silenciosa-hombres/",
+      "file": "blog/la-guerra-silenciosa-hombres/index.html",
+      "purpose": "Starter article page with email capture CTA."
+    },
+    {
+      "path": "/gracias/",
+      "file": "gracias/index.html",
+      "purpose": "Confirm signup and move user toward next step."
+    },
+    {
+      "path": "/descargar/la-guerra-silenciosa/",
+      "file": "descargar/la-guerra-silenciosa/index.html",
+      "purpose": "Backup or confirmation download path."
+    },
+    {
+      "path": "/privacidad/",
+      "file": "privacidad/index.html",
+      "purpose": "Privacy policy."
+    },
+    {
+      "path": "/terminos/",
+      "file": "terminos/index.html",
+      "purpose": "Terms and conditions."
+    }
+  ],
+  "future": [
+    "/newsletter/",
+    "/archivo/",
+    "/archivo/arquetipos/",
+    "/archivo/fuerzas-de-corrupcion/",
+    "/archivo/entornos/",
+    "/cursos/",
+    "/miembros/",
+    "/la-guerra-interior/",
+    "/recursos/"
+  ]
+}

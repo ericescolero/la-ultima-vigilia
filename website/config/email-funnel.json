@@ -1,0 +1,45 @@
+{
+  "provider": "mailerlite",
+  "leadMagnet": "la-guerra-silenciosa",
+  "publicFormEndpoint": "https://assets.mailerlite.com/jsonp/2374679/forms/190533263957165697/subscribe",
+  "delivery": {
+    "primary": "mailerlite-automation",
+    "backupPath": "/descargar/la-guerra-silenciosa/",
+    "pdfPath": "/pdfs/la-guerra-silenciosa.pdf"
+  },
+  "requiredFields": [
+    "email"
+  ],
+  "futureFields": [
+    "firstName",
+    "languagePreference",
+    "interestArea",
+    "communityInterest"
+  ],
+  "sourceTags": [
+    "source-home",
+    "source-lead-magnet-page",
+    "source-blog",
+    "source-blog-article",
+    "source-mission",
+    "source-footer",
+    "source-el-remanente"
+  ],
+  "subscriberTags": [
+    "lead-magnet-la-guerra-silenciosa",
+    "interested-el-remanente",
+    "language-spanish"
+  ],
+  "mailerLiteGroups": {
+    "leadMagnet": "",
+    "elRemanenteInterest": ""
+  },
+  "flow": [
+    "validate-email",
+    "submit-to-mailerlite",
+    "apply-source-tag",
+    "apply-lead-magnet-tag",
+    "trigger-delivery-email",
+    "redirect-to-gracias"
+  ]
+}

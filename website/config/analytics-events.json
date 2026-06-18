@@ -1,0 +1,21 @@
+{
+  "events": [
+    "page_view",
+    "lead_form_view",
+    "lead_form_submit",
+    "lead_form_success",
+    "lead_form_error",
+    "pdf_download_click",
+    "el_remanente_cta_click",
+    "blog_article_view",
+    "newsletter_signup_source"
+  ],
+  "primaryKpis": [
+    "homepage_to_subscriber_conversion_rate",
+    "lead_magnet_page_conversion_rate",
+    "blog_to_subscriber_conversion_rate",
+    "pdf_download_rate",
+    "thank_you_to_el_remanente_click_rate",
+    "el_remanente_interest_rate"
+  ]
+}
