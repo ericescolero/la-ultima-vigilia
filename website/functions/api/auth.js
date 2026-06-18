@@ -28,7 +28,7 @@ export async function onRequestGet({ request, env }) {
     return new Response("Missing GitHub OAuth configuration.", { status: 500 });
   }
 
-  const origin = env.DECAP_SITE_URL || url.origin;
+  const origin = url.origin;
   const payload = JSON.stringify({
     origin,
     nonce: crypto.randomUUID(),
