@@ -57,6 +57,14 @@
     );
 
     document.querySelectorAll(".reveal").forEach((element) => observer.observe(element));
+
+    if (window.matchMedia("(max-width: 719px)").matches) {
+      window.setTimeout(() => {
+        document.querySelectorAll(".archetype-grid.reveal, .archetype-grid .reveal").forEach((element) => {
+          element.classList.add("is-visible");
+        });
+      }, 1200);
+    }
   });
 
   let ticking = false;

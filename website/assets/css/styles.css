@@ -2054,8 +2054,50 @@ input[type="email"]:focus {
       linear-gradient(90deg, rgba(2, 2, 2, .5), transparent 50%, rgba(2, 2, 2, .42));
   }
 
+  .home-recruitment-section {
+    display: none;
+  }
+
+  .hero-cinematic + .chamber {
+    padding-top: 2.45rem;
+  }
+
   .visual-card-grid {
     grid-template-columns: 1fr 1fr;
+  }
+
+  .archetype-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: .95rem;
+    margin-top: 1.15rem;
+    overflow: visible;
+  }
+
+  .archetype-card {
+    display: grid;
+    width: 100%;
+    min-height: 0;
+    overflow: hidden;
+    opacity: 1;
+    visibility: visible;
+  }
+
+  .archetype-card .dossier-body {
+    min-height: auto;
+    padding: .92rem .75rem .82rem;
+  }
+
+  .archetype-card .archetype-image-frame,
+  .archetype-card .archetype-image-frame .card-image,
+  .archetype-card .archetype-image-frame .card-icon {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  .archetype-card .archetype-image-frame .card-image {
+    min-height: 0;
+    max-height: none;
   }
 
   .enemy-grid,
