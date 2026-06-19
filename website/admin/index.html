@@ -7,6 +7,31 @@
     <title>La Ultima Vigilia CMS</title>
   </head>
   <body>
+    <script>
+      window.CMS_MANUAL_INIT = true;
+    </script>
+    <script src="https://unpkg.com/js-yaml@4.1.0/dist/js-yaml.min.js"></script>
     <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
+    <script>
+      (function () {
+        fetch("/admin/config.yml", { cache: "no-store" })
+          .then(function (response) {
+            if (!response.ok) {
+              throw new Error("Unable to load Decap CMS config.");
+            }
+            return response.text();
+          })
+          .then(function (yaml) {
+            var config = jsyaml.load(yaml);
+            config.backend = config.backend || {};
+            config.backend.base_url = window.location.origin;
+            config.backend.auth_endpoint = "/api/auth";
+            CMS.init({ config: config });
+          })
+          .catch(function (error) {
+            document.body.innerHTML = "<pre>Decap CMS failed to load: " + error.message + "</pre>";
+          });
+      })();
+    </script>
   </body>
 </html>
