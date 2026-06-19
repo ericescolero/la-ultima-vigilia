@@ -2,6 +2,7 @@ backend:
   name: github
   repo: ericescolero/la-ultima-vigilia
   branch: development
+  base_url: https://d5f679f7.la-ultima-vigilia.pages.dev
   auth_endpoint: /api/auth
   commit_messages:
     create: "cms: create {{collection}} {{slug}}"
