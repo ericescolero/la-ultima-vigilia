@@ -73,7 +73,10 @@ function parseFrontmatter(markdown) {
   const data = {};
   let activeList = null;
 
-  for (const line of raw.split(/\r?\n/)) {
+  const lines = raw.split(/\r?\n/);
+
+  for (let index = 0; index < lines.length; index += 1) {
+    const line = lines[index];
     if (!line.trim()) continue;
 
     const listMatch = line.match(/^\s*-\s+(.*)$/);
@@ -82,14 +85,30 @@ function parseFrontmatter(markdown) {
       continue;
     }
 
+    const continuationMatch = line.match(/^\s+(.+)$/);
+    if (continuationMatch && activeList && Array.isArray(data[activeList]) && data[activeList].length) {
+      data[activeList][data[activeList].length - 1] = `${data[activeList][data[activeList].length - 1]} ${parseScalar(continuationMatch[1])}`;
+      continue;
+    }
+
     const pairMatch = line.match(/^([A-Za-z0-9_-]+):\s*(.*)$/);
     if (!pairMatch) continue;
 
-    const [, key, value] = pairMatch;
+    let [, key, value] = pairMatch;
     if (value === "") {
       data[key] = [];
       activeList = key;
     } else {
+      const quote = value.startsWith('"') ? '"' : value.startsWith("'") ? "'" : "";
+      if (quote && !value.endsWith(quote)) {
+        while (index + 1 < lines.length) {
+          const nextLine = lines[index + 1];
+          if (!/^\s+/.test(nextLine)) break;
+          index += 1;
+          value = `${value} ${nextLine.trim()}`;
+          if (nextLine.trim().endsWith(quote)) break;
+        }
+      }
       data[key] = parseScalar(value);
       activeList = null;
     }
@@ -186,7 +205,11 @@ function readManuals() {
       const filePath = join(contentDir, item.name);
       const { data, body } = parseFrontmatter(readFileSync(filePath, "utf8"));
       const slug = slugify(data.slug || basename(item.name, ".md"));
-      const tags = Array.isArray(data.tags) ? data.tags : data.tags ? [data.tags] : [];
+      const rawTags = Array.isArray(data.tags) ? data.tags : data.tags ? [data.tags] : [];
+      const tags = rawTags
+        .flatMap((tag) => String(tag).split(","))
+        .map((tag) => tag.trim())
+        .filter(Boolean);
       const featuredImage = normalizeImage(data.featured_image);
       const title = data.title || slug.replace(/-/g, " ");
       const description = data.seo_description || data.description || body.replace(/[#*_`>\-\[\]()]/g, "").slice(0, 155);
