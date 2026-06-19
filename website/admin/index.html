@@ -23,6 +23,7 @@
           })
           .then(function (yaml) {
             var config = jsyaml.load(yaml);
+            config.load_config_file = false;
             config.backend = config.backend || {};
             config.backend.base_url = window.location.origin;
             config.backend.auth_endpoint = "/api/auth";
