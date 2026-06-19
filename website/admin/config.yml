@@ -35,7 +35,7 @@ collections:
     slug: "{{slug}}"
     identifier_field: title
     summary: "{{title}} — {{status}} — {{publish_date}}"
-    preview_path: "blog/{{slug}}/"
+    preview_path: "manuales/{{slug}}/"
     sortable_fields:
       - title
       - publish_date

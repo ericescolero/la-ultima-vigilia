@@ -10,6 +10,7 @@ const requiredFiles = [
   "mision/index.html",
   "blog/index.html",
   "blog/la-guerra-silenciosa-hombres/index.html",
+  "manuales/index.html",
   "gracias/index.html",
   "descargar/la-guerra-silenciosa/index.html",
   "privacidad/index.html",

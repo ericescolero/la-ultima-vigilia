@@ -6,8 +6,8 @@
   "scripts": {
     "dev": "python3 -m http.server 4173 --bind 127.0.0.1",
     "start": "python3 -m http.server 4173 --bind 127.0.0.1",
-    "build": "node scripts/check-foundation.mjs",
-    "check": "node scripts/check-foundation.mjs"
+    "build": "node scripts/generate-field-manuals.mjs && node scripts/check-foundation.mjs",
+    "check": "node scripts/generate-field-manuals.mjs && node scripts/check-foundation.mjs"
   },
   "keywords": [
     "la-ultima-vigilia",
