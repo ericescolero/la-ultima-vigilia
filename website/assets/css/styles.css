@@ -1725,6 +1725,227 @@ input[type="email"]:focus {
   border-bottom: 1px solid rgba(184, 137, 58, .4);
 }
 
+.welcome-hero {
+  min-height: calc(100svh - 74px);
+  overflow: hidden;
+  isolation: isolate;
+  background:
+    linear-gradient(90deg, rgba(2, 2, 2, .86), rgba(2, 2, 2, .48) 52%, rgba(2, 2, 2, .82)),
+    radial-gradient(circle at 72% 18%, rgba(135, 148, 154, .16), transparent 24rem),
+    radial-gradient(circle at 18% 72%, rgba(184, 137, 58, .12), transparent 22rem),
+    #020202;
+}
+
+.welcome-hero::before,
+.welcome-hero::after,
+.welcome-hero-art {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  content: "";
+}
+
+.welcome-hero-art {
+  z-index: -4;
+  opacity: .76;
+  background:
+    linear-gradient(90deg, rgba(2, 2, 2, .78), rgba(2, 2, 2, .42) 48%, rgba(2, 2, 2, .82)),
+    linear-gradient(180deg, rgba(2, 2, 2, .08), rgba(2, 2, 2, .52) 68%, #020202),
+    var(--welcome-hero-image),
+    radial-gradient(circle at 54% 30%, rgba(135, 148, 154, .16), transparent 22rem),
+    linear-gradient(135deg, #111514, #030303 58%, #090704);
+  background-position: center;
+  background-size: cover;
+  filter: saturate(.82) contrast(1.08) brightness(.82);
+}
+
+.welcome-hero::before {
+  z-index: -3;
+  background:
+    repeating-linear-gradient(105deg, rgba(255, 255, 255, .022) 0 1px, transparent 1px 24px),
+    radial-gradient(circle at 65% 38%, rgba(216, 182, 109, .1), transparent 20rem);
+}
+
+.welcome-hero::after {
+  z-index: -2;
+  border-bottom: 1px solid rgba(184, 137, 58, .22);
+  background: linear-gradient(180deg, transparent 72%, #020202);
+}
+
+.welcome-hero-stage {
+  display: grid;
+  min-height: calc(100svh - 74px);
+  align-content: center;
+  gap: 1.4rem;
+  padding: clamp(3.4rem, 8vw, 5.75rem) 0;
+}
+
+.welcome-hero-copy {
+  max-width: 760px;
+}
+
+.welcome-hero h1 {
+  max-width: 860px;
+  font-family: var(--serif);
+  font-size: clamp(2.35rem, 8vw, 3.85rem);
+  line-height: .98;
+  letter-spacing: .045em;
+}
+
+.welcome-subheadline {
+  margin: 1.1rem 0 .8rem;
+  color: var(--gold-pale);
+  font-family: var(--serif);
+  font-size: clamp(1.2rem, 4.2vw, 1.8rem);
+  font-weight: 800;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  text-shadow: 0 14px 42px rgba(0, 0, 0, .74);
+}
+
+.welcome-hero .lead {
+  max-width: 680px;
+  color: #d7d0c5;
+}
+
+.welcome-primary {
+  width: fit-content;
+  margin-top: 1.15rem;
+}
+
+.pdf-reward-card {
+  position: relative;
+  display: grid;
+  gap: 1rem;
+  padding: 1rem;
+  border: 1px solid rgba(216, 182, 109, .42);
+  border-radius: calc(var(--radius) * 1.5);
+  background:
+    linear-gradient(145deg, rgba(13, 12, 10, .9), rgba(2, 2, 2, .96)),
+    radial-gradient(circle at 50% 0, rgba(184, 137, 58, .16), transparent 18rem);
+  box-shadow: var(--shadow), inset 0 1px 0 rgba(244, 223, 157, .08);
+}
+
+.pdf-reward-card::before {
+  position: absolute;
+  inset: 0.7rem;
+  border: 1px solid rgba(184, 137, 58, .16);
+  pointer-events: none;
+  content: "";
+}
+
+.pdf-cover-visual {
+  position: relative;
+  min-height: 320px;
+  overflow: hidden;
+  border: 1px solid rgba(184, 137, 58, .28);
+  border-radius: var(--radius);
+  background:
+    linear-gradient(180deg, rgba(2, 2, 2, .02), rgba(2, 2, 2, .68)),
+    var(--pdf-cover-image),
+    radial-gradient(circle at 50% 18%, rgba(216, 182, 109, .18), transparent 12rem),
+    linear-gradient(145deg, #1a1b19, #050505 68%);
+  background-position: center;
+  background-size: cover;
+  box-shadow: inset 0 1px 0 rgba(244, 223, 157, .08);
+}
+
+.pdf-cover-visual span {
+  position: absolute;
+  left: 1rem;
+  bottom: 1rem;
+  padding: .42rem .58rem;
+  border: 1px solid rgba(216, 182, 109, .5);
+  color: var(--gold-pale);
+  background: rgba(0, 0, 0, .52);
+  font-family: var(--serif);
+  font-size: .7rem;
+  font-weight: 900;
+  letter-spacing: .16em;
+}
+
+.pdf-reward-body {
+  padding: .15rem .25rem .25rem;
+}
+
+.pdf-reward-body h2 {
+  font-size: clamp(1.45rem, 6vw, 2.1rem);
+}
+
+.pdf-reward-body p:last-child {
+  margin-bottom: 0;
+  color: var(--muted);
+}
+
+.welcome-mission {
+  overflow: hidden;
+  background:
+    linear-gradient(180deg, rgba(2, 2, 2, .98), rgba(8, 9, 9, .96)),
+    radial-gradient(circle at 18% 18%, rgba(184, 137, 58, .1), transparent 20rem),
+    radial-gradient(circle at 82% 8%, rgba(135, 148, 154, .1), transparent 22rem);
+}
+
+.welcome-mission-grid {
+  display: grid;
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+.mission-briefing-card {
+  position: relative;
+  display: grid;
+  gap: .9rem;
+  min-height: 100%;
+  padding: 1.15rem;
+  border: 1px solid rgba(216, 182, 109, .34);
+  border-radius: var(--radius);
+  background:
+    linear-gradient(145deg, rgba(12, 11, 9, .94), rgba(2, 2, 2, .96)),
+    radial-gradient(circle at 20% 0, rgba(184, 137, 58, .12), transparent 16rem);
+  box-shadow: inset 0 1px 0 rgba(244, 223, 157, .06), 0 28px 72px rgba(0, 0, 0, .42);
+  transition: transform .28s ease, border-color .28s ease, box-shadow .28s ease;
+}
+
+.mission-briefing-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(216, 182, 109, .56);
+  box-shadow: inset 0 1px 0 rgba(244, 223, 157, .08), 0 34px 90px rgba(0, 0, 0, .54);
+}
+
+.mission-briefing-card > span {
+  display: grid;
+  width: 42px;
+  height: 42px;
+  place-items: center;
+  border: 1px solid rgba(216, 182, 109, .46);
+  color: var(--gold-pale);
+  background: rgba(0, 0, 0, .38);
+  font-family: var(--serif);
+  font-size: .72rem;
+  font-weight: 900;
+}
+
+.mission-briefing-card h3 {
+  font-size: clamp(1.05rem, 4vw, 1.38rem);
+}
+
+.mission-briefing-card p {
+  margin: .55rem 0 0;
+  color: var(--muted);
+}
+
+.welcome-final-line {
+  width: min(100% - 2rem, 760px);
+  margin: 2.2rem auto 0;
+  color: var(--gold-pale);
+  font-family: var(--serif);
+  font-size: clamp(1rem, 4vw, 1.45rem);
+  font-weight: 900;
+  letter-spacing: .08em;
+  text-align: center;
+  text-transform: uppercase;
+}
+
 .legal-note {
   padding: 1rem;
 }
@@ -1911,6 +2132,22 @@ input[type="email"]:focus {
   .manual-layout {
     grid-template-columns: minmax(210px, .32fr) minmax(0, 1fr);
     align-items: start;
+  }
+
+  .welcome-hero-stage {
+    min-height: calc(100svh - 84px);
+    grid-template-columns: minmax(0, 1.02fr) minmax(290px, .58fr);
+    align-items: center;
+    gap: clamp(2rem, 5vw, 4rem);
+  }
+
+  .pdf-reward-card {
+    justify-self: end;
+    width: min(100%, 380px);
+  }
+
+  .welcome-mission-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 }
 
@@ -2265,6 +2502,36 @@ input[type="email"]:focus {
   .recruitment-seal {
     width: 48px;
     height: 48px;
+  }
+
+  .welcome-hero {
+    min-height: auto;
+  }
+
+  .welcome-hero-stage {
+    min-height: auto;
+    padding: 2.65rem 0 3rem;
+    text-align: center;
+  }
+
+  .welcome-primary {
+    width: 100%;
+  }
+
+  .pdf-reward-card {
+    text-align: left;
+  }
+
+  .pdf-cover-visual {
+    min-height: 260px;
+  }
+
+  .welcome-mission-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .mission-briefing-card {
+    text-align: left;
   }
 }
 
