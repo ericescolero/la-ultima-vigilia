@@ -633,7 +633,7 @@ Can change:
   - `el-remanente`
   - `mision`
   - `blog`
-  - `gracias`
+  - `bienvenido`
   - `descargar`
   - legal pages in a restrained way
 

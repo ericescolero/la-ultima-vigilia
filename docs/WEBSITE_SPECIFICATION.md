@@ -52,7 +52,7 @@ The mission is awakening, not spectacle.
 /mision
 /blog
 /blog/[slug]
-/gracias
+/bienvenido
 /descargar/la-guerra-silenciosa
 /privacidad
 /terminos
@@ -91,7 +91,7 @@ The mission is awakening, not spectacle.
 | `/mision` | Explain the purpose, worldview, and call of La Ultima Vigilia. |
 | `/blog` | Publish content around the ten content pillars. |
 | `/blog/[slug]` | Article detail pages with email capture CTAs. |
-| `/gracias` | Confirm email signup and move user toward next step. |
+| `/bienvenido` | Confirm email signup, deliver the PDF, and move user toward the next mission. |
 | `/descargar/la-guerra-silenciosa` | Backup or confirmation download path. |
 | `/privacidad` | Privacy policy. |
 | `/terminos` | Terms and conditions. |
@@ -109,7 +109,7 @@ Visitor lands on homepage
 → submits email
 → receives confirmation
 → gets delivery email
-→ lands on thank-you page
+→ lands on /bienvenido
 → sees invitation to El Remanente
 ```
 
@@ -128,7 +128,7 @@ Visitor lands on /la-guerra-silenciosa
 → understands the seven battles concept
 → submits email
 → receives PDF by email
-→ is redirected to /gracias
+→ is redirected to /bienvenido
 ```
 
 Success criteria:
@@ -701,4 +701,3 @@ Version 1 is successful when:
 The first version does not need to do everything.
 
 It needs to awaken, capture, deliver, and prepare the road ahead.
-

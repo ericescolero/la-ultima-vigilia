@@ -55,7 +55,7 @@ Submit form
 → apply source tag
 → apply interest tag
 → trigger delivery automation
-→ redirect to /gracias
+→ redirect to /bienvenido
 ```
 
 ---
@@ -68,4 +68,3 @@ Failures must:
 - Avoid silent form reset.
 - Preserve entered email.
 - Log provider/API error in future monitoring.
-

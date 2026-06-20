@@ -3,7 +3,7 @@ title: "La Guerra Silenciosa"
 subtitle: "7 batallas que están destruyendo el propósito espiritual de los hombres."
 slug: "la-guerra-silenciosa"
 status: "published"
-deliveryPath: "/pdfs/la-guerra-silenciosa.pdf"
+deliveryPath: "/recursos/la-guerra-silenciosa.pdf"
 emailTag: "lead-magnet-la-guerra-silenciosa"
 sourceTags:
   - "source-home"
@@ -18,4 +18,3 @@ canonReferences:
 ---
 
 Recurso gratuito principal para capturar correos y abrir el camino hacia El Remanente.
-

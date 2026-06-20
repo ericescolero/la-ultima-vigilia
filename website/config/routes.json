@@ -31,11 +31,6 @@
       "purpose": "Starter article page with email capture CTA."
     },
     {
-      "path": "/gracias/",
-      "file": "gracias/index.html",
-      "purpose": "Confirm signup and move user toward next step."
-    },
-    {
       "path": "/descargar/la-guerra-silenciosa/",
       "file": "descargar/la-guerra-silenciosa/index.html",
       "purpose": "Backup or confirmation download path."

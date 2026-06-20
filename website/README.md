@@ -20,6 +20,6 @@ Then open:
 http://127.0.0.1:4173
 ```
 
-The email capture flow submits to the configured MailerLite public form endpoint. Each form sends the email value as `fields[email]` and redirects successful signups to `/gracias/?source=mailerlite`.
+The email capture flow submits to the configured MailerLite public form endpoint. Each form sends the email value as `fields[email]` and redirects successful signups to `/bienvenido/`.
 
 Do not commit MailerLite API keys. Server-side API integration should be added only when a backend or serverless function exists.

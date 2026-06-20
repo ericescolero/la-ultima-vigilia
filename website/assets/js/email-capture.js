@@ -116,7 +116,7 @@
 
       setMessage(form, "Listo. Te llevamos al siguiente paso.", "success");
 
-      window.location.href = "/gracias/?source=mailerlite";
+      window.location.href = "/bienvenido/";
     } catch (_error) {
       emitEvent("lead_form_error", { source, interest, provider: "mailerlite" });
       setMessage(form, "No se pudo completar el envio. Revisa tu conexion e intentalo otra vez.", "error");

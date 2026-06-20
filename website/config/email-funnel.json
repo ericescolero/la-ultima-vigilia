@@ -5,7 +5,7 @@
   "delivery": {
     "primary": "mailerlite-automation",
     "backupPath": "/descargar/la-guerra-silenciosa/",
-    "pdfPath": "/pdfs/la-guerra-silenciosa.pdf"
+    "pdfPath": "/recursos/la-guerra-silenciosa.pdf"
   },
   "requiredFields": [
     "email"
@@ -40,6 +40,6 @@
     "apply-source-tag",
     "apply-lead-magnet-tag",
     "trigger-delivery-email",
-    "redirect-to-gracias"
+    "redirect-to-bienvenido"
   ]
 }

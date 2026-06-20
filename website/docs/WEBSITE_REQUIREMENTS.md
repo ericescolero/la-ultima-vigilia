@@ -13,7 +13,7 @@
 /mision
 /blog
 /blog/[slug]
-/gracias
+/bienvenido
 /descargar/la-guerra-silenciosa
 /privacidad
 /terminos
@@ -60,4 +60,3 @@ Every form must support:
 - High contrast.
 - SEO metadata.
 - Canon-safe copy and visuals.
-

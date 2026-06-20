@@ -276,7 +276,7 @@ function head({ title, description, canonical, type = "website", image, schema }
     <meta name="twitter:card" content="summary_large_image">
     <meta name="mailerlite-endpoint" content="https://assets.mailerlite.com/jsonp/2374679/forms/190533263957165697/subscribe">
     <link rel="stylesheet" href="/assets/css/styles.css?v=20260620-bienvenido-v2">
-    <script defer src="/assets/js/email-capture.js"></script>
+    <script defer src="/assets/js/email-capture.js?v=20260620-leadmagnet-redirects"></script>
     <script defer src="/assets/js/scroll-animations.js"></script>
     <script defer src="/assets/js/navigation.js"></script>${schema ? `\n    <script type="application/ld+json">${jsonLd(schema)}</script>` : ""}
   </head>`;

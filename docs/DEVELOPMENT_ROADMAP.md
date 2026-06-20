@@ -526,7 +526,7 @@ The following requirements should be captured before implementation begins.
 /mision
 /blog
 /blog/[slug]
-/gracias
+/bienvenido
 /descargar/la-guerra-silenciosa
 /privacidad
 /terminos
@@ -1018,7 +1018,7 @@ Deliverables:
 - `/mision`
 - `/blog`
 - `/blog/[slug]`
-- `/gracias`
+- `/bienvenido`
 - `/descargar/la-guerra-silenciosa`
 - `/privacidad`
 - `/terminos`
@@ -1191,4 +1191,3 @@ Every future implementation must answer yes to these questions:
 - Does this choose truth over trends?
 
 If the answer is no, the feature should be revised or removed.
-

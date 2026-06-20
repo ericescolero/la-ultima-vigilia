@@ -9,8 +9,5 @@ Purpose:
 Current V1 backup file:
 
 ```text
-website/pdfs/la-guerra-silenciosa.pdf
+website/recursos/la-guerra-silenciosa.pdf
 ```
-
-Replace the placeholder PDF before public launch.
-
