@@ -11,6 +11,7 @@ const requiredFiles = [
   "blog/index.html",
   "blog/la-guerra-silenciosa-hombres/index.html",
   "manuales/index.html",
+  "bienvenido/index.html",
   "gracias/index.html",
   "descargar/la-guerra-silenciosa/index.html",
   "privacidad/index.html",
