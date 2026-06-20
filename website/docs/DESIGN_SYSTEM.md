@@ -77,7 +77,7 @@ Core components:
 - Lead magnet panel.
 - Mission section.
 - El Remanente section.
-- Blog article card.
+- Manual de Campo article card.
 - Article layout.
 - CTA section.
 
@@ -92,4 +92,3 @@ If added later:
 - Must respect reduced motion.
 - Must feel cinematic and restrained.
 - Must not feel trendy or flashy.
-

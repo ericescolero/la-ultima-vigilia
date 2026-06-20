@@ -21,14 +21,14 @@
       "purpose": "Explain the purpose, worldview, and call of La Ultima Vigilia."
     },
     {
-      "path": "/blog/",
-      "file": "blog/index.html",
-      "purpose": "Publish content around the ten content pillars."
+      "path": "/manuales/",
+      "file": "manuales/index.html",
+      "purpose": "Official public content hub for Manuales de Campo."
     },
     {
-      "path": "/blog/la-guerra-silenciosa-hombres/",
-      "file": "blog/la-guerra-silenciosa-hombres/index.html",
-      "purpose": "Starter article page with email capture CTA."
+      "path": "/manuales/la-guerra-que-ya-estas-perdiendo/",
+      "file": "manuales/la-guerra-que-ya-estas-perdiendo/index.html",
+      "purpose": "Published Manuales de Campo article page generated from Decap CMS content."
     },
     {
       "path": "/descargar/la-guerra-silenciosa/",

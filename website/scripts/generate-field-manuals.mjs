@@ -7,6 +7,7 @@ const contentDir = join(projectRoot, "content", "field-manuals");
 const outputDir = join(siteRoot, "manuales");
 const siteUrl = "https://laultimavigilia.com";
 const defaultImage = "/assets/img/placeholders/BLOG_HERO.jpg";
+const buildDate = new Date().toISOString().slice(0, 10);
 
 function escapeHtml(value = "") {
   return String(value)
@@ -39,6 +40,15 @@ function formatDate(value) {
     month: "long",
     day: "numeric"
   }).format(date);
+}
+
+function sitemapDate(value) {
+  if (!value) return buildDate;
+  const datePart = String(value).match(/^\d{4}-\d{2}-\d{2}/);
+  if (datePart) return datePart[0];
+  const date = new Date(value);
+  if (Number.isNaN(date.getTime())) return buildDate;
+  return date.toISOString().slice(0, 10);
 }
 
 function parseScalar(value) {
@@ -220,10 +230,11 @@ function readManuals() {
         status: data.status || "draft",
         author: data.author || "Erick Escolero",
         publishDate: data.publish_date || data.date || "",
+        updatedDate: data.updated_date || data.updated || data.modified_date || data.modified || "",
         tags,
         featuredImage,
         featuredImageAlt: data.featured_image_alt || title,
-        seoTitle: data.seo_title || `${title} | Field Manuals`,
+        seoTitle: data.seo_title || `${title} | Manuales de Campo`,
         seoDescription: description,
         bodyHtml: renderMarkdown(body),
         url: `/manuales/${slug}/`
@@ -233,7 +244,7 @@ function readManuals() {
     .sort((a, b) => new Date(b.publishDate || 0) - new Date(a.publishDate || 0));
 }
 
-function header(active = "blog") {
+function header(active = "manuales") {
   const activeAttr = (key) => (active === key ? ' class="is-active" aria-current="page"' : "");
   return `<header class="site-header">
       <nav class="nav" aria-label="Principal">
@@ -245,7 +256,7 @@ function header(active = "blog") {
           <a${activeAttr("mision")} href="/mision/">Mision</a>
           <a${activeAttr("guerra")} href="/la-guerra-silenciosa/">La Guerra Silenciosa</a>
           <span class="nav-menu"><a${activeAttr("remanente")} href="/el-remanente/">El Remanente</a><span class="submenu"><a href="#">El Arsenal</a></span></span>
-          <a${activeAttr("blog")} href="/blog/">Blog</a>
+          <a${activeAttr("manuales")} href="/manuales/">Manuales de Campo</a>
         </div>
         <a class="nav-cta" href="/la-guerra-silenciosa/">Recibir PDF</a>
       </nav>
@@ -253,7 +264,7 @@ function header(active = "blog") {
 }
 
 function footer() {
-  return `<footer class="site-footer"><div class="container footer-grid global-footer-grid"><div class="footer-brand"><img class="footer-logo" src="/assets/img/placeholders/LOGO_HEADER.svg" alt="La Ultima Vigilia" width="600" height="160"><p>Despertar. Vigilar. Resistir Babylon. Terminar la mision.</p></div><div class="footer-column"><h3>Enlaces</h3><div class="footer-links"><a href="/">Inicio</a><a href="/mision/">Mision</a><a href="/la-guerra-silenciosa/">La Guerra Silenciosa</a><a href="/el-remanente/">El Remanente</a><a href="/blog/">Blog</a></div></div><div class="footer-column"><h3>Comunidad</h3><div class="footer-links"><a href="/descargar/la-guerra-silenciosa/">Descarga</a><a href="/privacidad/">Privacidad</a><a href="/terminos/">Terminos</a></div></div><div class="footer-column"><h3>Siguenos</h3><div class="social-links"><a href="#" aria-label="TikTok"><img src="/assets/img/placeholders/ICON_SOCIAL_TIKTOK.svg" alt=""></a><a href="#" aria-label="Instagram"><img src="/assets/img/placeholders/ICON_SOCIAL_INSTAGRAM.svg" alt=""></a><a href="#" aria-label="Facebook"><img src="/assets/img/placeholders/ICON_SOCIAL_FACEBOOK.svg" alt=""></a><a href="#" aria-label="Telegram"><img src="/assets/img/placeholders/ICON_SOCIAL_TELEGRAM.svg" alt=""></a><a href="#" aria-label="YouTube"><img src="/assets/img/placeholders/ICON_SOCIAL_YOUTUBE.svg" alt=""></a><a href="#" aria-label="Threads"><img src="/assets/img/placeholders/ICON_SOCIAL_THREADS.svg" alt=""></a></div></div></div></footer>`;
+  return `<footer class="site-footer"><div class="container footer-grid global-footer-grid"><div class="footer-brand"><img class="footer-logo" src="/assets/img/placeholders/LOGO_HEADER.svg" alt="La Ultima Vigilia" width="600" height="160"><p>Despertar. Vigilar. Resistir Babylon. Terminar la mision.</p></div><div class="footer-column"><h3>Enlaces</h3><div class="footer-links"><a href="/">Inicio</a><a href="/mision/">Mision</a><a href="/la-guerra-silenciosa/">La Guerra Silenciosa</a><a href="/el-remanente/">El Remanente</a><a href="/manuales/">Manuales de Campo</a></div></div><div class="footer-column"><h3>Comunidad</h3><div class="footer-links"><a href="/descargar/la-guerra-silenciosa/">Descarga</a><a href="/privacidad/">Privacidad</a><a href="/terminos/">Terminos</a></div></div><div class="footer-column"><h3>Siguenos</h3><div class="social-links"><a href="#" aria-label="TikTok"><img src="/assets/img/placeholders/ICON_SOCIAL_TIKTOK.svg" alt=""></a><a href="#" aria-label="Instagram"><img src="/assets/img/placeholders/ICON_SOCIAL_INSTAGRAM.svg" alt=""></a><a href="#" aria-label="Facebook"><img src="/assets/img/placeholders/ICON_SOCIAL_FACEBOOK.svg" alt=""></a><a href="#" aria-label="Telegram"><img src="/assets/img/placeholders/ICON_SOCIAL_TELEGRAM.svg" alt=""></a><a href="#" aria-label="YouTube"><img src="/assets/img/placeholders/ICON_SOCIAL_YOUTUBE.svg" alt=""></a><a href="#" aria-label="Threads"><img src="/assets/img/placeholders/ICON_SOCIAL_THREADS.svg" alt=""></a></div></div></div></footer>`;
 }
 
 function head({ title, description, canonical, type = "website", image, schema }) {
@@ -305,20 +316,20 @@ function renderIndex(manuals) {
           </a>`
         )
         .join("\n")
-    : `<div class="manual-empty panel accent"><h2>Los Field Manuals estan siendo preparados.</h2><p>Cuando un manual sea publicado desde el CMS, aparecera aqui como archivo publico.</p></div>`;
+    : `<div class="manual-empty panel accent"><h2>Los Manuales de Campo estan siendo preparados.</h2><p>Cuando un manual sea publicado desde el CMS, aparecera aqui como archivo publico.</p></div>`;
 
   return `<!doctype html>
 <html lang="es">
   ${head({
-    title: "Field Manuals | La Ultima Vigilia",
-    description: "Archivo publico de Field Manuals: briefings, estrategia y ensenanzas para hombres del Remanente.",
+    title: "Manuales de Campo | La Ultima Vigilia",
+    description: "Archivo publico de Manuales de Campo: briefings, estrategia y ensenanzas para hombres del Remanente.",
     canonical: `${siteUrl}/manuales/`,
     image: defaultImage
   })}
   <body class="is-page">
-    ${header("blog")}
+    ${header("manuales")}
     <main>
-      <section class="hero page-cinematic manuales-hero"><picture class="hero-art"><img src="/assets/img/placeholders/BLOG_HERO.jpg" alt="Archivo cinematico de Field Manuals"></picture><div class="container hero-stage"><div class="hero-copy"><p class="eyebrow">Field Manuals</p><h1>Archivo de guerra para hombres despiertos</h1><p class="lead">Briefings, ensenanzas y estrategia para reconocer la corrupcion, sostener la vigilancia y cumplir la mision.</p></div></div></section>
+      <section class="hero page-cinematic manuales-hero"><picture class="hero-art"><img src="/assets/img/placeholders/BLOG_HERO.jpg" alt="Archivo cinematico de Manuales de Campo"></picture><div class="container hero-stage"><div class="hero-copy"><p class="eyebrow">Manuales de Campo</p><h1>Archivo de guerra para hombres despiertos</h1><p class="lead">Briefings, ensenanzas y estrategia para reconocer la corrupcion, sostener la vigilancia y cumplir la mision.</p></div></div></section>
       <section class="section atmospheric manual-archive"><div class="container chamber-heading"><p class="section-kicker">Archivo publico</p><h2>Manuales publicados</h2></div><div class="container manual-grid">${cards}</div></section>
       ${ecosystemSection()}
       ${finalCta("field-manuals-index")}
@@ -363,14 +374,14 @@ function renderArticle(manual) {
     schema
   })}
   <body class="is-page">
-    ${header("blog")}
+    ${header("manuales")}
     <main>
       <article>
-        <section class="hero page-cinematic manual-article-hero"><picture class="hero-art"><img src="${escapeAttr(manual.featuredImage)}" alt="${escapeAttr(manual.featuredImageAlt)}"></picture><div class="container hero-stage"><div class="hero-copy"><p class="eyebrow">Field Manual</p><h1>${escapeHtml(manual.title)}</h1><p class="lead">${escapeHtml(manual.seoDescription)}</p><div class="manual-meta"><span>${escapeHtml(manual.author)}</span><span>${escapeHtml(formatDate(manual.publishDate))}</span></div></div></div></section>
+        <section class="hero page-cinematic manual-article-hero"><picture class="hero-art"><img src="${escapeAttr(manual.featuredImage)}" alt="${escapeAttr(manual.featuredImageAlt)}"></picture><div class="container hero-stage"><div class="hero-copy"><p class="eyebrow">Manual de Campo</p><h1>${escapeHtml(manual.title)}</h1><p class="lead">${escapeHtml(manual.seoDescription)}</p><div class="manual-meta"><span>${escapeHtml(manual.author)}</span><span>${escapeHtml(formatDate(manual.publishDate))}</span></div></div></div></section>
         <div class="container manual-layout">
           <aside class="manual-sidebar">
             <p class="section-kicker">Archivo</p>
-            <h2>Field Manual</h2>
+            <h2>Manual de Campo</h2>
             <div class="manual-tags">${manual.tags.map((tag) => `<span>${escapeHtml(tag)}</span>`).join("")}</div>
           </aside>
           <div class="article manual-content">
@@ -397,17 +408,20 @@ function writeSitemap(manuals) {
     "/la-guerra-silenciosa/",
     "/el-remanente/",
     "/mision/",
-    "/blog/",
-    "/blog/la-guerra-silenciosa-hombres/",
     "/manuales/",
     "/privacidad/",
     "/terminos/"
   ];
-  const manualUrls = manuals.map((manual) => manual.url);
-  const urls = [...staticUrls, ...manualUrls];
+  const urls = [
+    ...staticUrls.map((url) => ({ loc: url, lastmod: buildDate })),
+    ...manuals.map((manual) => ({
+      loc: manual.url,
+      lastmod: sitemapDate(manual.updatedDate || manual.publishDate)
+    }))
+  ];
   const xml = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-${urls.map((url) => `  <url><loc>${siteUrl}${url}</loc></url>`).join("\n")}
+${urls.map((url) => `  <url><loc>${siteUrl}${url.loc}</loc><lastmod>${url.lastmod}</lastmod></url>`).join("\n")}
 </urlset>
 `;
 
@@ -425,4 +439,4 @@ for (const manual of manuals) {
 
 writeSitemap(manuals);
 
-console.log(`Generated Field Manuals: ${manuals.length} published manual${manuals.length === 1 ? "" : "s"}.`);
+console.log(`Generated Manuales de Campo: ${manuals.length} published manual${manuals.length === 1 ? "" : "s"}.`);

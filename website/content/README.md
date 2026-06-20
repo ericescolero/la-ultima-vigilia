@@ -5,7 +5,7 @@ This folder holds structured content before it becomes rendered pages.
 Collections:
 
 - `pages`
-- `blog`
+- `field-manuals`
 - `lead-magnets`
 - `archetypes`
 - `enemies`
@@ -13,4 +13,3 @@ Collections:
 - `legal`
 
 Every item should include status and canon references before publication.
-

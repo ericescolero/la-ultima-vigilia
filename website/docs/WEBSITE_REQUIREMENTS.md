@@ -11,8 +11,8 @@
 /la-guerra-silenciosa
 /el-remanente
 /mision
-/blog
-/blog/[slug]
+/manuales
+/manuales/[slug]
 /bienvenido
 /descargar/la-guerra-silenciosa
 /privacidad
@@ -27,7 +27,7 @@
 - Visitor can submit an email.
 - Visitor can access `La Guerra Silenciosa`.
 - Visitor understands El Remanente as a serious brotherhood.
-- Site can expand into blog, courses, membership, and archive systems.
+- Site can expand into Manuales de Campo, courses, membership, and archive systems.
 
 ---
 
@@ -35,8 +35,8 @@
 
 - Homepage hero form.
 - Lead magnet page form.
-- Blog form.
-- Article form.
+- Manuales de Campo index form.
+- Manual de Campo article form.
 - El Remanente interest form.
 - Final CTA form.
 

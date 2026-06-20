@@ -6,7 +6,7 @@ Version 1 is a fast, static-first website focused on:
 - `La Guerra Silenciosa` delivery
 - Mission clarity
 - El Remanente introduction
-- Future expansion into blog, courses, membership, and archive systems
+- Future expansion into Manuales de Campo, courses, membership, and archive systems
 
 Run locally:
 

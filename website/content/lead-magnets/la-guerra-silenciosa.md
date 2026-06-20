@@ -8,7 +8,7 @@ emailTag: "lead-magnet-la-guerra-silenciosa"
 sourceTags:
   - "source-home"
   - "source-lead-magnet-page"
-  - "source-blog"
+  - "source-field-manuals-index"
   - "source-el-remanente"
 seoTitle: "La Guerra Silenciosa | La Última Vigilia"
 seoDescription: "Recibe La Guerra Silenciosa: 7 batallas que están destruyendo el propósito espiritual de los hombres."
