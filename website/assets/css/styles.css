@@ -1774,10 +1774,10 @@ input[type="email"]:focus {
 
 .welcome-hero-stage {
   display: grid;
-  min-height: calc(100svh - 74px);
+  min-height: min(760px, calc(100svh - 74px));
   align-content: center;
-  gap: 1.4rem;
-  padding: clamp(3.4rem, 8vw, 5.75rem) 0;
+  gap: clamp(1.5rem, 4vw, 3.25rem);
+  padding: clamp(3rem, 7vw, 5rem) 0;
 }
 
 .welcome-hero-copy {
@@ -1785,15 +1785,15 @@ input[type="email"]:focus {
 }
 
 .welcome-hero h1 {
-  max-width: 860px;
+  max-width: 680px;
   font-family: var(--serif);
-  font-size: clamp(2.35rem, 8vw, 3.85rem);
+  font-size: clamp(2.55rem, 7vw, 4.25rem);
   line-height: .98;
   letter-spacing: .045em;
 }
 
 .welcome-subheadline {
-  margin: 1.1rem 0 .8rem;
+  margin: 1rem 0 .8rem;
   color: var(--gold-pale);
   font-family: var(--serif);
   font-size: clamp(1.2rem, 4.2vw, 1.8rem);
@@ -1804,7 +1804,7 @@ input[type="email"]:focus {
 }
 
 .welcome-hero .lead {
-  max-width: 680px;
+  max-width: 560px;
   color: #d7d0c5;
 }
 
@@ -1816,8 +1816,8 @@ input[type="email"]:focus {
 .pdf-reward-card {
   position: relative;
   display: grid;
-  gap: 1rem;
-  padding: 1rem;
+  gap: 1.15rem;
+  padding: 1.15rem;
   border: 1px solid rgba(216, 182, 109, .42);
   border-radius: calc(var(--radius) * 1.5);
   background:
@@ -1836,7 +1836,7 @@ input[type="email"]:focus {
 
 .pdf-cover-visual {
   position: relative;
-  min-height: 320px;
+  min-height: clamp(230px, 30vw, 300px);
   overflow: hidden;
   border: 1px solid rgba(184, 137, 58, .28);
   border-radius: var(--radius);
@@ -1894,16 +1894,37 @@ input[type="email"]:focus {
 .mission-briefing-card {
   position: relative;
   display: grid;
-  gap: .9rem;
+  align-content: end;
+  gap: 1rem;
   min-height: 100%;
-  padding: 1.15rem;
+  overflow: hidden;
+  padding: 1.25rem;
   border: 1px solid rgba(216, 182, 109, .34);
   border-radius: var(--radius);
   background:
+    linear-gradient(90deg, rgba(2, 2, 2, .94), rgba(2, 2, 2, .58)),
+    var(--mission-card-image),
     linear-gradient(145deg, rgba(12, 11, 9, .94), rgba(2, 2, 2, .96)),
     radial-gradient(circle at 20% 0, rgba(184, 137, 58, .12), transparent 16rem);
+  background-position: center;
+  background-size: cover;
   box-shadow: inset 0 1px 0 rgba(244, 223, 157, .06), 0 28px 72px rgba(0, 0, 0, .42);
   transition: transform .28s ease, border-color .28s ease, box-shadow .28s ease;
+}
+
+.mission-briefing-card::before {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  content: "";
+  background:
+    linear-gradient(180deg, rgba(2, 2, 2, .1), rgba(2, 2, 2, .78)),
+    repeating-linear-gradient(105deg, rgba(255, 255, 255, .018) 0 1px, transparent 1px 24px);
+}
+
+.mission-briefing-card > * {
+  position: relative;
+  z-index: 1;
 }
 
 .mission-briefing-card:hover {
@@ -1932,6 +1953,24 @@ input[type="email"]:focus {
 .mission-briefing-card p {
   margin: .55rem 0 0;
   color: var(--muted);
+}
+
+.mission-briefing-card strong {
+  display: inline-flex;
+  width: fit-content;
+  min-height: 38px;
+  align-items: center;
+  justify-content: center;
+  margin-top: 1rem;
+  padding: .55rem .85rem;
+  border: 1px solid rgba(216, 182, 109, .5);
+  color: var(--gold-pale);
+  background: rgba(0, 0, 0, .34);
+  font-family: var(--serif);
+  font-size: .72rem;
+  font-weight: 900;
+  letter-spacing: .12em;
+  text-transform: uppercase;
 }
 
 .welcome-final-line {
@@ -2135,10 +2174,13 @@ input[type="email"]:focus {
   }
 
   .welcome-hero-stage {
-    min-height: calc(100svh - 84px);
+    min-height: min(740px, calc(100svh - 84px));
     grid-template-columns: minmax(0, 1.02fr) minmax(290px, .58fr);
-    align-items: center;
+    align-items: start;
+    align-content: start;
     gap: clamp(2rem, 5vw, 4rem);
+    padding-top: clamp(3.1rem, 6.5vh, 4.25rem);
+    padding-bottom: 3.2rem;
   }
 
   .pdf-reward-card {
@@ -2148,6 +2190,10 @@ input[type="email"]:focus {
 
   .welcome-mission-grid {
     grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .mission-briefing-card {
+    min-height: 230px;
   }
 }
 
@@ -2531,7 +2577,12 @@ input[type="email"]:focus {
   }
 
   .mission-briefing-card {
+    min-height: 230px;
     text-align: left;
+  }
+
+  .mission-briefing-card strong {
+    width: 100%;
   }
 }
 
