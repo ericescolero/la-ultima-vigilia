@@ -2033,6 +2033,14 @@ input[type="email"]:focus {
   padding: 0;
 }
 
+.motion-ready .manual-content,
+.motion-ready .manual-content.reveal {
+  opacity: 1 !important;
+  transform: none !important;
+  transition: none !important;
+  will-change: auto;
+}
+
 .manual-content img {
   width: 100%;
   margin: 2rem 0;

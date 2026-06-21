@@ -15,7 +15,7 @@
     ".section",
     ".section-tight",
     ".page-hero",
-    ".article",
+    ".article:not(.manual-content)",
     ".archive-item",
     ".oath-item",
     ".briefing-tile",
