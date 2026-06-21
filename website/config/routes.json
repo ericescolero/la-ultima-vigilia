@@ -16,6 +16,21 @@
       "purpose": "Canonical authority page explaining The Watchman Universe ecosystem."
     },
     {
+      "path": "/archetypes/",
+      "file": "archetypes/index.html",
+      "purpose": "Canonical authority page explaining the Archetype System."
+    },
+    {
+      "path": "/enemy-forces/",
+      "file": "enemy-forces/index.html",
+      "purpose": "Canonical authority page explaining the Enemy Force System."
+    },
+    {
+      "path": "/battlefields/",
+      "file": "battlefields/index.html",
+      "purpose": "Canonical Battlefield Library for the ecosystem."
+    },
+    {
       "path": "/la-guerra-silenciosa/",
       "file": "la-guerra-silenciosa/index.html",
       "purpose": "Dedicated lead magnet landing page."
@@ -57,9 +72,6 @@
     }
   ],
   "future": [
-    "/archetypes/",
-    "/enemy-forces/",
-    "/battlefields/",
     "/battlefields/guerra-espiritual/",
     "/battlefields/disciplina/",
     "/battlefields/identidad/",

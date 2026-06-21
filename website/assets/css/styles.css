@@ -1825,6 +1825,45 @@ input[type="email"]:focus {
   margin-top: 2rem;
 }
 
+.authority-map-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+.authority-map-card {
+  display: grid;
+  gap: .7rem;
+  padding: clamp(1rem, 2.2vw, 1.35rem);
+  border: 1px solid rgba(184, 137, 58, .28);
+  border-radius: var(--radius);
+  background:
+    linear-gradient(145deg, rgba(12, 12, 10, .88), rgba(2, 2, 2, .94)),
+    radial-gradient(circle at 50% 0, rgba(184, 137, 58, .1), transparent 12rem);
+  box-shadow: inset 0 1px 0 rgba(244, 223, 157, .05), 0 20px 48px rgba(0, 0, 0, .32);
+}
+
+.authority-map-card h3 {
+  font-size: clamp(1.02rem, 1.5vw, 1.22rem);
+}
+
+.authority-map-card p {
+  margin: 0;
+  color: #d0c8bc;
+  line-height: 1.55;
+}
+
+.authority-map-card a {
+  align-self: end;
+  color: var(--gold-bright);
+  font-family: var(--serif);
+  font-size: .72rem;
+  font-weight: 900;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+}
+
 .battlefield-grid a,
 .watchman-path li {
   border: 1px solid rgba(184, 137, 58, .28);
@@ -2295,6 +2334,7 @@ input[type="email"]:focus {
   .universe-problem-grid,
   .universe-roster-grid,
   .enemy-orientation-grid,
+  .authority-map-grid,
   .battlefield-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
@@ -2783,6 +2823,7 @@ input[type="email"]:focus {
   .universe-problem-grid,
   .universe-roster-grid,
   .enemy-orientation-grid,
+  .authority-map-grid,
   .battlefield-grid,
   .watchman-path {
     grid-template-columns: 1fr;
