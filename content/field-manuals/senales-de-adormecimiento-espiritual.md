@@ -8,6 +8,7 @@ tags:
   - señales de adormecimiento espiritual, apatía espiritual, cansancio
     espiritual, cómo volver a Dios, pérdida de pasión espiritual, despertar
     espiritual
+featured_image: /assets/blog/004-01.jpg
 featured_image_alt: ""
 seo_title: Señales de Adormecimiento Espiritual | La Ultima Vigilia
 seo_description: Muchos hombres no han abandonado su fe. Simplemente se han
