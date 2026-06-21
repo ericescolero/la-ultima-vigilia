@@ -104,6 +104,7 @@ function parseFrontmatter(markdown) {
   const body = markdown.slice(end + 4).trim();
   const data = {};
   let activeList = null;
+  let lastKey = null;
 
   const lines = raw.split(/\r?\n/);
 
@@ -114,22 +115,33 @@ function parseFrontmatter(markdown) {
     const listMatch = line.match(/^\s*-\s+(.*)$/);
     if (listMatch && activeList) {
       data[activeList].push(parseScalar(listMatch[1]));
+      lastKey = activeList;
       continue;
     }
 
     const continuationMatch = line.match(/^\s+(.+)$/);
     if (continuationMatch && activeList && Array.isArray(data[activeList]) && data[activeList].length) {
       data[activeList][data[activeList].length - 1] = `${data[activeList][data[activeList].length - 1]} ${parseScalar(continuationMatch[1])}`;
+      lastKey = activeList;
+      continue;
+    }
+
+    if (continuationMatch && lastKey && !activeList && typeof data[lastKey] === "string") {
+      data[lastKey] = `${data[lastKey]} ${parseScalar(continuationMatch[1])}`;
       continue;
     }
 
     const pairMatch = line.match(/^([A-Za-z0-9_-]+):\s*(.*)$/);
-    if (!pairMatch) continue;
+    if (!pairMatch) {
+      lastKey = null;
+      continue;
+    }
 
     let [, key, value] = pairMatch;
     if (value === "") {
       data[key] = [];
       activeList = key;
+      lastKey = key;
     } else {
       const quote = value.startsWith('"') ? '"' : value.startsWith("'") ? "'" : "";
       if (quote && !value.endsWith(quote)) {
@@ -143,6 +155,7 @@ function parseFrontmatter(markdown) {
       }
       data[key] = parseScalar(value);
       activeList = null;
+      lastKey = key;
     }
   }
 
