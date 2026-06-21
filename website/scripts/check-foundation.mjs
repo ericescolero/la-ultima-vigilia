@@ -13,6 +13,7 @@ const requiredFiles = [
   "descargar/la-guerra-silenciosa/index.html",
   "privacidad/index.html",
   "terminos/index.html",
+  "rss.xml",
   "assets/css/styles.css",
   "assets/js/email-capture.js",
   "config/site.json",

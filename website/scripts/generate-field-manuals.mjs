@@ -7,7 +7,14 @@ const contentDir = join(projectRoot, "content", "field-manuals");
 const outputDir = join(siteRoot, "manuales");
 const siteUrl = "https://laultimavigilia.com";
 const defaultImage = "/assets/img/placeholders/BLOG_HERO.jpg";
-const buildDate = new Date().toISOString().slice(0, 10);
+const buildDate = new Intl.DateTimeFormat("sv-SE", {
+  timeZone: "America/Mexico_City",
+  year: "numeric",
+  month: "2-digit",
+  day: "2-digit"
+}).format(new Date());
+const rssTitle = "La Última Vigilia - Manuales de Campo";
+const rssPath = "/rss.xml";
 
 function escapeHtml(value = "") {
   return String(value)
@@ -20,6 +27,15 @@ function escapeHtml(value = "") {
 
 function escapeAttr(value = "") {
   return escapeHtml(value).replace(/`/g, "&#96;");
+}
+
+function escapeXml(value = "") {
+  return String(value)
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&apos;");
 }
 
 function slugify(value = "") {
@@ -49,6 +65,12 @@ function sitemapDate(value) {
   const date = new Date(value);
   if (Number.isNaN(date.getTime())) return buildDate;
   return date.toISOString().slice(0, 10);
+}
+
+function rssDate(value) {
+  const date = value ? new Date(value) : new Date();
+  if (Number.isNaN(date.getTime())) return new Date().toUTCString();
+  return date.toUTCString();
 }
 
 function parseScalar(value) {
@@ -279,6 +301,7 @@ function head({ title, description, canonical, type = "website", image, schema }
     <title>${safeTitle}</title>
     <meta name="description" content="${safeDescription}">
     <link rel="canonical" href="${safeCanonical}">
+    <link rel="alternate" type="application/rss+xml" title="${escapeAttr(rssTitle)}" href="${siteUrl}${rssPath}">
     <meta property="og:title" content="${safeTitle}">
     <meta property="og:description" content="${safeDescription}">
     <meta property="og:type" content="${type}">
@@ -409,6 +432,7 @@ function writeSitemap(manuals) {
     "/el-remanente/",
     "/mision/",
     "/manuales/",
+    rssPath,
     "/privacidad/",
     "/terminos/"
   ];
@@ -428,6 +452,38 @@ ${urls.map((url) => `  <url><loc>${siteUrl}${url.loc}</loc><lastmod>${url.lastmo
   writeFileSync(join(siteRoot, "sitemap.xml"), xml);
 }
 
+function writeRss(manuals) {
+  const items = manuals
+    .map((manual) => {
+      const link = `${siteUrl}${manual.url}`;
+      return `    <item>
+      <title>${escapeXml(manual.title)}</title>
+      <link>${escapeXml(link)}</link>
+      <guid isPermaLink="true">${escapeXml(link)}</guid>
+      <pubDate>${escapeXml(rssDate(manual.publishDate))}</pubDate>
+      <dc:creator>${escapeXml(manual.author)}</dc:creator>
+      <description>${escapeXml(manual.seoDescription)}</description>
+    </item>`;
+    })
+    .join("\n");
+
+  const xml = `<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>${escapeXml(rssTitle)}</title>
+    <link>${siteUrl}/manuales/</link>
+    <atom:link href="${siteUrl}${rssPath}" rel="self" type="application/rss+xml" />
+    <description>Manuales de Campo publicados por La Última Vigilia.</description>
+    <language>es</language>
+    <lastBuildDate>${escapeXml(rssDate())}</lastBuildDate>
+${items}
+  </channel>
+</rss>
+`;
+
+  writeFileSync(join(siteRoot, "rss.xml"), xml);
+}
+
 const manuals = readManuals();
 rmSync(outputDir, { recursive: true, force: true });
 mkdirSync(outputDir, { recursive: true });
@@ -438,5 +494,6 @@ for (const manual of manuals) {
 }
 
 writeSitemap(manuals);
+writeRss(manuals);
 
 console.log(`Generated Manuales de Campo: ${manuals.length} published manual${manuals.length === 1 ? "" : "s"}.`);
