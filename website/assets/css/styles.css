@@ -258,13 +258,41 @@ h3,
 }
 
 .nav-links a,
+.nav-parent,
 .footer-links a {
   opacity: .82;
 }
 
-.nav-links a {
+.nav-links a,
+.nav-parent {
   position: relative;
   padding: .4rem 0;
+}
+
+.nav-parent {
+  min-height: 0;
+  border: 0;
+  border-radius: 0;
+  color: inherit;
+  background: transparent;
+  box-shadow: none;
+  font-family: inherit;
+  font-size: inherit;
+  font-weight: inherit;
+  letter-spacing: inherit;
+  text-transform: inherit;
+}
+
+.nav-parent:hover {
+  filter: none;
+}
+
+.nav-caret {
+  display: inline-block;
+  margin-left: .18rem;
+  color: var(--gold-bright);
+  font-size: .55rem;
+  transform: translateY(-.06rem);
 }
 
 .nav-menu {
@@ -274,7 +302,8 @@ h3,
   padding: .55rem 0;
 }
 
-.nav-menu > a {
+.nav-menu > a,
+.nav-menu > .nav-parent {
   padding: 0;
 }
 
@@ -294,7 +323,7 @@ h3,
   top: calc(100% + .62rem);
   z-index: 2;
   display: grid;
-  min-width: 155px;
+  min-width: 230px;
   padding: .65rem .75rem;
   transform: translate(-50%, .22rem);
   border: 1px solid rgba(216, 182, 109, .32);
@@ -332,14 +361,31 @@ h3,
   transition: transform .18s ease;
 }
 
+.nav-parent::after {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -.35rem;
+  height: 1px;
+  content: "";
+  transform: scaleX(0);
+  transform-origin: center;
+  background: linear-gradient(90deg, transparent, var(--gold-bright), transparent);
+  transition: transform .18s ease;
+}
+
 .nav-links a:hover,
+.nav-parent:hover,
 .footer-links a:hover,
 .nav-links a.is-active,
+.nav-parent.is-active,
 .nav-links a[aria-current="page"] {
   opacity: 1;
 }
 
 .nav-links a:hover::after,
+.nav-parent:hover::after,
+.nav-parent.is-active::after,
 .nav-links a.is-active::after,
 .nav-links a[aria-current="page"]::after {
   transform: scaleX(1);
@@ -1673,13 +1719,15 @@ input[type="email"]:focus {
 
 .start-card-grid,
 .start-roster-grid,
+.universe-problem-grid,
 .battlefield-grid,
 .watchman-path {
   display: grid;
   gap: 1rem;
 }
 
-.start-card-grid {
+.start-card-grid,
+.universe-problem-grid {
   grid-template-columns: repeat(3, minmax(0, 1fr));
   margin-top: 2rem;
 }
@@ -1728,6 +1776,10 @@ input[type="email"]:focus {
 }
 
 .enemy-orientation-grid {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.universe-roster-grid {
   grid-template-columns: repeat(4, minmax(0, 1fr));
 }
 
@@ -1823,6 +1875,67 @@ input[type="email"]:focus {
   background:
     linear-gradient(180deg, rgba(2, 2, 2, .96), rgba(5, 6, 6, .98)),
     radial-gradient(circle at 50% 20%, rgba(184, 137, 58, .12), transparent 24rem);
+}
+
+.universe-hero .hero-copy {
+  max-width: 880px;
+}
+
+.philosophy-stack {
+  display: grid;
+  gap: .68rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.philosophy-stack li {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: .9rem;
+  align-items: center;
+  padding: .95rem 1rem;
+  border: 1px solid rgba(216, 182, 109, .3);
+  border-radius: var(--radius);
+  background:
+    linear-gradient(145deg, rgba(12, 12, 10, .88), rgba(2, 2, 2, .94)),
+    radial-gradient(circle at 100% 0, rgba(184, 137, 58, .12), transparent 12rem);
+  box-shadow: inset 0 1px 0 rgba(244, 223, 157, .05), 0 22px 48px rgba(0, 0, 0, .34);
+}
+
+.philosophy-stack span {
+  color: var(--gold-bright);
+  font-family: var(--serif);
+  font-size: .72rem;
+  font-weight: 900;
+  letter-spacing: .14em;
+}
+
+.philosophy-stack strong {
+  color: #e3d8c4;
+  font-family: var(--serif);
+  font-size: clamp(1rem, 1.7vw, 1.28rem);
+  letter-spacing: .06em;
+  text-transform: uppercase;
+}
+
+.philosophy-rule {
+  margin-top: 1.4rem;
+  text-align: center;
+}
+
+.philosophy-rule p {
+  margin: 0;
+  color: var(--gold-bright);
+  font-family: var(--serif);
+  font-size: clamp(1.05rem, 2.1vw, 1.45rem);
+  font-weight: 900;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+}
+
+.universe-final-cta {
+  border-top: 1px solid rgba(184, 137, 58, .18);
 }
 
 .manual-empty {
@@ -2179,6 +2292,8 @@ input[type="email"]:focus {
 @media (max-width: 1040px) {
   .start-card-grid,
   .start-roster-grid,
+  .universe-problem-grid,
+  .universe-roster-grid,
   .enemy-orientation-grid,
   .battlefield-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -2566,11 +2681,13 @@ input[type="email"]:focus {
   }
 
   .nav-links a,
-  .nav-menu {
+  .nav-menu,
+  .nav-parent {
     width: 100%;
   }
 
-  .nav-links a {
+  .nav-links a,
+  .nav-parent {
     display: flex;
     min-height: 42px;
     align-items: center;
@@ -2587,8 +2704,13 @@ input[type="email"]:focus {
     display: none;
   }
 
-  .nav-menu > a {
+  .nav-menu > a,
+  .nav-menu > .nav-parent {
     justify-content: center;
+  }
+
+  .nav-parent::after {
+    display: none;
   }
 
   .submenu {
@@ -2658,6 +2780,8 @@ input[type="email"]:focus {
 
   .start-card-grid,
   .start-roster-grid,
+  .universe-problem-grid,
+  .universe-roster-grid,
   .enemy-orientation-grid,
   .battlefield-grid,
   .watchman-path {

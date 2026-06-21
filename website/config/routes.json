@@ -11,6 +11,11 @@
       "purpose": "Official ecosystem entry point for first-time visitors."
     },
     {
+      "path": "/the-watchman-universe/",
+      "file": "the-watchman-universe/index.html",
+      "purpose": "Canonical authority page explaining The Watchman Universe ecosystem."
+    },
+    {
       "path": "/la-guerra-silenciosa/",
       "file": "la-guerra-silenciosa/index.html",
       "purpose": "Dedicated lead magnet landing page."
@@ -52,11 +57,25 @@
     }
   ],
   "future": [
+    "/archetypes/",
+    "/enemy-forces/",
+    "/battlefields/",
+    "/battlefields/guerra-espiritual/",
+    "/battlefields/disciplina/",
+    "/battlefields/identidad/",
+    "/battlefields/proposito/",
+    "/battlefields/liderazgo/",
+    "/battlefields/babilonia/",
+    "/battlefields/lujuria/",
+    "/battlefields/vigilancia/",
+    "/manuales/guerra-espiritual/",
+    "/manuales/disciplina/",
+    "/manuales/proposito/",
+    "/manuales/identidad/",
+    "/manuales/lujuria/",
+    "/manuales/babilonia/",
+    "/manuales/liderazgo/",
     "/newsletter/",
-    "/archivo/",
-    "/archivo/arquetipos/",
-    "/archivo/fuerzas-de-corrupcion/",
-    "/archivo/entornos/",
     "/cursos/",
     "/miembros/",
     "/la-guerra-interior/",

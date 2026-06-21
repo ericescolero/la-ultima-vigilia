@@ -268,6 +268,7 @@ function readManuals() {
 
 function header(active = "manuales") {
   const activeAttr = (key) => (active === key ? ' class="is-active" aria-current="page"' : "");
+  const parentAttr = (keys) => (keys.includes(active) ? ' class="nav-parent is-active" aria-current="page"' : ' class="nav-parent"');
   return `<header class="site-header">
       <nav class="nav" aria-label="Principal">
         <a class="brand" href="/" aria-label="La Ultima Vigilia">
@@ -275,19 +276,17 @@ function header(active = "manuales") {
         </a>
         <div class="nav-links">
           <a${activeAttr("home")} href="/">Inicio</a>
-          <a${activeAttr("start")} href="/start-here/">Empieza Aquí</a>
-          <a${activeAttr("mision")} href="/mision/">Mision</a>
-          <a${activeAttr("guerra")} href="/la-guerra-silenciosa/">La Guerra Silenciosa</a>
-          <span class="nav-menu"><a${activeAttr("remanente")} href="/el-remanente/">El Remanente</a><span class="submenu"><a href="#">El Arsenal</a></span></span>
-          <a${activeAttr("manuales")} href="/manuales/">Manuales de Campo</a>
+          <span class="nav-menu"><button${parentAttr(["start", "universe", "archetypes", "enemies", "battlefields"])} type="button" aria-haspopup="true">Explorar <span class="nav-caret" aria-hidden="true">▼</span></button><span class="submenu"><a${activeAttr("start")} href="/start-here/">Empieza Aquí</a><a${activeAttr("universe")} href="/the-watchman-universe/">The Watchman Universe</a><a href="/archetypes/">Arquetipos</a><a href="/enemy-forces/">Fuerzas de Corrupción</a><a href="/battlefields/">Biblioteca de Batallas</a></span></span>
+          <span class="nav-menu"><button${parentAttr(["manuales"])} type="button" aria-haspopup="true">Manuales <span class="nav-caret" aria-hidden="true">▼</span></button><span class="submenu"><a${activeAttr("manuales")} href="/manuales/">Todos los Manuales</a><a href="/manuales/guerra-espiritual/">Guerra Espiritual</a><a href="/manuales/disciplina/">Disciplina</a><a href="/manuales/proposito/">Propósito</a><a href="/manuales/identidad/">Identidad</a><a href="/manuales/lujuria/">Lujuria</a><a href="/manuales/babilonia/">Babilonia</a><a href="/manuales/liderazgo/">Liderazgo</a></span></span>
+          <span class="nav-menu"><button${parentAttr(["remanente"])} type="button" aria-haspopup="true">Comunidad <span class="nav-caret" aria-hidden="true">▼</span></button><span class="submenu"><a${activeAttr("remanente")} href="/el-remanente/">El Remanente</a><a href="https://t.me/laultimavigilia">Telegram</a><a href="https://www.facebook.com/groups/2222769021808686/">Facebook</a></span></span>
         </div>
-        <a class="nav-cta" href="/la-guerra-silenciosa/">Recibir PDF</a>
+        <a class="nav-cta" href="/la-guerra-silenciosa/">Descargar PDF</a>
       </nav>
     </header>`;
 }
 
 function footer() {
-  return `<footer class="site-footer"><div class="container footer-grid global-footer-grid"><div class="footer-brand"><img class="footer-logo" src="/assets/img/placeholders/LOGO_HEADER.svg" alt="La Ultima Vigilia" width="600" height="160"><p>Despertar. Vigilar. Resistir Babylon. Terminar la mision.</p></div><div class="footer-column"><h3>Enlaces</h3><div class="footer-links"><a href="/">Inicio</a><a href="/start-here/">Empieza Aquí</a><a href="/mision/">Mision</a><a href="/la-guerra-silenciosa/">La Guerra Silenciosa</a><a href="/el-remanente/">El Remanente</a><a href="/manuales/">Manuales de Campo</a></div></div><div class="footer-column"><h3>Comunidad</h3><div class="footer-links"><a href="/descargar/la-guerra-silenciosa/">Descarga</a><a href="/privacidad/">Privacidad</a><a href="/terminos/">Terminos</a></div></div><div class="footer-column"><h3>Siguenos</h3><div class="social-links"><a href="#" aria-label="TikTok"><img src="/assets/img/placeholders/ICON_SOCIAL_TIKTOK.svg" alt=""></a><a href="#" aria-label="Instagram"><img src="/assets/img/placeholders/ICON_SOCIAL_INSTAGRAM.svg" alt=""></a><a href="#" aria-label="Facebook"><img src="/assets/img/placeholders/ICON_SOCIAL_FACEBOOK.svg" alt=""></a><a href="#" aria-label="Telegram"><img src="/assets/img/placeholders/ICON_SOCIAL_TELEGRAM.svg" alt=""></a><a href="#" aria-label="YouTube"><img src="/assets/img/placeholders/ICON_SOCIAL_YOUTUBE.svg" alt=""></a><a href="#" aria-label="Threads"><img src="/assets/img/placeholders/ICON_SOCIAL_THREADS.svg" alt=""></a></div></div></div></footer>`;
+  return `<footer class="site-footer"><div class="container footer-grid global-footer-grid"><div class="footer-brand"><img class="footer-logo" src="/assets/img/placeholders/LOGO_HEADER.svg" alt="La Ultima Vigilia" width="600" height="160"><p>Despertar. Vigilar. Resistir Babylon. Terminar la mision.</p></div><div class="footer-column"><h3>Explorar</h3><div class="footer-links"><a href="/">Inicio</a><a href="/start-here/">Empieza Aquí</a><a href="/the-watchman-universe/">The Watchman Universe</a><a href="/archetypes/">Arquetipos</a><a href="/enemy-forces/">Fuerzas de Corrupción</a><a href="/battlefields/">Biblioteca de Batallas</a></div></div><div class="footer-column"><h3>Manuales</h3><div class="footer-links"><a href="/manuales/">Todos los Manuales</a><a href="/manuales/guerra-espiritual/">Guerra Espiritual</a><a href="/manuales/disciplina/">Disciplina</a><a href="/manuales/proposito/">Propósito</a><a href="/manuales/identidad/">Identidad</a><a href="/manuales/lujuria/">Lujuria</a></div></div><div class="footer-column"><h3>Comunidad</h3><div class="footer-links"><a href="/el-remanente/">El Remanente</a><a href="https://t.me/laultimavigilia">Telegram</a><a href="https://www.facebook.com/groups/2222769021808686/">Facebook</a><a href="/la-guerra-silenciosa/">Descargar PDF</a><a href="/privacidad/">Privacidad</a><a href="/terminos/">Terminos</a></div><div class="social-links"><a href="#" aria-label="TikTok"><img src="/assets/img/placeholders/ICON_SOCIAL_TIKTOK.svg" alt=""></a><a href="#" aria-label="Instagram"><img src="/assets/img/placeholders/ICON_SOCIAL_INSTAGRAM.svg" alt=""></a><a href="https://www.facebook.com/groups/2222769021808686/" aria-label="Facebook"><img src="/assets/img/placeholders/ICON_SOCIAL_FACEBOOK.svg" alt=""></a><a href="https://t.me/laultimavigilia" aria-label="Telegram"><img src="/assets/img/placeholders/ICON_SOCIAL_TELEGRAM.svg" alt=""></a><a href="#" aria-label="YouTube"><img src="/assets/img/placeholders/ICON_SOCIAL_YOUTUBE.svg" alt=""></a><a href="#" aria-label="Threads"><img src="/assets/img/placeholders/ICON_SOCIAL_THREADS.svg" alt=""></a></div></div></div></footer>`;
 }
 
 function head({ title, description, canonical, type = "website", image, schema }) {
@@ -310,10 +309,10 @@ function head({ title, description, canonical, type = "website", image, schema }
     <meta property="og:image" content="${safeImage}">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="mailerlite-endpoint" content="https://assets.mailerlite.com/jsonp/2374679/forms/190533263957165697/subscribe">
-    <link rel="stylesheet" href="/assets/css/styles.css?v=20260620-start-here">
+    <link rel="stylesheet" href="/assets/css/styles.css?v=20260620-watchman-universe-nav">
     <script defer src="/assets/js/email-capture.js?v=20260620-leadmagnet-redirects"></script>
     <script defer src="/assets/js/scroll-animations.js"></script>
-    <script defer src="/assets/js/navigation.js"></script>${schema ? `\n    <script type="application/ld+json">${jsonLd(schema)}</script>` : ""}
+    <script defer src="/assets/js/navigation.js?v=20260620-ecosystem-nav"></script>${schema ? `\n    <script type="application/ld+json">${jsonLd(schema)}</script>` : ""}
   </head>`;
 }
 
@@ -430,6 +429,7 @@ function writeSitemap(manuals) {
   const staticUrls = [
     "/",
     "/start-here/",
+    "/the-watchman-universe/",
     "/la-guerra-silenciosa/",
     "/el-remanente/",
     "/mision/",
