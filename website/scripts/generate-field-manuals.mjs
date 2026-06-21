@@ -15,6 +15,7 @@ const buildDate = new Intl.DateTimeFormat("sv-SE", {
 }).format(new Date());
 const rssTitle = "La Última Vigilia - Manuales de Campo";
 const rssPath = "/rss.xml";
+const validSlugPattern = /^[a-z0-9]+(?:-[a-z0-9]+)*$/;
 
 function escapeHtml(value = "") {
   return String(value)
@@ -241,28 +242,99 @@ function jsonLd(data) {
   return JSON.stringify(data).replace(/</g, "\\u003c");
 }
 
-function readManuals() {
-  if (!existsSync(contentDir)) return [];
+function excerptFromBody(body) {
+  return body
+    .replace(/!\[[^\]]*]\([^)]+\)/g, "")
+    .replace(/\[[^\]]+]\([^)]+\)/g, "")
+    .replace(/[#*_`>\-[\]()]/g, "")
+    .replace(/\s+/g, " ")
+    .trim()
+    .slice(0, 155);
+}
 
-  return readdirSync(contentDir, { withFileTypes: true })
+function normalizeStatus(value) {
+  return String(value || "draft").trim().toLowerCase();
+}
+
+function isDraft(data) {
+  return data.draft === true || data.published === false || normalizeStatus(data.status) === "draft";
+}
+
+function validateManual({ fileName, data, body }) {
+  const warnings = [];
+  const reasons = [];
+  const title = String(data.title || "").trim();
+  const slug = slugify(data.slug || basename(fileName, ".md"));
+  const status = normalizeStatus(data.status);
+  const bodyText = body.trim();
+
+  if (data.draft === true) reasons.push("draft=true");
+  if (data.published === false) reasons.push("published=false");
+  if (!title) reasons.push("missing title");
+  if (!slug) reasons.push("missing slug");
+  if (slug && !validSlugPattern.test(slug)) reasons.push(`invalid slug "${slug}"`);
+  if (!bodyText) reasons.push("missing body content");
+
+  if (status !== "published") {
+    reasons.push(`status is "${status || "missing"}"`);
+  }
+
+  if (!data.publish_date && !data.date) warnings.push("missing publish date; build date/RSS fallback will be used");
+  if (!data.seo_description && !data.description) warnings.push("missing SEO description; body excerpt fallback will be used");
+  if (!data.featured_image) warnings.push(`missing featured image; using ${defaultImage}`);
+  if (!data.author) warnings.push("missing author; using Erick Escolero");
+
+  return {
+    slug,
+    title,
+    status,
+    warnings,
+    reasons: isDraft(data) || reasons.length ? [...new Set(reasons)] : []
+  };
+}
+
+function readManuals() {
+  const diagnostics = [];
+  const errors = [];
+
+  if (!existsSync(contentDir)) {
+    return {
+      manuals: [],
+      diagnostics: [{ state: "ERROR", fileName: "content/field-manuals", messages: ["content directory is missing"] }],
+      errors: ["content directory is missing"]
+    };
+  }
+
+  const entries = readdirSync(contentDir, { withFileTypes: true })
     .filter((item) => item.isFile() && item.name.endsWith(".md"))
     .map((item) => {
       const filePath = join(contentDir, item.name);
       const { data, body } = parseFrontmatter(readFileSync(filePath, "utf8"));
-      const slug = slugify(data.slug || basename(item.name, ".md"));
+      const validation = validateManual({ fileName: item.name, data, body });
+      const slug = validation.slug;
+
+      if (validation.reasons.length) {
+        diagnostics.push({
+          state: "SKIPPED",
+          fileName: item.name,
+          messages: validation.reasons
+        });
+        return null;
+      }
+
       const rawTags = Array.isArray(data.tags) ? data.tags : data.tags ? [data.tags] : [];
       const tags = rawTags
         .flatMap((tag) => String(tag).split(","))
         .map((tag) => tag.trim())
         .filter(Boolean);
       const featuredImage = normalizeImage(data.featured_image);
-      const title = data.title || slug.replace(/-/g, " ");
-      const description = data.seo_description || data.description || body.replace(/[#*_`>\-\[\]()]/g, "").slice(0, 155);
-
-      return {
+      const title = validation.title;
+      const description = data.seo_description || data.description || excerptFromBody(body);
+      const manual = {
+        sourceFile: item.name,
         title,
         slug,
-        status: data.status || "draft",
+        status: validation.status,
         author: data.author || "Erick Escolero",
         publishDate: data.publish_date || data.date || "",
         updatedDate: data.updated_date || data.updated || data.modified_date || data.modified || "",
@@ -272,11 +344,45 @@ function readManuals() {
         seoTitle: data.seo_title || `${title} | Manuales de Campo`,
         seoDescription: description,
         bodyHtml: renderMarkdown(body),
-        url: `/manuales/${slug}/`
+        url: `/manuales/${slug}/`,
+        warnings: validation.warnings
       };
+
+      diagnostics.push({
+        state: "GENERATED",
+        fileName: item.name,
+        messages: [`/manuales/${slug}/`, ...validation.warnings]
+      });
+      return manual;
     })
-    .filter((manual) => manual.status === "published" && manual.slug)
-    .sort((a, b) => new Date(b.publishDate || 0) - new Date(a.publishDate || 0));
+    .filter(Boolean);
+
+  const slugSources = new Map();
+  for (const manual of entries) {
+    if (!slugSources.has(manual.slug)) {
+      slugSources.set(manual.slug, [manual.sourceFile]);
+      continue;
+    }
+    slugSources.get(manual.slug).push(manual.sourceFile);
+  }
+
+  for (const [slug, sourceFiles] of slugSources.entries()) {
+    if (sourceFiles.length > 1) {
+      const message = `duplicate slug "${slug}" in ${sourceFiles.join(", ")}`;
+      errors.push(message);
+      diagnostics.push({
+        state: "ERROR",
+        fileName: slug,
+        messages: [message]
+      });
+    }
+  }
+
+  return {
+    manuals: entries.sort((a, b) => new Date(b.publishDate || 0) - new Date(a.publishDate || 0)),
+    diagnostics,
+    errors
+  };
 }
 
 function header(active = "manuales") {
@@ -502,7 +608,29 @@ ${items}
   writeFileSync(join(siteRoot, "rss.xml"), xml);
 }
 
-const manuals = readManuals();
+function printDiagnostics(diagnostics, manuals, errors) {
+  console.log("Field Manual build report:");
+  if (!diagnostics.length) {
+    console.log("  SKIPPED: no markdown files found in content/field-manuals/");
+  }
+
+  for (const diagnostic of diagnostics) {
+    console.log(`  ${diagnostic.state}: ${diagnostic.fileName}`);
+    for (const message of diagnostic.messages) {
+      console.log(`    - ${message}`);
+    }
+  }
+
+  console.log(`Field Manual summary: ${manuals.length} generated, ${diagnostics.filter((item) => item.state === "SKIPPED").length} skipped, ${errors.length} error${errors.length === 1 ? "" : "s"}.`);
+}
+
+const { manuals, diagnostics, errors } = readManuals();
+printDiagnostics(diagnostics, manuals, errors);
+
+if (errors.length) {
+  throw new Error(`Field Manual generation failed: ${errors.join("; ")}`);
+}
+
 rmSync(outputDir, { recursive: true, force: true });
 mkdirSync(outputDir, { recursive: true });
 writePage(join(outputDir, "index.html"), renderIndex(manuals));
