@@ -631,7 +631,7 @@ if (errors.length) {
   throw new Error(`Field Manual generation failed: ${errors.join("; ")}`);
 }
 
-rmSync(outputDir, { recursive: true, force: true });
+rmSync(outputDir, { recursive: true, force: true, maxRetries: 5, retryDelay: 100 });
 mkdirSync(outputDir, { recursive: true });
 writePage(join(outputDir, "index.html"), renderIndex(manuals));
 
