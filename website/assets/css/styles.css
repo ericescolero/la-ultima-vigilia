@@ -474,6 +474,17 @@ button:disabled {
   max-width: 820px;
 }
 
+.hero-cta-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .8rem;
+  margin-top: 1.35rem;
+}
+
+.hero-cta-row .button {
+  min-width: 180px;
+}
+
 .eyebrow,
 .section-kicker,
 .article-list span {
@@ -2454,6 +2465,16 @@ input[type="email"]:focus {
   .hero-copy > * {
     width: 100%;
     max-width: 100%;
+  }
+
+  .hero-cta-row {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .hero-cta-row .button {
+    width: 100%;
+    min-width: 0;
   }
 
   .eyebrow,
