@@ -7,6 +7,8 @@ author: Erick Escolero
 tags:
   - el precio de vivir dormido, pasividad espiritual, apatía espiritual,
     propósito perdido, hombre sin dirección, consecuencias de la complacencia
+featured_image: /assets/blog/005-01.jpg
+seo_title: El Precio de Vivir Dormido | La Ultima Vigilia
 seo_description: La mayoría de los hombres no pierde su propósito en una sola
   decisión. Lo pierde lentamente mientras permanece dormido ante las batallas
   que realmente importan. Descubre el costo oculto de la pasividad espiritual.
