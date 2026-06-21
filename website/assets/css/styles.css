@@ -2849,6 +2849,20 @@ input[type="email"]:focus {
     overflow: visible;
   }
 
+  .motion-ready #hero-archetypes,
+  .motion-ready #hero-archetypes.reveal,
+  .motion-ready #hero-archetypes .reveal,
+  .motion-ready #hero-archetypes .archetype-card,
+  .motion-ready #hero-archetypes .archetype-image-frame,
+  .motion-ready #hero-archetypes .card-image,
+  .motion-ready #hero-archetypes .card-icon {
+    opacity: 1 !important;
+    visibility: visible !important;
+    transform: none !important;
+    transition: none !important;
+    will-change: auto !important;
+  }
+
   .archetype-card {
     display: grid;
     width: 100%;

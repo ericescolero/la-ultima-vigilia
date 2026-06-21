@@ -4,6 +4,7 @@
   }
 
   const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const phoneViewport = window.matchMedia("(max-width: 719px)");
   document.documentElement.classList.add(reducedMotion ? "motion-reduced" : "motion-ready");
 
   if (reducedMotion) {
@@ -23,8 +24,13 @@
 
   const staggerGroups = [".archetype-grid", ".enemy-grid", ".briefing-strip", ".recruitment-grid", ".archive-grid", ".oath-grid"];
 
+  function shouldSkipReveal(element) {
+    return phoneViewport.matches && (element.id === "hero-archetypes" || element.closest("#hero-archetypes"));
+  }
+
   function markReveal(element, delay) {
     if (!element || element.classList.contains("reveal")) return;
+    if (shouldSkipReveal(element)) return;
     element.classList.add("reveal");
     if (delay) {
       element.style.setProperty("--reveal-delay", `${delay}ms`);
@@ -35,6 +41,7 @@
     document.querySelectorAll(revealSelectors.join(",")).forEach((element) => markReveal(element, 0));
 
     staggerGroups.forEach((selector) => {
+      if (phoneViewport.matches && selector === ".archetype-grid") return;
       document.querySelectorAll(selector).forEach((group) => {
         Array.from(group.children).forEach((child, index) => {
           markReveal(child, Math.min(index * 90, 540));
@@ -58,12 +65,12 @@
 
     document.querySelectorAll(".reveal").forEach((element) => observer.observe(element));
 
-    if (window.matchMedia("(max-width: 719px)").matches) {
-      window.setTimeout(() => {
-        document.querySelectorAll(".archetype-grid.reveal, .archetype-grid .reveal").forEach((element) => {
-          element.classList.add("is-visible");
-        });
-      }, 1200);
+    if (phoneViewport.matches) {
+      document.querySelectorAll("#hero-archetypes, #hero-archetypes .reveal").forEach((element) => {
+        element.classList.remove("reveal");
+        element.classList.add("is-visible");
+        element.style.removeProperty("--reveal-delay");
+      });
     }
   });
 
