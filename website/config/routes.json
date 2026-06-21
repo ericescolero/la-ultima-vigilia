@@ -6,6 +6,11 @@
       "purpose": "Primary conversion page and mission introduction."
     },
     {
+      "path": "/start-here/",
+      "file": "start-here/index.html",
+      "purpose": "Official ecosystem entry point for first-time visitors."
+    },
+    {
       "path": "/la-guerra-silenciosa/",
       "file": "la-guerra-silenciosa/index.html",
       "purpose": "Dedicated lead magnet landing page."

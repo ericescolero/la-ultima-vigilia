@@ -5,6 +5,7 @@ const root = new URL("..", import.meta.url).pathname;
 
 const requiredFiles = [
   "index.html",
+  "start-here/index.html",
   "la-guerra-silenciosa/index.html",
   "el-remanente/index.html",
   "mision/index.html",

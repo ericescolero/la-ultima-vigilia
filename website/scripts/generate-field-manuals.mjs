@@ -275,6 +275,7 @@ function header(active = "manuales") {
         </a>
         <div class="nav-links">
           <a${activeAttr("home")} href="/">Inicio</a>
+          <a${activeAttr("start")} href="/start-here/">Empieza Aquí</a>
           <a${activeAttr("mision")} href="/mision/">Mision</a>
           <a${activeAttr("guerra")} href="/la-guerra-silenciosa/">La Guerra Silenciosa</a>
           <span class="nav-menu"><a${activeAttr("remanente")} href="/el-remanente/">El Remanente</a><span class="submenu"><a href="#">El Arsenal</a></span></span>
@@ -286,7 +287,7 @@ function header(active = "manuales") {
 }
 
 function footer() {
-  return `<footer class="site-footer"><div class="container footer-grid global-footer-grid"><div class="footer-brand"><img class="footer-logo" src="/assets/img/placeholders/LOGO_HEADER.svg" alt="La Ultima Vigilia" width="600" height="160"><p>Despertar. Vigilar. Resistir Babylon. Terminar la mision.</p></div><div class="footer-column"><h3>Enlaces</h3><div class="footer-links"><a href="/">Inicio</a><a href="/mision/">Mision</a><a href="/la-guerra-silenciosa/">La Guerra Silenciosa</a><a href="/el-remanente/">El Remanente</a><a href="/manuales/">Manuales de Campo</a></div></div><div class="footer-column"><h3>Comunidad</h3><div class="footer-links"><a href="/descargar/la-guerra-silenciosa/">Descarga</a><a href="/privacidad/">Privacidad</a><a href="/terminos/">Terminos</a></div></div><div class="footer-column"><h3>Siguenos</h3><div class="social-links"><a href="#" aria-label="TikTok"><img src="/assets/img/placeholders/ICON_SOCIAL_TIKTOK.svg" alt=""></a><a href="#" aria-label="Instagram"><img src="/assets/img/placeholders/ICON_SOCIAL_INSTAGRAM.svg" alt=""></a><a href="#" aria-label="Facebook"><img src="/assets/img/placeholders/ICON_SOCIAL_FACEBOOK.svg" alt=""></a><a href="#" aria-label="Telegram"><img src="/assets/img/placeholders/ICON_SOCIAL_TELEGRAM.svg" alt=""></a><a href="#" aria-label="YouTube"><img src="/assets/img/placeholders/ICON_SOCIAL_YOUTUBE.svg" alt=""></a><a href="#" aria-label="Threads"><img src="/assets/img/placeholders/ICON_SOCIAL_THREADS.svg" alt=""></a></div></div></div></footer>`;
+  return `<footer class="site-footer"><div class="container footer-grid global-footer-grid"><div class="footer-brand"><img class="footer-logo" src="/assets/img/placeholders/LOGO_HEADER.svg" alt="La Ultima Vigilia" width="600" height="160"><p>Despertar. Vigilar. Resistir Babylon. Terminar la mision.</p></div><div class="footer-column"><h3>Enlaces</h3><div class="footer-links"><a href="/">Inicio</a><a href="/start-here/">Empieza Aquí</a><a href="/mision/">Mision</a><a href="/la-guerra-silenciosa/">La Guerra Silenciosa</a><a href="/el-remanente/">El Remanente</a><a href="/manuales/">Manuales de Campo</a></div></div><div class="footer-column"><h3>Comunidad</h3><div class="footer-links"><a href="/descargar/la-guerra-silenciosa/">Descarga</a><a href="/privacidad/">Privacidad</a><a href="/terminos/">Terminos</a></div></div><div class="footer-column"><h3>Siguenos</h3><div class="social-links"><a href="#" aria-label="TikTok"><img src="/assets/img/placeholders/ICON_SOCIAL_TIKTOK.svg" alt=""></a><a href="#" aria-label="Instagram"><img src="/assets/img/placeholders/ICON_SOCIAL_INSTAGRAM.svg" alt=""></a><a href="#" aria-label="Facebook"><img src="/assets/img/placeholders/ICON_SOCIAL_FACEBOOK.svg" alt=""></a><a href="#" aria-label="Telegram"><img src="/assets/img/placeholders/ICON_SOCIAL_TELEGRAM.svg" alt=""></a><a href="#" aria-label="YouTube"><img src="/assets/img/placeholders/ICON_SOCIAL_YOUTUBE.svg" alt=""></a><a href="#" aria-label="Threads"><img src="/assets/img/placeholders/ICON_SOCIAL_THREADS.svg" alt=""></a></div></div></div></footer>`;
 }
 
 function head({ title, description, canonical, type = "website", image, schema }) {
@@ -309,7 +310,7 @@ function head({ title, description, canonical, type = "website", image, schema }
     <meta property="og:image" content="${safeImage}">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="mailerlite-endpoint" content="https://assets.mailerlite.com/jsonp/2374679/forms/190533263957165697/subscribe">
-    <link rel="stylesheet" href="/assets/css/styles.css?v=20260620-home-hero-cta">
+    <link rel="stylesheet" href="/assets/css/styles.css?v=20260620-start-here">
     <script defer src="/assets/js/email-capture.js?v=20260620-leadmagnet-redirects"></script>
     <script defer src="/assets/js/scroll-animations.js"></script>
     <script defer src="/assets/js/navigation.js"></script>${schema ? `\n    <script type="application/ld+json">${jsonLd(schema)}</script>` : ""}
@@ -428,6 +429,7 @@ function writePage(path, html) {
 function writeSitemap(manuals) {
   const staticUrls = [
     "/",
+    "/start-here/",
     "/la-guerra-silenciosa/",
     "/el-remanente/",
     "/mision/",
