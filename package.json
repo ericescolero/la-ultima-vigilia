@@ -4,6 +4,7 @@
   "private": true,
   "description": "Repository build entrypoint for La Ultima Vigilia.",
   "scripts": {
+    "build:manuals": "npm --prefix website run build:manuals",
     "build": "npm --prefix website run build",
     "check": "npm --prefix website run check"
   }

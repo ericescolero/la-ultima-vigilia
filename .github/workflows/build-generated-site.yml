@@ -39,11 +39,22 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Build generated site
-        run: npm run build
+      - name: Generate Field Manuals
+        run: npm run build:manuals
 
-      - name: Check generated site
-        run: npm run check
+      - name: Verify generated manual outputs
+        run: |
+          test -f website/manuales/index.html
+          test -f website/sitemap.xml
+          test -f website/rss.xml
+          manual_count="$(find content/field-manuals -maxdepth 1 -type f -name '*.md' | wc -l | tr -d ' ')"
+          page_count="$(find website/manuales -mindepth 2 -maxdepth 2 -name index.html | wc -l | tr -d ' ')"
+          echo "Field Manual source files: ${manual_count}"
+          echo "Generated manual pages: ${page_count}"
+          if [ "${manual_count}" != "${page_count}" ]; then
+            echo "Generated manual page count does not match source manual count."
+            exit 1
+          fi
 
       - name: Commit regenerated static files
         run: |
