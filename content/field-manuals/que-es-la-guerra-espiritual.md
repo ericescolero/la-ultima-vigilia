@@ -8,7 +8,7 @@ tags:
   - qué es la guerra espiritual, guerra espiritual para hombres, señales de
     ataque espiritual, lucha espiritual, cómo vencer la tentación,
     adormecimiento espiritual
-featured_image: /assets/blog/01.jpg
+featured_image: ""
 seo_title: Qué Es La Guerra Espiritual | La Última Vigilia
 seo_description: La mayoría de los hombres cree que la guerra espiritual es algo
   extraño, distante o reservado para historias sobrenaturales. La realidad es
