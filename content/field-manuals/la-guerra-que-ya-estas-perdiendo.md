@@ -83,7 +83,7 @@ Porque cada decisión fortalece una de dos cosas:
 Tu propósito.
 
 O tu destrucción.
-<hr>
+
 
 ### Reflexión Final
 
@@ -99,7 +99,7 @@ Mantente vigilante.
 
 La guerra continúa.
 
-<hr>
+<br>
 
 ## Recursos Complementarios
 [📂 Abrir Carpeta de Recursos](https://drive.google.com/drive/folders/1S6xgDjAk7CwgotGQ-TuvtWWc1xZv5Yyw?usp=sharing)
