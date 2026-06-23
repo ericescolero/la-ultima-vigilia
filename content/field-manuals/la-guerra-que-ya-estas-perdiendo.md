@@ -99,7 +99,7 @@ Mantente vigilante.
 
 La guerra continúa.
 
-<br>
+
 
 ## Recursos Complementarios
 [📂 Abrir Carpeta de Recursos](https://drive.google.com/drive/folders/1S6xgDjAk7CwgotGQ-TuvtWWc1xZv5Yyw?usp=sharing)
