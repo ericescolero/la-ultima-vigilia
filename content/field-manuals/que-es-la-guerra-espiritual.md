@@ -278,4 +278,7 @@ O descarga gratuitamente:
 
 y comienza a identificar las batallas invisibles que están moldeando tu vida.
 
-https://drive.google.com/drive/folders/1HLpkBp76YllQVDRrfTKM7MGYuDXf4pNr?usp=sharing
+## Recursos Complementarios
+
+\[📂 Abrir Carpeta de Recursos]
+<https://drive.google.com/drive/folders/1HLpkBp76YllQVDRrfTKM7MGYuDXf4pNr?usp=sharing>
