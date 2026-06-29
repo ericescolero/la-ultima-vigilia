@@ -16,6 +16,9 @@ const buildDate = new Intl.DateTimeFormat("sv-SE", {
 const rssTitle = "La Última Vigilia - Manuales de Campo";
 const rssPath = "/rss.xml";
 const validSlugPattern = /^[a-z0-9]+(?:-[a-z0-9]+)*$/;
+const safeHtmlTags = new Set(["a", "blockquote", "br", "em", "hr", "li", "ol", "strong", "ul"]);
+const voidHtmlTags = new Set(["br", "hr"]);
+const blockHtmlTags = new Set(["blockquote", "hr", "li", "ol", "ul"]);
 
 function escapeHtml(value = "") {
   return String(value)
@@ -37,6 +40,87 @@ function escapeXml(value = "") {
     .replace(/>/g, "&gt;")
     .replace(/"/g, "&quot;")
     .replace(/'/g, "&apos;");
+}
+
+function safeHref(value = "") {
+  const href = String(value).trim();
+  if (!href) return "";
+  if (/[\u0000-\u001F\u007F\s]/.test(href)) return "";
+
+  const lowerHref = href.toLowerCase();
+  if (lowerHref.startsWith("http://") || lowerHref.startsWith("https://") || lowerHref.startsWith("mailto:")) {
+    return href;
+  }
+  if (href.startsWith("/") && !href.startsWith("//")) return href;
+  if (href.startsWith("#")) return href;
+  if (!/^[a-z][a-z0-9+.-]*:/i.test(href)) return href;
+  return "";
+}
+
+function decodeBasicEntities(value = "") {
+  return String(value)
+    .replace(/&amp;/g, "&")
+    .replace(/&quot;/g, '"')
+    .replace(/&#39;/g, "'")
+    .replace(/&lt;/g, "<")
+    .replace(/&gt;/g, ">");
+}
+
+function sanitizeHtmlTag(tag) {
+  const match = String(tag).match(/^<\s*(\/?)\s*([a-z][a-z0-9-]*)([^>]*)>$/i);
+  if (!match) return null;
+
+  const [, closingSlash, rawName, rawAttrs] = match;
+  const name = rawName.toLowerCase();
+  if (!safeHtmlTags.has(name)) return null;
+
+  const isClosing = Boolean(closingSlash);
+  if (voidHtmlTags.has(name)) {
+    return isClosing ? "" : `<${name}>`;
+  }
+
+  if (isClosing) return `</${name}>`;
+
+  if (name === "a") {
+    const hrefMatch = rawAttrs.match(/\bhref\s*=\s*(?:"([^"]*)"|'([^']*)'|([^\s"'=<>`]+))/i);
+    const href = safeHref(hrefMatch?.[1] || hrefMatch?.[2] || hrefMatch?.[3] || "");
+    return href ? `<a href="${escapeAttr(href)}">` : "<a>";
+  }
+
+  return `<${name}>`;
+}
+
+function preserveSafeHtml(text) {
+  const placeholders = [];
+  const tokenized = String(text).replace(/<\/?[a-z][^>]*>/gi, (tag) => {
+    const sanitized = sanitizeHtmlTag(tag);
+    if (sanitized === null) return tag;
+    const token = `@@SAFE_HTML_${placeholders.length}@@`;
+    placeholders.push(sanitized);
+    return token;
+  });
+
+  let output = escapeHtml(tokenized);
+  placeholders.forEach((html, index) => {
+    output = output.replaceAll(`@@SAFE_HTML_${index}@@`, html);
+  });
+  return output;
+}
+
+function isSafeHtmlBlock(text) {
+  const trimmed = String(text).trim();
+  if (!trimmed) return false;
+
+  const firstTagName = trimmed.match(/^<\s*\/?\s*([a-z][a-z0-9-]*)/i)?.[1]?.toLowerCase();
+  if (!firstTagName || !blockHtmlTags.has(firstTagName)) return false;
+
+  const tagMatches = [...trimmed.matchAll(/<\/?[a-z][^>]*>/gi)];
+  if (!tagMatches.length) return false;
+
+  return tagMatches.every((match) => {
+    const tagName = match[0].match(/^<\s*\/?\s*([a-z][a-z0-9-]*)/i)?.[1]?.toLowerCase();
+    return tagName && safeHtmlTags.has(tagName) && sanitizeHtmlTag(match[0]) !== null;
+  });
 }
 
 function slugify(value = "") {
@@ -164,9 +248,15 @@ function parseFrontmatter(markdown) {
 }
 
 function renderInline(text) {
-  let output = escapeHtml(text);
-  output = output.replace(/!\[([^\]]*)\]\(([^)]+)\)/g, '<img src="$2" alt="$1" loading="lazy">');
-  output = output.replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2">$1</a>');
+  let output = preserveSafeHtml(text);
+  output = output.replace(/!\[([^\]]*)\]\(([^)]+)\)/g, (_, alt, src) => {
+    const safeSrc = safeHref(decodeBasicEntities(src));
+    return safeSrc ? `<img src="${escapeAttr(safeSrc)}" alt="${escapeAttr(decodeBasicEntities(alt))}" loading="lazy">` : `![${alt}](${src})`;
+  });
+  output = output.replace(/\[([^\]]+)\]\(([^)]+)\)/g, (_, label, href) => {
+    const safeLink = safeHref(decodeBasicEntities(href));
+    return safeLink ? `<a href="${escapeAttr(safeLink)}">${label}</a>` : label;
+  });
   output = output.replace(/\*\*([^*]+)\*\*/g, "<strong>$1</strong>");
   output = output.replace(/\*([^*]+)\*/g, "<em>$1</em>");
   output = output.replace(/`([^`]+)`/g, "<code>$1</code>");
@@ -197,6 +287,13 @@ function renderMarkdown(markdown) {
     if (!trimmed) {
       flushParagraph();
       flushList();
+      continue;
+    }
+
+    if (isSafeHtmlBlock(trimmed)) {
+      flushParagraph();
+      flushList();
+      blocks.push(preserveSafeHtml(trimmed));
       continue;
     }
 
@@ -396,7 +493,7 @@ function header(active = "manuales") {
         <div class="nav-links">
           <a${activeAttr("home")} href="/">Inicio</a>
           <span class="nav-menu"><button${parentAttr(["start", "universe", "archetypes", "enemies", "battlefields"])} type="button" aria-haspopup="true">Explorar <span class="nav-caret" aria-hidden="true">▼</span></button><span class="submenu"><a${activeAttr("start")} href="/start-here/">Empieza Aquí</a><a${activeAttr("universe")} href="/the-watchman-universe/">The Watchman Universe</a><a href="/archetypes/">Arquetipos</a><a href="/enemy-forces/">Fuerzas de Corrupción</a><a href="/battlefields/">Biblioteca de Batallas</a></span></span>
-          <span class="nav-menu"><button${parentAttr(["manuales"])} type="button" aria-haspopup="true">Manuales <span class="nav-caret" aria-hidden="true">▼</span></button><span class="submenu"><a${activeAttr("manuales")} href="/manuales/">Todos los Manuales</a><a href="/manuales/guerra-espiritual/">Guerra Espiritual</a><a href="/manuales/disciplina/">Disciplina</a><a href="/manuales/proposito/">Propósito</a><a href="/manuales/identidad/">Identidad</a><a href="/manuales/lujuria/">Lujuria</a><a href="/manuales/babilonia/">Babilonia</a><a href="/manuales/liderazgo/">Liderazgo</a></span></span>
+          <span class="nav-menu"><button${parentAttr(["manuales"])} type="button" aria-haspopup="true">Manuales <span class="nav-caret" aria-hidden="true">▼</span></button><span class="submenu"><a${activeAttr("manuales")} href="/manuales/">Todos los Manuales</a><a href="#">Guerra Espiritual</a><a href="#">Disciplina</a><a href="#">Propósito</a><a href="#">Identidad</a><a href="#">Lujuria</a><a href="#">Babilonia</a><a href="#">Liderazgo</a></span></span>
           <span class="nav-menu"><button${parentAttr(["remanente"])} type="button" aria-haspopup="true">Comunidad <span class="nav-caret" aria-hidden="true">▼</span></button><span class="submenu"><a${activeAttr("remanente")} href="/el-remanente/">El Remanente</a><a href="https://t.me/laultimavigilia">Telegram</a><a href="https://www.facebook.com/groups/2222769021808686/">Facebook</a></span></span>
         </div>
         <a class="nav-cta" href="/la-guerra-silenciosa/">Descargar PDF</a>
@@ -405,7 +502,7 @@ function header(active = "manuales") {
 }
 
 function footer() {
-  return `<footer class="site-footer"><div class="container footer-grid global-footer-grid"><div class="footer-brand"><img class="footer-logo" src="/assets/img/placeholders/LOGO_HEADER.svg" alt="La Ultima Vigilia" width="600" height="160"><p>Despertar. Vigilar. Resistir Babylon. Terminar la mision.</p></div><div class="footer-column"><h3>Explorar</h3><div class="footer-links"><a href="/">Inicio</a><a href="/start-here/">Empieza Aquí</a><a href="/the-watchman-universe/">The Watchman Universe</a><a href="/archetypes/">Arquetipos</a><a href="/enemy-forces/">Fuerzas de Corrupción</a><a href="/battlefields/">Biblioteca de Batallas</a></div></div><div class="footer-column"><h3>Manuales</h3><div class="footer-links"><a href="/manuales/">Todos los Manuales</a><a href="/manuales/guerra-espiritual/">Guerra Espiritual</a><a href="/manuales/disciplina/">Disciplina</a><a href="/manuales/proposito/">Propósito</a><a href="/manuales/identidad/">Identidad</a><a href="/manuales/lujuria/">Lujuria</a></div></div><div class="footer-column"><h3>Comunidad</h3><div class="footer-links"><a href="/el-remanente/">El Remanente</a><a href="https://t.me/laultimavigilia">Telegram</a><a href="https://www.facebook.com/groups/2222769021808686/">Facebook</a><a href="/la-guerra-silenciosa/">Descargar PDF</a><a href="/privacidad/">Privacidad</a><a href="/terminos/">Terminos</a></div><div class="social-links"><a href="#" aria-label="TikTok"><img src="/assets/img/placeholders/ICON_SOCIAL_TIKTOK.svg" alt=""></a><a href="#" aria-label="Instagram"><img src="/assets/img/placeholders/ICON_SOCIAL_INSTAGRAM.svg" alt=""></a><a href="https://www.facebook.com/groups/2222769021808686/" aria-label="Facebook"><img src="/assets/img/placeholders/ICON_SOCIAL_FACEBOOK.svg" alt=""></a><a href="https://t.me/laultimavigilia" aria-label="Telegram"><img src="/assets/img/placeholders/ICON_SOCIAL_TELEGRAM.svg" alt=""></a><a href="#" aria-label="YouTube"><img src="/assets/img/placeholders/ICON_SOCIAL_YOUTUBE.svg" alt=""></a><a href="#" aria-label="Threads"><img src="/assets/img/placeholders/ICON_SOCIAL_THREADS.svg" alt=""></a></div></div></div></footer>`;
+  return `<footer class="site-footer"><div class="container footer-grid global-footer-grid"><div class="footer-brand"><img class="footer-logo" src="/assets/img/placeholders/LOGO_HEADER.svg" alt="La Ultima Vigilia" width="600" height="160"><p>Despertar. Vigilar. Resistir Babylon. Terminar la mision.</p></div><div class="footer-column"><h3>Explorar</h3><div class="footer-links"><a href="/">Inicio</a><a href="/start-here/">Empieza Aquí</a><a href="/the-watchman-universe/">The Watchman Universe</a><a href="/archetypes/">Arquetipos</a><a href="/enemy-forces/">Fuerzas de Corrupción</a><a href="/battlefields/">Biblioteca de Batallas</a></div></div><div class="footer-column"><h3>Manuales</h3><div class="footer-links"><a href="/manuales/">Todos los Manuales</a><a href="#">Guerra Espiritual</a><a href="#">Disciplina</a><a href="#">Propósito</a><a href="#">Identidad</a><a href="#">Lujuria</a></div></div><div class="footer-column"><h3>Comunidad</h3><div class="footer-links"><a href="/el-remanente/">El Remanente</a><a href="https://t.me/laultimavigilia">Telegram</a><a href="https://www.facebook.com/groups/2222769021808686/">Facebook</a><a href="/la-guerra-silenciosa/">Descargar PDF</a><a href="/privacidad/">Privacidad</a><a href="/terminos/">Terminos</a></div><div class="social-links"><a href="#" aria-label="TikTok"><img src="/assets/img/placeholders/ICON_SOCIAL_TIKTOK.svg" alt=""></a><a href="#" aria-label="Instagram"><img src="/assets/img/placeholders/ICON_SOCIAL_INSTAGRAM.svg" alt=""></a><a href="https://www.facebook.com/groups/2222769021808686/" aria-label="Facebook"><img src="/assets/img/placeholders/ICON_SOCIAL_FACEBOOK.svg" alt=""></a><a href="https://t.me/laultimavigilia" aria-label="Telegram"><img src="/assets/img/placeholders/ICON_SOCIAL_TELEGRAM.svg" alt=""></a><a href="#" aria-label="YouTube"><img src="/assets/img/placeholders/ICON_SOCIAL_YOUTUBE.svg" alt=""></a><a href="#" aria-label="Threads"><img src="/assets/img/placeholders/ICON_SOCIAL_THREADS.svg" alt=""></a></div></div></div></footer>`;
 }
 
 function head({ title, description, canonical, type = "website", image, schema }) {
