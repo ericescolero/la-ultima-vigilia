@@ -2713,19 +2713,22 @@ input[type="email"]:focus {
     border: 1px solid rgba(216, 182, 109, .32);
     border-radius: var(--radius);
     opacity: 0;
+    visibility: hidden;
     overflow-y: auto;
     pointer-events: none;
     background:
       linear-gradient(145deg, rgba(9, 8, 6, .98), rgba(2, 2, 2, .99)),
       radial-gradient(circle at 50% 0, rgba(184, 137, 58, .13), transparent 14rem);
     box-shadow: 0 30px 90px rgba(0, 0, 0, .78), inset 0 1px 0 rgba(244, 223, 157, .06);
-    transition: opacity .2s ease, transform .2s ease;
+    transition: opacity .2s ease, transform .2s ease, visibility 0s linear .2s;
   }
 
   .site-header.is-mobile-menu-open .nav-links {
     opacity: 1;
+    visibility: visible;
     pointer-events: auto;
     transform: translateY(0);
+    transition-delay: 0s;
   }
 
   .nav-links a,
