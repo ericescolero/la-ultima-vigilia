@@ -44,6 +44,7 @@ export async function generatePostPackage(env: Env, item: ContentItem): Promise<
     normalizeVisualKey(item.enemy_force) ??
     'generic';
   const visualProfile = VISUAL_PROFILES[visualKey];
+  const battlefieldSymbolRules = getBattlefieldSymbolRules(item.battlefield);
   const enemyStaging = item.enemy_force
     ? `
 ENEMY-FORCE STAGING
@@ -105,10 +106,9 @@ GLOBAL SCENE GROUNDING:
 - Do not invent swords, shields, medieval weapons, fantasy armor, thrones, castles, magical objects or superhero action.
 - Do not create miniature people, floating metaphor objects, staged allegorical props or impossible symbolic tableaux.
 - symbolic_detail must be a physically plausible environmental detail that DIRECTLY reinforces the battlefield and theme. Do not choose a generic symbol merely because it looks cinematic.
-- For pride/correction, use grounded cues such as an unread correction note, cracked mirror, ignored message, elevated glass office, discarded work gloves, closed Bible/notebook, or another believable consequence of refusing correction.
-- For temptation/desire, use grounded cues such as a second glass, unread message, open door, discarded ring, reflected figure, or other plausible object tied to the temptation.
-- For identity, use mirrors, reflections, duplicated silhouettes, replaced nameplates, discarded ID, altered clothing, or comparable grounded cues.
-- For mental deception/delay, use clocks, unfinished work, unread messages, dim screens, repeated alarms, closed doors, or comparable grounded cues.
+
+BATTLEFIELD-SPECIFIC SYMBOL RULES:
+${battlefieldSymbolRules}
 - Characters should be caught in a believable moment, not posing for a poster.
 - Prefer ordinary modern spaces transformed by cinematography: apartment, street, rooftop, bridge, office, workshop, gym, church corridor, parking structure, industrial site, hospital corridor, transit platform.
 - Keep symbolism restrained and secondary to the human scene.
@@ -156,6 +156,54 @@ Do not redesign or describe the archetype costume.
     composition: requireString(parsed, 'composition'),
     symbolic_detail: requireString(parsed, 'symbolic_detail'),
   });
+}
+
+function getBattlefieldSymbolRules(battlefield: string | null): string {
+  const key = (battlefield ?? '').trim().toLowerCase();
+
+  if (key === 'identity') {
+    return [
+      'Use identity-specific cues only: mirror, reflection, duplicated silhouette, replaced nameplate, discarded ID badge, altered clothing, empty chair at the subject\'s place, or another grounded sign of replacement/distortion.',
+      'Do NOT use correction notes, generic broken chains, random shoes, or unrelated props.',
+    ].join(' ');
+  }
+
+  if (key === 'pride') {
+    return [
+      'Use pride/correction cues only: unread correction note, ignored message, cracked mirror, elevated glass office, closed notebook/Bible, discarded work gloves, or another believable consequence of refusing correction.',
+      'Do NOT use identity badges, romantic props, or generic abandonment symbols.',
+    ].join(' ');
+  }
+
+  if (key === 'desire' || key === 'temptation') {
+    return [
+      'Use temptation/desire cues only: second glass, unread intimate message, open doorway, discarded ring, reflected figure, untouched family photo, or another believable cue tied to appetite and compromise.',
+      'Do NOT use correction notes or identity badges unless the theme explicitly requires them.',
+    ].join(' ');
+  }
+
+  if (key === 'mind' || key === 'delay') {
+    return [
+      'Use mental-deception/delay cues only: clock, repeated alarm, unfinished work, unread messages, dim screen, closed door, abandoned task, or another believable cue tied to hesitation and drift.',
+      'Do NOT use unrelated romantic or identity props.',
+    ].join(' ');
+  }
+
+  if (key === 'responsibility') {
+    return [
+      'Use responsibility/protection cues only: family photo, child\'s backpack, keys by the door, work gloves, unpaid bill, hospital wristband, wedding ring, empty dinner chair, or another believable responsibility-bearing object.',
+      'Do NOT use swords, shields, miniature family figures, or fantasy symbols.',
+    ].join(' ');
+  }
+
+  if (key === 'discipline') {
+    return [
+      'Use discipline cues only: alarm clock, training shoes, packed gym bag, unfinished checklist, stairs, stopwatch, workbench, cold shower steam, or another believable object tied to repeated action and self-command.',
+      'Do NOT use broken chains unless the source specifically calls for bondage/freedom imagery.',
+    ].join(' ');
+  }
+
+  return 'Choose one restrained, physically plausible detail directly tied to the stated battlefield and theme. Avoid generic cinematic props.';
 }
 
 function normalizePost(post: GeneratedPost): GeneratedPost {
