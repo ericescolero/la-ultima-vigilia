@@ -42,7 +42,7 @@ export async function generateAndStoreImage(
       error: errorMessage(error),
     });
 
-    const safePrompt = `${prompt}\n\n${SAFE_RETRY_SUFFIX}`;
+    const safePrompt = `${sanitizeForSafeRetry(prompt)}\n\n${SAFE_RETRY_SUFFIX}`;
 
     try {
       result = await runImageAttempt(
@@ -168,6 +168,19 @@ async function appendR2Reference(
   );
 
   return true;
+}
+
+function sanitizeForSafeRetry(prompt: string): string {
+  return prompt
+    .replace(/at the edge of (?:a |the )?(?:frozen )?cliff/gi, 'on a broad snowy overlook with secure ground')
+    .replace(/standing at the edge of (?:a |the )?(?:frozen )?cliff/gi, 'standing on a broad snowy overlook with secure ground')
+    .replace(/cliff edge/gi, 'broad mountain overlook')
+    .replace(/edge of the cliff/gi, 'broad mountain overlook')
+    .replace(/edge of a cliff/gi, 'broad mountain overlook')
+    .replace(/borde de (?:un |una |el |la )?(?:acantilado|azotea|puente)/gi, 'zona amplia y segura')
+    .replace(/battle-worn/gi, 'weathered')
+    .replace(/massive black wolf/gi, 'large calm black wolf')
+    .replace(/angelic companion sent by God/gi, 'calm vigilant companion');
 }
 
 function isOutputFlag(error: unknown): boolean {
