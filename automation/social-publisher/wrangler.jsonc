@@ -15,12 +15,20 @@
     "ENABLE_INSTAGRAM": "false",
     "ENABLE_TIKTOK": "false",
     "META_GRAPH_VERSION": "v26.0",
-    "TEXT_MODEL": "@cf/zai-org/glm-4.7-flash",
+    "TEXT_MODEL": "@cf/meta/llama-3.3-70b-instruct-fp8-fast",
     "IMAGE_MODEL": "@cf/black-forest-labs/flux-2-klein-4b"
   },
   "ai": {
     "binding": "AI"
   },
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "watchman-social-db",
+      "database_id": "fd903df8-aa3b-41c8-99c9-ce752943e59b",
+      "migrations_dir": "migrations"
+    }
+  ],
   "r2_buckets": [
     {
       "binding": "MEDIA",
