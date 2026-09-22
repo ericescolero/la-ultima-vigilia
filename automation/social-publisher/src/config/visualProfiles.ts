@@ -211,7 +211,7 @@ Never tacky, never fantasy cosplay, never exaggerated pin-up styling.
     palette: 'black, scarlet, muted crimson, dim gold',
     lighting: 'soft dangerous glamour light constrained by deep shadow',
     atmosphere: 'desire, seduction, counterfeit intimacy, quiet danger',
-    sceneRules: 'Present-day luxury or intimate spaces: hotel, lounge, apartment, restaurant, car, corridor. Seduction is elegant and plausible. No fantasy throne room, sorceress costume, magical aura or pin-up exaggeration.',
+    sceneRules: 'Present-day luxury or intimate spaces: hotel, lounge, apartment, restaurant, car, corridor. Default the human target to an adult man under subtle pressure from The Scarlet Queen. Her presence may be direct, reflected, partially obscured or implied through proximity, but she remains the active corrupting force. Seduction is elegant and plausible. No second unrelated woman as the primary tempted subject, no fantasy throne room, sorceress costume, magical aura or pin-up exaggeration.',
     negative: GLOBAL_NEGATIVE,
     referenceKey: 'references/enemies/the-scarlet-queen.png',
   },
