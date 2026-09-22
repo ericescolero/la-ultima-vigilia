@@ -1,0 +1,13 @@
+INSERT INTO content_items(source_type, archetype, enemy_force, battlefield, theme, source_text) VALUES
+('watchman_code', 'The Watchman', NULL, 'Vigilance', 'Remain vigilant', 'Guard your mind. Guard your attention. Guard your convictions. The battle never stops. Neither should your vigilance.'),
+('watchman_code', 'The Conqueror', NULL, 'Discipline', 'Discipline before emotion', 'Feelings are temporary. The mission remains. Discipline carries men through storms that emotions cannot survive.'),
+('watchman_code', 'The Builder', NULL, 'Purpose', 'Build more than you consume', 'Babylon teaches consumption. The Remnant creates. Build your body. Build your mind. Build your family. Build your faith. Build your legacy.'),
+('watchman_code', 'The Wounded Protector', NULL, 'Responsibility', 'Protect what was entrusted', 'Protect your family. Protect your mission. Protect your convictions. Strength exists to serve responsibility.'),
+('watchman_code', 'The Fire Warrior', NULL, 'Adversity', 'Embrace the fire', 'Suffering is not always punishment. Sometimes it is preparation. The fire often forges what comfort never could.'),
+('quote_database', 'The Mad Prophet', NULL, 'Truth', 'Truth above comfort', 'The problem is not that you do not know what to do. The problem is that you have become comfortable knowing and not doing.'),
+('enemy_force', NULL, 'The Whisperer', 'Mind', 'Delay', 'Signature lie: Tomorrow. He rarely commands. He suggests, negotiates and delays until purpose quietly fades.'),
+('enemy_force', NULL, 'The Scarlet Queen', 'Desire', 'Counterfeit desire', 'She studies appetite and offers counterfeit affection, validation, pleasure and comfort. What enters willingly often remains longer than what enters by force.'),
+('enemy_force', NULL, 'The Usurper', 'Identity', 'Remember who you are', 'He attacks responsibility, purpose, mission and calling. He does not need men to become evil. He only needs them to become directionless.'),
+('enemy_force', NULL, 'Leviathan', 'Pride', 'Correction', 'Pride begins when a man believes he no longer needs correction. Humility, gratitude, service and teachability protect what pride eventually destroys.'),
+('lore', 'The Exile', NULL, 'Isolation', 'The narrow path', 'Isolation can become refinement when it produces clarity, resilience and separation from corruption instead of bitterness.'),
+('lore', 'The Tempted Saint', 'The Scarlet Queen', 'Temptation', 'Private war', 'The battlefield is internal: conviction versus desire, spirit versus flesh, purpose versus appetite. The victory begins in secret.');
