@@ -116,6 +116,7 @@ GLOBAL SCENE GROUNDING:
 - Default to a believable present-day 2026 setting unless the canonical source explicitly requires otherwise.
 - Do not invent swords, shields, medieval weapons, fantasy armor, thrones, castles, magical objects or superhero action.
 - Do not create miniature people, floating metaphor objects, staged allegorical props or impossible symbolic tableaux.
+- Do not place isolated or solitary subjects on cliff edges, rooftop edges, bridge edges, rail tracks or other positions that could read as self-harm, imminent falling or reckless danger. Use secure ground such as a trail, broad ridge, clearing, road, room, platform interior or wide overlook.
 - symbolic_detail must be a physically plausible environmental detail that DIRECTLY reinforces the battlefield and theme. Do not choose a generic symbol merely because it looks cinematic.
 
 BATTLEFIELD-SPECIFIC SYMBOL RULES:
@@ -204,6 +205,13 @@ function getBattlefieldSymbolRules(battlefield: string | null): string {
     return [
       'Use responsibility/protection cues only: family photo, child\'s backpack, keys by the door, work gloves, unpaid bill, hospital wristband, wedding ring, empty dinner chair, or another believable responsibility-bearing object.',
       'Do NOT use swords, shields, miniature family figures, or fantasy symbols.',
+    ].join(' ');
+  }
+
+  if (key === 'isolation') {
+    return [
+      'Use isolation/refinement cues only: a solitary trail, footprints in snow, distant cabin light, worn map, packed rucksack, campfire remains, black wolf companion, fork in the path, or another grounded sign of separation producing clarity.',
+      'Keep the subject on secure ground. Do NOT use cliff edges, rooftop edges, bridge edges, rail tracks, abandoned shoes at an edge, or imagery that could imply self-harm or imminent falling.',
     ].join(' ');
   }
 
