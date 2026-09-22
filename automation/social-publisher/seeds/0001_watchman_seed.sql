@@ -2,7 +2,7 @@ INSERT INTO content_items(source_type, archetype, enemy_force, battlefield, them
 ('watchman_code', 'The Watchman', NULL, 'Vigilance', 'Remain vigilant', 'Guard your mind. Guard your attention. Guard your convictions. The battle never stops. Neither should your vigilance.'),
 ('watchman_code', 'The Conqueror', NULL, 'Discipline', 'Discipline before emotion', 'Feelings are temporary. The mission remains. Discipline carries men through storms that emotions cannot survive.'),
 ('watchman_code', 'The Builder', NULL, 'Purpose', 'Build more than you consume', 'Babylon teaches consumption. The Remnant creates. Build your body. Build your mind. Build your family. Build your faith. Build your legacy.'),
-('watchman_code', 'The Wounded Protector', NULL, 'Responsibility', 'Protect what was entrusted', 'Protect your family. Protect your mission. Protect your convictions. Strength exists to serve responsibility.'),
+('watchman_code', 'The Guardian', NULL, 'Responsibility', 'Protect what was entrusted', 'Protect your family. Protect your mission. Protect your convictions. Strength exists to serve responsibility.'),
 ('watchman_code', 'The Fire Warrior', NULL, 'Adversity', 'Embrace the fire', 'Suffering is not always punishment. Sometimes it is preparation. The fire often forges what comfort never could.'),
 ('quote_database', 'The Mad Prophet', NULL, 'Truth', 'Truth above comfort', 'The problem is not that you do not know what to do. The problem is that you have become comfortable knowing and not doing.'),
 ('enemy_force', NULL, 'The Whisperer', 'Mind', 'Delay', 'Signature lie: Tomorrow. He rarely commands. He suggests, negotiates and delays until purpose quietly fades.'),
