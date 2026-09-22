@@ -12,7 +12,7 @@ upload_dir() {
   while IFS= read -r -d '' file; do
     key="${file#${ROOT}/}"
     echo "Uploading $file -> references/$key"
-    npx wrangler r2 object put "${BUCKET}/references/${key}" --file="${file}"
+    npx wrangler r2 object put "${BUCKET}/references/${key}" --file="${file}" --remote
   done
 }
 
