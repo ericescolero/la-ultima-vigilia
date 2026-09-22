@@ -12,7 +12,7 @@
     "PUBLIC_MEDIA_BASE_URL": "https://social.laultimavigilia.com/media",
     "AUTO_PUBLISH": "false",
     "ENABLE_FACEBOOK": "false",
-    "ENABLE_INSTAGRAM": "false",
+    "ENABLE_INSTAGRAM": "true",
     "ENABLE_TIKTOK": "false",
     "META_GRAPH_VERSION": "v26.0",
     "TEXT_MODEL": "@cf/meta/llama-3.3-70b-instruct-fp8-fast",
