@@ -74,6 +74,13 @@ ${profile.lighting}
 ATMOSPHERE LOCK
 ${profile.atmosphere}
 
+SCENE REALITY LOCK
+${profile.sceneRules}
+
+If any AI-authored scene detail conflicts with the scene reality lock,
+the scene reality lock wins. Remove or reinterpret contradictory fantasy,
+medieval, superheroic, miniature or impossible symbolic elements.
+
 CAMERA / MATERIAL RULES
 Photorealistic live-action cinema frame.
 Believable skin, fabric, metal, stone, rain, smoke and environmental texture.
