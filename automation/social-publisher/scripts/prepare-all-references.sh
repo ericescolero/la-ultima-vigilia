@@ -35,7 +35,7 @@ prepare() {
 
 prepare "archetypes/the-watchman.png"   "The Watchman.png" "The Watchman1.png"
 
-prepare "archetypes/the-exile.png"   "THE EXILE.png" "The Exile.png"
+prepare "archetypes/lone-wolf.png"   "Lone Wolf.png" "The Lone Wolf.png" "THE LONE WOLF.png" "THE EXILE.png" "The Exile.png"
 
 prepare "archetypes/the-fire-warrior.png"   "The Fire Warrior.png"
 
