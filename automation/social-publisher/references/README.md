@@ -10,7 +10,7 @@ The Worker automatically checks R2 for canonical subject references at these key
 - `references/archetypes/the-tempted-saint.png`
 - `references/archetypes/the-conqueror.png`
 - `references/archetypes/the-builder.png`
-- `references/archetypes/the-wounded-protector.png`
+- `references/archetypes/the-guardian.png`
 - `references/archetypes/the-mad-prophet.png`
 
 ## Enemy forces
@@ -43,7 +43,7 @@ If the original Watchman Universe character images are together in one folder, p
 bash scripts/prepare-all-references.sh "/path/to/original-images"
 ```
 
-The helper recognizes current and legacy project filenames, including `Lone Wolf.png`, legacy `THE EXILE.png`, and historical spellings such as `The Conquerer.png` and `The Userper.PNG`.
+The helper recognizes current and legacy project filenames, including `Lone Wolf.png`, legacy `THE EXILE.png`, `The Guardian.png`, legacy `The Wounded Protector.png`, and historical spellings such as `The Conquerer.png` and `The Userper.PNG`.
 
 Then upload the prepared references:
 
