@@ -1,4 +1,5 @@
 import type { ContentItem, Env, GeneratedPost } from '../types';
+import { VISUAL_PROFILES, normalizeVisualKey } from '../config/visualProfiles';
 
 const POST_SCHEMA = {
   type: 'object',
@@ -38,6 +39,11 @@ const POST_SCHEMA = {
 
 export async function generatePostPackage(env: Env, item: ContentItem): Promise<GeneratedPost> {
   const identity = [item.archetype, item.enemy_force].filter(Boolean).join(' vs ');
+  const visualKey =
+    normalizeVisualKey(item.archetype) ??
+    normalizeVisualKey(item.enemy_force) ??
+    'generic';
+  const visualProfile = VISUAL_PROFILES[visualKey];
 
   const prompt = `
 You are the content engine for ${env.BRAND_NAME}, inside The Watchman Universe.
@@ -76,6 +82,18 @@ CONTENT RULES
 - hashtags: exactly 5 relevant hashtags.
 
 SCENE-DESIGN RULES
+ARCHETYPE-SPECIFIC SCENE CONSTRAINTS:
+${visualProfile.sceneRules}
+
+GLOBAL SCENE GROUNDING:
+- Default to a believable present-day 2026 setting unless the canonical source explicitly requires otherwise.
+- Do not invent swords, shields, medieval weapons, fantasy armor, thrones, castles, magical objects or superhero action.
+- Do not create miniature people, floating metaphor objects, staged allegorical props or impossible symbolic tableaux.
+- symbolic_detail must be a physically plausible environmental detail: an empty chair, worn family photo, child's backpack, unlit doorway, broken watch, wedding ring, work gloves, rain on glass, abandoned tool, etc.
+- Characters should be caught in a believable moment, not posing for a poster.
+- Prefer ordinary modern spaces transformed by cinematography: apartment, street, rooftop, bridge, office, workshop, gym, church corridor, parking structure, industrial site, hospital corridor, transit platform.
+- Keep symbolism restrained and secondary to the human scene.
+
 You do NOT control the character design, universe style, palette, lighting system,
 costume identity or negative prompt. Those are locked later by the Worker.
 Only design a fresh cinematic scene that expresses the source meaning.
@@ -92,11 +110,11 @@ Do not redesign or describe the archetype costume.
       {
         role: 'system',
         content:
-          'Return the requested structured object. Public copy must be idiomatic Spanish with no Spanglish. Follow the JSON schema exactly.',
+          'Return the requested structured object. Public copy must be idiomatic Spanish with no Spanglish. Proofread grammar, gender and agreement before returning. Scene ideas must obey the supplied modern grounded constraints. Follow the JSON schema exactly.',
       },
       { role: 'user', content: prompt },
     ],
-    temperature: 0.68,
+    temperature: 0.55,
     max_completion_tokens: 1600,
     response_format: {
       type: 'json_schema',
