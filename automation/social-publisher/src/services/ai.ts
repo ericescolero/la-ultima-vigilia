@@ -50,13 +50,15 @@ Return ONLY valid JSON:
       { role: 'user', content: prompt },
     ],
     temperature: 0.75,
-    max_tokens: 1800,
+    max_completion_tokens: 1800,
   } as any) as any;
 
-  const raw = typeof result?.response === 'string' ? result.response : JSON.stringify(result);
+  const raw = extractText(result);
   const parsed = parseJsonObject(raw) as Record<string, unknown>;
 
-  if (!Array.isArray(parsed.hashtags)) throw new Error('AI hashtags must be an array');
+  if (!Array.isArray(parsed.hashtags)) {
+    throw new Error('AI hashtags must be an array');
+  }
 
   return {
     hook: String(parsed.hook ?? ''),
@@ -70,14 +72,38 @@ Return ONLY valid JSON:
   };
 }
 
+function extractText(result: any): string {
+  if (typeof result?.response === 'string') return result.response;
+
+  const openAiStyle = result?.choices?.[0]?.message?.content;
+  if (typeof openAiStyle === 'string') return openAiStyle;
+
+  if (Array.isArray(openAiStyle)) {
+    const text = openAiStyle
+      .map((part: any) => typeof part?.text === 'string' ? part.text : '')
+      .filter(Boolean)
+      .join('\n');
+    if (text) return text;
+  }
+
+  throw new Error(`Unexpected text-model response: ${JSON.stringify(result).slice(0, 1000)}`);
+}
+
 function parseJsonObject(input: string): unknown {
-  const trimmed = input.trim().replace(/^\`\`\`json\s*/i, '').replace(/\`\`\`$/i, '').trim();
+  const trimmed = input
+    .trim()
+    .replace(/^\`\`\`json\s*/i, '')
+    .replace(/\`\`\`$/i, '')
+    .trim();
+
   try {
     return JSON.parse(trimmed);
   } catch {
     const start = trimmed.indexOf('{');
     const end = trimmed.lastIndexOf('}');
-    if (start === -1 || end === -1 || end <= start) throw new Error('AI did not return JSON');
+    if (start === -1 || end === -1 || end <= start) {
+      throw new Error('AI did not return JSON');
+    }
     return JSON.parse(trimmed.slice(start, end + 1));
   }
 }
