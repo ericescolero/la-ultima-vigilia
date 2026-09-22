@@ -25,7 +25,7 @@ export async function publishFacebookPhoto(
   const endpoint = `https://graph.facebook.com/${env.META_GRAPH_VERSION}/${env.META_PAGE_ID}/photos`;
   const body = new URLSearchParams({
     url: imageUrl,
-    message: caption,
+    caption,
     published: 'true',
     access_token: env.META_PAGE_ACCESS_TOKEN,
   });
