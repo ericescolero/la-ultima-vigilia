@@ -1,5 +1,35 @@
 import type { ContentItem, Env, GeneratedPost } from '../types';
 
+const POST_SCHEMA = {
+  type: 'object',
+  additionalProperties: false,
+  properties: {
+    hook: { type: 'string' },
+    quote_text: { type: 'string' },
+    instagram_caption: { type: 'string' },
+    facebook_caption: { type: 'string' },
+    tiktok_title: { type: 'string' },
+    tiktok_description: { type: 'string' },
+    hashtags: {
+      type: 'array',
+      minItems: 5,
+      maxItems: 5,
+      items: { type: 'string' },
+    },
+    image_prompt: { type: 'string' },
+  },
+  required: [
+    'hook',
+    'quote_text',
+    'instagram_caption',
+    'facebook_caption',
+    'tiktok_title',
+    'tiktok_description',
+    'hashtags',
+    'image_prompt',
+  ],
+} as const;
+
 export async function generatePostPackage(env: Env, item: ContentItem): Promise<GeneratedPost> {
   const identity = [item.archetype, item.enemy_force].filter(Boolean).join(' vs ');
 
@@ -31,79 +61,92 @@ VISUAL RULES
 - No text rendered inside the generated image.
 - Compose for a 4:5 social feed image.
 
-Return ONLY valid JSON:
-{
-  "hook": "short hard-hitting opening",
-  "quote_text": "1-2 sentence original derivative quote",
-  "instagram_caption": "caption with CTA; do not append hashtags",
-  "facebook_caption": "slightly deeper caption with a discussion question; do not append hashtags",
-  "tiktok_title": "short title under 90 characters",
-  "tiktok_description": "short caption; do not append hashtags",
-  "hashtags": ["#tag1", "#tag2", "#tag3", "#tag4", "#tag5"],
-  "image_prompt": "English image prompt for a realistic Watchman Universe 4:5 image, no text"
-}
+CONTENT RULES
+- hook: short and hard-hitting.
+- quote_text: 1-2 sentence original derivative quote.
+- instagram_caption: useful caption with CTA; no hashtags inside.
+- facebook_caption: slightly deeper; include a discussion question; no hashtags inside.
+- tiktok_title: under 90 characters.
+- tiktok_description: concise, hook-driven; no hashtags inside.
+- hashtags: exactly 5 relevant hashtags.
+- image_prompt: English prompt for a realistic Watchman Universe 4:5 image, no text.
 `;
 
   const result = await env.AI.run(env.TEXT_MODEL as any, {
     messages: [
-      { role: 'system', content: 'Return strict JSON only. No markdown fences.' },
+      {
+        role: 'system',
+        content: 'Create the requested social package. Follow the supplied JSON schema exactly.',
+      },
       { role: 'user', content: prompt },
     ],
-    temperature: 0.75,
-    max_completion_tokens: 1800,
+    temperature: 0.7,
+    max_completion_tokens: 1600,
+    response_format: {
+      type: 'json_schema',
+      json_schema: POST_SCHEMA,
+    },
   } as any) as any;
 
-  const raw = extractText(result);
-  const parsed = parseJsonObject(raw) as Record<string, unknown>;
-
-  if (!Array.isArray(parsed.hashtags)) {
-    throw new Error('AI hashtags must be an array');
-  }
+  const parsed = extractStructuredObject(result);
 
   return {
-    hook: String(parsed.hook ?? ''),
-    quote_text: String(parsed.quote_text ?? ''),
-    instagram_caption: String(parsed.instagram_caption ?? ''),
-    facebook_caption: String(parsed.facebook_caption ?? ''),
-    tiktok_title: String(parsed.tiktok_title ?? '').slice(0, 90),
-    tiktok_description: String(parsed.tiktok_description ?? ''),
-    hashtags: (parsed.hashtags as unknown[]).slice(0, 5).map(String),
-    image_prompt: String(parsed.image_prompt ?? ''),
+    hook: requireString(parsed, 'hook'),
+    quote_text: requireString(parsed, 'quote_text'),
+    instagram_caption: requireString(parsed, 'instagram_caption'),
+    facebook_caption: requireString(parsed, 'facebook_caption'),
+    tiktok_title: requireString(parsed, 'tiktok_title').slice(0, 90),
+    tiktok_description: requireString(parsed, 'tiktok_description'),
+    hashtags: requireStringArray(parsed, 'hashtags').slice(0, 5),
+    image_prompt: requireString(parsed, 'image_prompt'),
   };
 }
 
-function extractText(result: any): string {
-  if (typeof result?.response === 'string') return result.response;
-
-  const openAiStyle = result?.choices?.[0]?.message?.content;
-  if (typeof openAiStyle === 'string') return openAiStyle;
-
-  if (Array.isArray(openAiStyle)) {
-    const text = openAiStyle
-      .map((part: any) => typeof part?.text === 'string' ? part.text : '')
-      .filter(Boolean)
-      .join('\n');
-    if (text) return text;
+function extractStructuredObject(result: any): Record<string, unknown> {
+  if (result?.response && typeof result.response === 'object' && !Array.isArray(result.response)) {
+    return result.response as Record<string, unknown>;
   }
 
-  throw new Error(`Unexpected text-model response: ${JSON.stringify(result).slice(0, 1000)}`);
+  const parsedChoice = result?.choices?.[0]?.message?.parsed;
+  if (parsedChoice && typeof parsedChoice === 'object' && !Array.isArray(parsedChoice)) {
+    return parsedChoice as Record<string, unknown>;
+  }
+
+  const text =
+    typeof result?.response === 'string'
+      ? result.response
+      : typeof result?.choices?.[0]?.message?.content === 'string'
+        ? result.choices[0].message.content
+        : null;
+
+  if (text) {
+    try {
+      const parsed = JSON.parse(text);
+      if (parsed && typeof parsed === 'object' && !Array.isArray(parsed)) {
+        return parsed as Record<string, unknown>;
+      }
+    } catch {
+      // Fall through to diagnostic error below.
+    }
+  }
+
+  throw new Error(
+    `Structured AI response missing or invalid: ${JSON.stringify(result).slice(0, 1200)}`,
+  );
 }
 
-function parseJsonObject(input: string): unknown {
-  const trimmed = input
-    .trim()
-    .replace(/^\`\`\`json\s*/i, '')
-    .replace(/\`\`\`$/i, '')
-    .trim();
-
-  try {
-    return JSON.parse(trimmed);
-  } catch {
-    const start = trimmed.indexOf('{');
-    const end = trimmed.lastIndexOf('}');
-    if (start === -1 || end === -1 || end <= start) {
-      throw new Error('AI did not return JSON');
-    }
-    return JSON.parse(trimmed.slice(start, end + 1));
+function requireString(value: Record<string, unknown>, key: string): string {
+  const field = value[key];
+  if (typeof field !== 'string' || !field.trim()) {
+    throw new Error(`Structured AI response missing string field: ${key}`);
   }
+  return field.trim();
+}
+
+function requireStringArray(value: Record<string, unknown>, key: string): string[] {
+  const field = value[key];
+  if (!Array.isArray(field) || field.some((item) => typeof item !== 'string')) {
+    throw new Error(`Structured AI response missing string array field: ${key}`);
+  }
+  return field.map((item) => item.trim()).filter(Boolean);
 }
