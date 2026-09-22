@@ -1,11 +1,102 @@
 import type { Env } from '../types';
 
+export interface GeneratedImageResult {
+  key: string;
+  url: string;
+  referencesUsed: string[];
+  fallbackMode: 'none' | 'safe-retry' | 'text-only-after-3030';
+}
+
+const SAFE_RETRY_SUFFIX = `
+SAFETY-SAFE RENDERING OVERRIDE
+Keep the scene nonviolent and suitable for a general audience.
+All human subjects are adults and fully clothed.
+No blood, wounds, injury, weapons, sexual content, nudity, threatening animal attack,
+graphic distress, public-figure likeness, copyrighted-character imitation or shocking imagery.
+Preserve the requested identity, atmosphere and symbolism through posture, weather,
+environment, distance and cinematic light rather than explicit danger.
+`.trim();
+
 export async function generateAndStoreImage(
   env: Env,
   prompt: string,
   subjectReferenceKey?: string,
   styleReferenceKey?: string,
-): Promise<{ key: string; url: string; referencesUsed: string[] }> {
+): Promise<GeneratedImageResult> {
+  let result: Awaited<ReturnType<typeof runImageAttempt>>;
+  let fallbackMode: GeneratedImageResult['fallbackMode'] = 'none';
+
+  try {
+    result = await runImageAttempt(
+      env,
+      prompt,
+      subjectReferenceKey,
+      styleReferenceKey,
+    );
+  } catch (error) {
+    if (!isOutputFlag(error)) throw error;
+
+    console.warn('Image output flagged; retrying with safety-grounded prompt', {
+      subjectReferenceKey,
+      styleReferenceKey,
+      error: errorMessage(error),
+    });
+
+    const safePrompt = `${prompt}\n\n${SAFE_RETRY_SUFFIX}`;
+
+    try {
+      result = await runImageAttempt(
+        env,
+        safePrompt,
+        subjectReferenceKey,
+        styleReferenceKey,
+      );
+      fallbackMode = 'safe-retry';
+    } catch (retryError) {
+      if (!isOutputFlag(retryError)) throw retryError;
+
+      console.warn('Referenced image retry also flagged; falling back to text-only generation', {
+        subjectReferenceKey,
+        styleReferenceKey,
+        error: errorMessage(retryError),
+      });
+
+      result = await runImageAttempt(env, safePrompt);
+      fallbackMode = 'text-only-after-3030';
+    }
+  }
+
+  const bytes = base64ToBytes(result.base64);
+  const now = new Date();
+  const key = `posts/${now.getUTCFullYear()}/${String(now.getUTCMonth() + 1).padStart(2, '0')}/${crypto.randomUUID()}.jpg`;
+
+  await env.MEDIA.put(key, bytes, {
+    httpMetadata: {
+      contentType: 'image/jpeg',
+      cacheControl: 'public, max-age=31536000, immutable',
+    },
+    customMetadata: {
+      generatedBy: env.IMAGE_MODEL,
+      referencesUsed: result.referencesUsed.join(','),
+      fallbackMode,
+    },
+  });
+
+  const base = env.PUBLIC_MEDIA_BASE_URL.replace(/\/$/, '');
+  return {
+    key,
+    url: `${base}/${key}`,
+    referencesUsed: result.referencesUsed,
+    fallbackMode,
+  };
+}
+
+async function runImageAttempt(
+  env: Env,
+  prompt: string,
+  subjectReferenceKey?: string,
+  styleReferenceKey?: string,
+): Promise<{ base64: string; referencesUsed: string[] }> {
   const form = new FormData();
   form.append('prompt', prompt.slice(0, 12000));
   form.append('width', '1080');
@@ -54,27 +145,7 @@ export async function generateAndStoreImage(
     throw new Error('Image model returned no base64 image');
   }
 
-  const bytes = base64ToBytes(base64);
-  const now = new Date();
-  const key = `posts/${now.getUTCFullYear()}/${String(now.getUTCMonth() + 1).padStart(2, '0')}/${crypto.randomUUID()}.jpg`;
-
-  await env.MEDIA.put(key, bytes, {
-    httpMetadata: {
-      contentType: 'image/jpeg',
-      cacheControl: 'public, max-age=31536000, immutable',
-    },
-    customMetadata: {
-      generatedBy: env.IMAGE_MODEL,
-      referencesUsed: referencesUsed.join(','),
-    },
-  });
-
-  const base = env.PUBLIC_MEDIA_BASE_URL.replace(/\/$/, '');
-  return {
-    key,
-    url: `${base}/${key}`,
-    referencesUsed,
-  };
+  return { base64, referencesUsed };
 }
 
 async function appendR2Reference(
@@ -97,6 +168,19 @@ async function appendR2Reference(
   );
 
   return true;
+}
+
+function isOutputFlag(error: unknown): boolean {
+  const message = errorMessage(error).toLowerCase();
+  return (
+    message.includes('3030') ||
+    message.includes('output has been flagged') ||
+    message.includes('prompt / input image combination')
+  );
+}
+
+function errorMessage(error: unknown): string {
+  return error instanceof Error ? error.message : String(error);
 }
 
 function inferContentType(key: string): string {
