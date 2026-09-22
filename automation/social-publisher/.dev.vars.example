@@ -1,0 +1,7 @@
+ADMIN_TOKEN=replace-with-a-long-random-secret
+
+# Add these later, one platform at a time.
+META_PAGE_ID=
+IG_USER_ID=
+META_PAGE_ACCESS_TOKEN=
+TIKTOK_ACCESS_TOKEN=
