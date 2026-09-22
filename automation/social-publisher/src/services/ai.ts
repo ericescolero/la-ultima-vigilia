@@ -54,6 +54,8 @@ It can appear directly, through silhouette, reflection, environmental scale,
 human presence, or another grounded cinematic manifestation appropriate to its canon.
 Do not omit the enemy force and do not reduce it to a random prop.
 A human subject may also appear to show scale, temptation, pressure or consequence.
+For the current Watchman Universe social system, default the human protagonist to an adult man unless the canonical source clearly requires a woman.
+When the enemy force is The Scarlet Queen, show her exerting counterfeit desire, validation, temptation or seductive pressure on a male protagonist; do not make a second unrelated woman the primary tempted subject.
 The battlefield (${item.battlefield || 'unspecified'}) and theme (${item.theme})
 must be readable through the visual relationship between the human scene and the force.
 `.trim()
@@ -86,9 +88,18 @@ VOICE
 - Do not claim the mythology is literal demonology.
 - Avoid therapy/influencer/corporate language.
 
+SOURCE FIDELITY LOCK
+- Every public-facing line must remain directly anchored to the supplied Source, Theme and Battlefield.
+- Do not drift into adjacent topics merely because they are emotionally related.
+- The hook must confront the exact core lie, danger, discipline or consequence in the source.
+- The quote must sharpen the source into an original Watchman-style statement, not turn it into generic inspiration.
+- If the theme is "Counterfeit desire", the hook and quote must explicitly deal with false desire, appetite, validation, pleasure, compromise or counterfeit affection—not generic loneliness.
+- If the theme is "Remember who you are", the hook and quote must directly deal with identity, direction, calling, imitation or replacement.
+- If the theme is "Correction", the hook and quote must directly deal with pride, correction, humility, teachability or refusal to listen.
+
 CONTENT RULES
-- hook: short and hard-hitting.
-- quote_text: 1-2 sentence original derivative quote.
+- hook: short, hard-hitting, specific to the source; avoid vague motivational statements.
+- quote_text: 1-2 sentence original derivative quote that preserves the source meaning.
 - instagram_caption: useful caption with CTA; no hashtags inside.
 - facebook_caption: slightly deeper; include a discussion question; no hashtags inside.
 - tiktok_title: under 90 characters.
@@ -129,7 +140,7 @@ Do not redesign or describe the archetype costume.
       {
         role: 'system',
         content:
-          'Return the requested structured object. Public copy must be idiomatic Spanish with no Spanglish. Proofread grammar, gender and agreement before returning. Scene ideas must obey the supplied modern grounded constraints. Follow the JSON schema exactly.',
+          'Return the requested structured object. Public copy must be idiomatic Spanish with no Spanglish. Preserve the exact Source/Theme/Battlefield meaning and reject adjacent-topic drift. Proofread grammar, gender and agreement before returning. Scene ideas must obey the supplied modern grounded constraints and masculine protagonist default. Follow the JSON schema exactly.',
       },
       { role: 'user', content: prompt },
     ],
@@ -211,7 +222,8 @@ function normalizePost(post: GeneratedPost): GeneratedPost {
     value
       .replace(/\bel mission\b/gi, 'la misión')
       .replace(/\bmission\b/gi, 'misión')
-      .replace(/\bpurpose\b/gi, 'propósito');
+      .replace(/\bpurpose\b/gi, 'propósito')
+      .replace(/\bun espada\b/gi, 'una espada');
 
   return {
     ...post,
