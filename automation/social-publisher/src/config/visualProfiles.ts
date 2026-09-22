@@ -1,6 +1,6 @@
 export type VisualKey =
   | 'the-watchman'
-  | 'the-exile'
+  | 'lone-wolf'
   | 'the-fire-warrior'
   | 'the-tempted-saint'
   | 'the-conqueror'
@@ -69,20 +69,25 @@ His presence is quiet, observant and serious.
     referenceKey: 'references/archetypes/the-watchman.png',
   },
 
-  'the-exile': {
-    key: 'the-exile',
-    label: 'The Exile',
+  'lone-wolf': {
+    key: 'lone-wolf',
+    label: 'Lone Wolf',
     identity: `
-A solitary masculine figure shaped by separation, wilderness and endurance.
-Rugged, weathered and restrained. A black wolf may appear as symbolic companionship.
-Never melodramatic, never fantasy-ranger cosplay.
+A hardened male scout, pathfinder, rescuer and guide who left Babylon after refusing compromise.
+He operates independently through the frozen Wilderness: snow-covered forests, abandoned roads,
+mountain passes, ruined settlements, cabins and old rail lines.
+Weathered dark cloak, layered survival garments, rugged boots and battle-worn realism.
+A massive black wolf travels with him as an angelic companion sent by God:
+silent, vigilant, loyal, ancient and protective.
+Lone Wolf is restrained, observant, hyper-independent and spiritually awake.
+Never fantasy-ranger cosplay, never a generic medieval hero.
     `.trim(),
-    palette: 'ash gray, black, cold blue-gray, muted silver',
-    lighting: 'dim natural light, overcast sky, cold dawn or dusk',
-    atmosphere: 'wilderness, distance, isolation, wind, stone, silence',
-    sceneRules: 'Grounded wilderness or edge-of-city isolation. Black wolf may appear naturally. No fantasy ranger gear, magic, medieval ruins or heroic posing.',
+    palette: 'ash gray, black, cold blue-gray, muted silver, restrained moonlit white',
+    lighting: 'cold natural light, moonlight, overcast dawn or dusk, restrained lantern or firelight',
+    atmosphere: 'snow, frozen wind, wilderness silence, isolation, vigilance, survival, covenant',
+    sceneRules: 'Snowy Wilderness continuity: frozen mountains, pine forests, fog valleys, abandoned roads, ruined towns, cabins, rail lines and storm-battered trails. The massive black wolf may accompany him naturally and should feel intelligent, vigilant and protective. Lone Wolf functions as scout, pathfinder, rescuer and guide. No generic fantasy ranger styling, magic spell effects, ornate medieval hero gear or triumphant superhero posing.',
     negative: GLOBAL_NEGATIVE,
-    referenceKey: 'references/archetypes/the-exile.png',
+    referenceKey: 'references/archetypes/lone-wolf.png',
   },
 
   'the-fire-warrior': {
@@ -270,8 +275,10 @@ export function normalizeVisualKey(value: string | null | undefined): VisualKey 
   const map: Record<string, VisualKey> = {
     'the watchman': 'the-watchman',
     'watchman': 'the-watchman',
-    'the exile': 'the-exile',
-    'exile': 'the-exile',
+    'lone wolf': 'lone-wolf',
+    'the lone wolf': 'lone-wolf',
+    'the exile': 'lone-wolf',
+    'exile': 'lone-wolf',
     'the fire warrior': 'the-fire-warrior',
     'fire warrior': 'the-fire-warrior',
     'the tempted saint': 'the-tempted-saint',
