@@ -45,7 +45,7 @@ prepare "archetypes/the-conqueror.png"   "The Conquerer.png" "The Conqueror.png"
 
 prepare "archetypes/the-builder.png"   "The Builder.png"
 
-prepare "archetypes/the-wounded-protector.png"   "The Wounded Protector.png"
+prepare "archetypes/the-guardian.png"   "The Guardian.png" "Guardian.png" "THE GUARDIAN.png" "The Wounded Protector.png"
 
 prepare "archetypes/the-mad-prophet.png"   "The Mad Prophet.png"
 
