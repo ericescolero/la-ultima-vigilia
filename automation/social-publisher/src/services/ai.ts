@@ -44,6 +44,19 @@ export async function generatePostPackage(env: Env, item: ContentItem): Promise<
     normalizeVisualKey(item.enemy_force) ??
     'generic';
   const visualProfile = VISUAL_PROFILES[visualKey];
+  const enemyStaging = item.enemy_force
+    ? `
+ENEMY-FORCE STAGING
+This is an Enemy Force post.
+The named force (${item.enemy_force}) must be visually perceptible in the scene.
+It can appear directly, through silhouette, reflection, environmental scale,
+human presence, or another grounded cinematic manifestation appropriate to its canon.
+Do not omit the enemy force and do not reduce it to a random prop.
+A human subject may also appear to show scale, temptation, pressure or consequence.
+The battlefield (${item.battlefield || 'unspecified'}) and theme (${item.theme})
+must be readable through the visual relationship between the human scene and the force.
+`.trim()
+    : '';
 
   const prompt = `
 You are the content engine for ${env.BRAND_NAME}, inside The Watchman Universe.
@@ -82,6 +95,8 @@ CONTENT RULES
 - hashtags: exactly 5 relevant hashtags.
 
 SCENE-DESIGN RULES
+${enemyStaging}
+
 ARCHETYPE-SPECIFIC SCENE CONSTRAINTS:
 ${visualProfile.sceneRules}
 
@@ -89,7 +104,11 @@ GLOBAL SCENE GROUNDING:
 - Default to a believable present-day 2026 setting unless the canonical source explicitly requires otherwise.
 - Do not invent swords, shields, medieval weapons, fantasy armor, thrones, castles, magical objects or superhero action.
 - Do not create miniature people, floating metaphor objects, staged allegorical props or impossible symbolic tableaux.
-- symbolic_detail must be a physically plausible environmental detail: an empty chair, worn family photo, child's backpack, unlit doorway, broken watch, wedding ring, work gloves, rain on glass, abandoned tool, etc.
+- symbolic_detail must be a physically plausible environmental detail that DIRECTLY reinforces the battlefield and theme. Do not choose a generic symbol merely because it looks cinematic.
+- For pride/correction, use grounded cues such as an unread correction note, cracked mirror, ignored message, elevated glass office, discarded work gloves, closed Bible/notebook, or another believable consequence of refusing correction.
+- For temptation/desire, use grounded cues such as a second glass, unread message, open door, discarded ring, reflected figure, or other plausible object tied to the temptation.
+- For identity, use mirrors, reflections, duplicated silhouettes, replaced nameplates, discarded ID, altered clothing, or comparable grounded cues.
+- For mental deception/delay, use clocks, unfinished work, unread messages, dim screens, repeated alarms, closed doors, or comparable grounded cues.
 - Characters should be caught in a believable moment, not posing for a poster.
 - Prefer ordinary modern spaces transformed by cinematography: apartment, street, rooftop, bridge, office, workshop, gym, church corridor, parking structure, industrial site, hospital corridor, transit platform.
 - Keep symbolism restrained and secondary to the human scene.
@@ -100,7 +119,7 @@ Only design a fresh cinematic scene that expresses the source meaning.
 - scene_concept: what is physically happening in the frame.
 - environment: a believable location and environmental conditions.
 - composition: camera framing, subject placement and visual distance.
-- symbolic_detail: one restrained visual symbol supporting the theme.
+- symbolic_detail: one restrained, physically plausible visual symbol that specifically supports the battlefield and theme.
 Do not mention typography or text overlays.
 Do not redesign or describe the archetype costume.
 `;
