@@ -58,10 +58,27 @@ export default {
 
       if (request.method === 'GET' && url.pathname === '/admin/queue') {
         const result = await env.DB.prepare(`
-          SELECT id, content_item_id, trigger_name, scheduled_for, status, hook,
-                 quote_text, image_url, attempts, last_error, created_at, updated_at
-          FROM publish_queue
-          ORDER BY id DESC
+          SELECT
+            q.id,
+            q.content_item_id,
+            c.archetype,
+            c.enemy_force,
+            c.battlefield,
+            c.theme,
+            q.trigger_name,
+            q.scheduled_for,
+            q.status,
+            q.hook,
+            q.quote_text,
+            q.image_prompt,
+            q.image_url,
+            q.attempts,
+            q.last_error,
+            q.created_at,
+            q.updated_at
+          FROM publish_queue q
+          JOIN content_items c ON c.id = q.content_item_id
+          ORDER BY q.id DESC
           LIMIT 50
         `).all();
 
