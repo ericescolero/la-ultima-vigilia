@@ -16,7 +16,10 @@ const POST_SCHEMA = {
       maxItems: 5,
       items: { type: 'string' },
     },
-    image_prompt: { type: 'string' },
+    scene_concept: { type: 'string' },
+    environment: { type: 'string' },
+    composition: { type: 'string' },
+    symbolic_detail: { type: 'string' },
   },
   required: [
     'hook',
@@ -26,7 +29,10 @@ const POST_SCHEMA = {
     'tiktok_title',
     'tiktok_description',
     'hashtags',
-    'image_prompt',
+    'scene_concept',
+    'environment',
+    'composition',
+    'symbolic_detail',
   ],
 } as const;
 
@@ -53,14 +59,6 @@ VOICE
 - Do not claim the mythology is literal demonology.
 - Avoid therapy/influencer/corporate language.
 
-VISUAL RULES
-- Dark cinematic realism; live-action film frame.
-- Emotionally restrained; realistic textures; atmospheric depth.
-- Deep black, charcoal, ash, cold steel blue, muted silver, ember orange or faded gold.
-- No superhero look, no comic/anime, no neon overload, no occult/satanic symbols, no watermark.
-- No text rendered inside the generated image.
-- Compose for a 4:5 social feed image.
-
 CONTENT RULES
 - hook: short and hard-hitting.
 - quote_text: 1-2 sentence original derivative quote.
@@ -69,7 +67,17 @@ CONTENT RULES
 - tiktok_title: under 90 characters.
 - tiktok_description: concise, hook-driven; no hashtags inside.
 - hashtags: exactly 5 relevant hashtags.
-- image_prompt: English prompt for a realistic Watchman Universe 4:5 image, no text.
+
+SCENE-DESIGN RULES
+You do NOT control the character design, universe style, palette, lighting system,
+costume identity or negative prompt. Those are locked later by the Worker.
+Only design a fresh cinematic scene that expresses the source meaning.
+- scene_concept: what is physically happening in the frame.
+- environment: a believable location and environmental conditions.
+- composition: camera framing, subject placement and visual distance.
+- symbolic_detail: one restrained visual symbol supporting the theme.
+Do not mention typography or text overlays.
+Do not redesign or describe the archetype costume.
 `;
 
   const result = await env.AI.run(env.TEXT_MODEL as any, {
@@ -80,7 +88,7 @@ CONTENT RULES
       },
       { role: 'user', content: prompt },
     ],
-    temperature: 0.7,
+    temperature: 0.72,
     max_completion_tokens: 1600,
     response_format: {
       type: 'json_schema',
@@ -98,7 +106,10 @@ CONTENT RULES
     tiktok_title: requireString(parsed, 'tiktok_title').slice(0, 90),
     tiktok_description: requireString(parsed, 'tiktok_description'),
     hashtags: requireStringArray(parsed, 'hashtags').slice(0, 5),
-    image_prompt: requireString(parsed, 'image_prompt'),
+    scene_concept: requireString(parsed, 'scene_concept'),
+    environment: requireString(parsed, 'environment'),
+    composition: requireString(parsed, 'composition'),
+    symbolic_detail: requireString(parsed, 'symbolic_detail'),
   };
 }
 
