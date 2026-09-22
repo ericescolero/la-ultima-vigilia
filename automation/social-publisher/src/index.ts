@@ -2,6 +2,7 @@ import type { Env } from './types';
 import { runContentCycle } from './services/cycle';
 import { getQueueRow } from './db/queries';
 import { publishQueueItem } from './services/publisher';
+import { STYLE_REFERENCE_KEY, VISUAL_PROFILES } from './config/visualProfiles';
 
 export default {
   async fetch(request: Request, env: Env): Promise<Response> {
@@ -85,6 +86,33 @@ export default {
         return json({ ok: true, rows: result.results });
       }
 
+      if (request.method === 'GET' && url.pathname === '/admin/references') {
+        const subjectKeys = Object.values(VISUAL_PROFILES)
+          .map((profile) => profile.referenceKey)
+          .filter((value): value is string => Boolean(value));
+        const keys = Array.from(new Set([...subjectKeys, STYLE_REFERENCE_KEY]));
+
+        const rows = await Promise.all(
+          keys.map(async (key) => {
+            const object = await env.MEDIA.head(key);
+            return {
+              key,
+              exists: Boolean(object),
+              size: object?.size ?? null,
+              etag: object?.httpEtag ?? null,
+              content_type: object?.httpMetadata?.contentType ?? null,
+            };
+          }),
+        );
+
+        return json({
+          ok: true,
+          ready: rows.filter((row) => row.exists).length,
+          total: rows.length,
+          rows,
+        });
+      }
+
       if (request.method === 'GET' && url.pathname === '/admin/logs') {
         const result = await env.DB.prepare(`
           SELECT * FROM publish_logs ORDER BY id DESC LIMIT 100
@@ -102,6 +130,7 @@ export default {
         '/admin/run-now',
         '/admin/publish/:id',
         '/admin/queue',
+        '/admin/references',
         '/admin/logs',
       ],
     });
