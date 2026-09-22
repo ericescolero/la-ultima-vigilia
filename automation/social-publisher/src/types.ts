@@ -34,7 +34,14 @@ export interface ContentItem {
   last_used_at: string | null;
 }
 
-export interface GeneratedPost {
+export interface ScenePackage {
+  scene_concept: string;
+  environment: string;
+  composition: string;
+  symbolic_detail: string;
+}
+
+export interface GeneratedPost extends ScenePackage {
   hook: string;
   quote_text: string;
   instagram_caption: string;
@@ -42,7 +49,6 @@ export interface GeneratedPost {
   tiktok_title: string;
   tiktok_description: string;
   hashtags: string[];
-  image_prompt: string;
 }
 
 export interface QueueRow {
