@@ -47,6 +47,7 @@ export async function saveGeneratedPost(
   db: D1Database,
   queueId: number,
   post: GeneratedPost,
+  imagePrompt: string,
   imageKey: string,
   imageUrl: string,
 ): Promise<void> {
@@ -74,7 +75,7 @@ export async function saveGeneratedPost(
     post.tiktok_title,
     post.tiktok_description,
     JSON.stringify(post.hashtags),
-    post.image_prompt,
+    imagePrompt,
     imageKey,
     imageUrl,
     queueId,
