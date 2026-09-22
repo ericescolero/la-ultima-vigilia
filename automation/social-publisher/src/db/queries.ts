@@ -13,6 +13,19 @@ export async function selectNextContent(db: D1Database): Promise<ContentItem | n
   `).first<ContentItem>()) ?? null;
 }
 
+export async function getContentItemById(
+  db: D1Database,
+  contentItemId: number,
+): Promise<ContentItem | null> {
+  return (await db.prepare(`
+    SELECT id, source_type, archetype, enemy_force, battlefield, theme, source_text,
+           times_used, last_used_at
+    FROM content_items
+    WHERE id = ? AND status = 'active'
+    LIMIT 1
+  `).bind(contentItemId).first<ContentItem>()) ?? null;
+}
+
 export async function createQueueItem(
   db: D1Database,
   contentItemId: number,
@@ -41,6 +54,38 @@ export async function markGenerating(db: D1Database, queueId: number): Promise<v
     SET status = 'generating', attempts = attempts + 1, updated_at = CURRENT_TIMESTAMP
     WHERE id = ?
   `).bind(queueId).run();
+}
+
+export async function saveGenerationDraft(
+  db: D1Database,
+  queueId: number,
+  post: GeneratedPost,
+  imagePrompt: string,
+): Promise<void> {
+  await db.prepare(`
+    UPDATE publish_queue SET
+      hook = ?,
+      quote_text = ?,
+      instagram_caption = ?,
+      facebook_caption = ?,
+      tiktok_title = ?,
+      tiktok_description = ?,
+      hashtags_json = ?,
+      image_prompt = ?,
+      last_error = NULL,
+      updated_at = CURRENT_TIMESTAMP
+    WHERE id = ?
+  `).bind(
+    post.hook,
+    post.quote_text,
+    post.instagram_caption,
+    post.facebook_caption,
+    post.tiktok_title,
+    post.tiktok_description,
+    JSON.stringify(post.hashtags),
+    imagePrompt,
+    queueId,
+  ).run();
 }
 
 export async function saveGeneratedPost(
