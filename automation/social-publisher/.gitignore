@@ -2,3 +2,14 @@ node_modules/
 .dev.vars
 .wrangler/
 dist/
+
+# Canonical reference images stay local/R2, not in git.
+references/archetypes/*.png
+references/archetypes/*.jpg
+references/archetypes/*.jpeg
+references/enemies/*.png
+references/enemies/*.jpg
+references/enemies/*.jpeg
+references/style/*.png
+references/style/*.jpg
+references/style/*.jpeg
