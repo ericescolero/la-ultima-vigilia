@@ -29,6 +29,17 @@ export function buildCanonicalImagePlan(
   scene: ScenePackage,
 ): CanonicalImagePlan {
   const profile = resolveVisualProfile(item);
+  const enemyForceLock = item.enemy_force
+    ? `
+ENEMY FORCE VISUAL LOCK
+This is an Enemy Force image centered on ${item.enemy_force}.
+The force must be visually present or unmistakably exerting pressure on the scene.
+Do not render only an unrelated human subject.
+Keep the force faithful to its canonical identity and grounded cinematic language.
+The visual relationship must communicate battlefield: ${item.battlefield || 'unspecified'}.
+The symbolic detail must reinforce theme: ${item.theme}.
+`.trim()
+    : '';
 
   const prompt = `
 ${UNIVERSE_FOUNDATION}
@@ -41,6 +52,8 @@ If input image 1 is supplied, it is the canonical Watchman Universe style refere
 Use image 1 for cinematography, texture, palette and atmosphere, not subject identity.
 The new scene may change pose, camera angle and environment while remaining
 recognizably inside the same visual universe.
+
+${enemyForceLock}
 
 CANONICAL SUBJECT
 ${profile.label}
@@ -64,6 +77,10 @@ ${scene.composition}
 
 SYMBOLIC DETAIL
 ${scene.symbolic_detail}
+
+SYMBOLISM LOCK
+The symbolic detail must have a direct narrative connection to the battlefield and theme.
+Ignore or reinterpret it if it is merely decorative, generic, contradictory or unrelated.
 
 PALETTE LOCK
 ${profile.palette}
