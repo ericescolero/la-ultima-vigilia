@@ -4,10 +4,25 @@ export async function generateAndStoreImage(
   env: Env,
   prompt: string,
 ): Promise<{ key: string; url: string }> {
+  const form = new FormData();
+  form.append('prompt', prompt.slice(0, 4000));
+  form.append('width', '1080');
+  form.append('height', '1350');
+  form.append('guidance', '4');
+
+  const formResponse = new Response(form);
+  const formStream = formResponse.body;
+  const formContentType = formResponse.headers.get('content-type');
+
+  if (!formStream || !formContentType) {
+    throw new Error('Could not serialize image-generation form data');
+  }
+
   const response = await env.AI.run(env.IMAGE_MODEL as any, {
-    prompt: prompt.slice(0, 4000),
-    width: 1080,
-    height: 1350,
+    multipart: {
+      body: formStream,
+      contentType: formContentType,
+    },
   } as any) as any;
 
   const base64 = response?.image;
