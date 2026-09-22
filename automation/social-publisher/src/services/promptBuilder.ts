@@ -98,6 +98,13 @@ If any AI-authored scene detail conflicts with the scene reality lock,
 the scene reality lock wins. Remove or reinterpret contradictory fantasy,
 medieval, superheroic, miniature or impossible symbolic elements.
 
+SAFETY STAGING LOCK
+All human subjects are adults, fully clothed and physically stable.
+Do not place solitary subjects on cliff edges, rooftop edges, bridge edges,
+rail tracks or precarious heights. Reframe any such scene onto secure ground:
+a broad ridge, trail, clearing, road, interior platform or wide overlook.
+No self-harm implication, imminent falling, graphic injury or weapon threat.
+
 CAMERA / MATERIAL RULES
 Photorealistic live-action cinema frame.
 Believable skin, fabric, metal, stone, rain, smoke and environmental texture.
