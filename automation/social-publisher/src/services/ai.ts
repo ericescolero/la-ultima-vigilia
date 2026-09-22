@@ -50,8 +50,15 @@ Battlefield: ${item.battlefield || 'unspecified'}
 Theme: ${item.theme}
 Source: ${item.source_text}
 
+LANGUAGE LOCK
+- All public-facing copy must be natural, idiomatic Spanish.
+- Never use Spanglish.
+- Never substitute English nouns when a normal Spanish word exists.
+- Grammar, gender and articles must be correct.
+- Prefer clear Latin American Spanish suitable for Mexico.
+- Proper Watchman Universe character names may remain in English.
+
 VOICE
-- Spanish public-facing copy.
 - Psychologically precise, spiritually intense, masculine, disciplined, direct.
 - Confrontation over generic motivation.
 - No politics.
@@ -84,11 +91,12 @@ Do not redesign or describe the archetype costume.
     messages: [
       {
         role: 'system',
-        content: 'Create the requested social package. Follow the supplied JSON schema exactly.',
+        content:
+          'Return the requested structured object. Public copy must be idiomatic Spanish with no Spanglish. Follow the JSON schema exactly.',
       },
       { role: 'user', content: prompt },
     ],
-    temperature: 0.72,
+    temperature: 0.68,
     max_completion_tokens: 1600,
     response_format: {
       type: 'json_schema',
@@ -98,7 +106,7 @@ Do not redesign or describe the archetype costume.
 
   const parsed = extractStructuredObject(result);
 
-  return {
+  return normalizePost({
     hook: requireString(parsed, 'hook'),
     quote_text: requireString(parsed, 'quote_text'),
     instagram_caption: requireString(parsed, 'instagram_caption'),
@@ -110,6 +118,24 @@ Do not redesign or describe the archetype costume.
     environment: requireString(parsed, 'environment'),
     composition: requireString(parsed, 'composition'),
     symbolic_detail: requireString(parsed, 'symbolic_detail'),
+  });
+}
+
+function normalizePost(post: GeneratedPost): GeneratedPost {
+  const fixSpanish = (value: string): string =>
+    value
+      .replace(/\bel mission\b/gi, 'la misión')
+      .replace(/\bmission\b/gi, 'misión')
+      .replace(/\bpurpose\b/gi, 'propósito');
+
+  return {
+    ...post,
+    hook: fixSpanish(post.hook),
+    quote_text: fixSpanish(post.quote_text),
+    instagram_caption: fixSpanish(post.instagram_caption),
+    facebook_caption: fixSpanish(post.facebook_caption),
+    tiktok_title: fixSpanish(post.tiktok_title),
+    tiktok_description: fixSpanish(post.tiktok_description),
   };
 }
 
@@ -137,7 +163,7 @@ function extractStructuredObject(result: any): Record<string, unknown> {
         return parsed as Record<string, unknown>;
       }
     } catch {
-      // Fall through to diagnostic error below.
+      // Fall through.
     }
   }
 
