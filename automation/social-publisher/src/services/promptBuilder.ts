@@ -9,7 +9,8 @@ import {
 
 export interface CanonicalImagePlan {
   prompt: string;
-  referenceKeys: string[];
+  subjectReferenceKey?: string;
+  styleReferenceKey?: string;
   profile: VisualProfile;
 }
 
@@ -29,28 +30,17 @@ export function buildCanonicalImagePlan(
 ): CanonicalImagePlan {
   const profile = resolveVisualProfile(item);
 
-  const referenceKeys = [
-    profile.referenceKey,
-    STYLE_REFERENCE_KEY,
-  ].filter((value): value is string => Boolean(value));
-
-  const referenceInstructions = referenceKeys.length
-    ? `
-REFERENCE IMAGE RULES
-If input image 0 is available, it is the canonical subject reference.
-Preserve its recognizable identity, silhouette, clothing language,
-materials, facial character and overall design. Do not redesign the subject.
-If input image 1 is available, use it only as the canonical Watchman Universe
-cinematography, texture, palette and atmosphere reference.
-The new scene may change pose, camera angle and environment,
-but must remain recognizably inside the same visual universe.
-`.trim()
-    : '';
-
   const prompt = `
 ${UNIVERSE_FOUNDATION}
 
-${referenceInstructions}
+REFERENCE IMAGE RULES
+If input image 0 is supplied, it is the canonical subject reference.
+Preserve its recognizable identity, silhouette, clothing language,
+materials, facial character and overall design. Do not redesign the subject.
+If input image 1 is supplied, it is the canonical Watchman Universe style reference.
+Use image 1 for cinematography, texture, palette and atmosphere, not subject identity.
+The new scene may change pose, camera angle and environment while remaining
+recognizably inside the same visual universe.
 
 CANONICAL SUBJECT
 ${profile.label}
@@ -96,5 +86,10 @@ NEGATIVE CONSTRAINTS
 ${profile.negative}
 `.trim();
 
-  return { prompt, referenceKeys, profile };
+  return {
+    prompt,
+    subjectReferenceKey: profile.referenceKey,
+    styleReferenceKey: STYLE_REFERENCE_KEY,
+    profile,
+  };
 }
