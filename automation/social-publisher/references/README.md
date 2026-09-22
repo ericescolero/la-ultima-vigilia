@@ -33,3 +33,27 @@ After placing resized files in this directory, upload them with:
 ```bash
 bash scripts/upload-references.sh
 ```
+
+
+## Bulk preparation on macOS
+
+If the original Watchman Universe character images are together in one folder, prepare all recognized files in one command:
+
+```bash
+bash scripts/prepare-all-references.sh "/path/to/original-images"
+```
+
+The helper recognizes the original project filenames, including historical spellings such as `The Conquerer.png` and `The Userper.PNG`.
+
+Then upload the prepared references:
+
+```bash
+bash scripts/upload-references.sh
+```
+
+After deployment, verify R2 reference availability through:
+
+```bash
+curl -H "Authorization: Bearer $ADMIN_TOKEN" \
+  https://social.laultimavigilia.com/admin/references
+```
