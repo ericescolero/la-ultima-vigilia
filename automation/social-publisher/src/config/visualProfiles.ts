@@ -20,6 +20,7 @@ export interface VisualProfile {
   palette: string;
   lighting: string;
   atmosphere: string;
+  sceneRules: string;
   negative: string;
   referenceKey?: string;
 }
@@ -63,6 +64,7 @@ His presence is quiet, observant and serious.
     palette: 'deep black, charcoal, cold steel blue, muted gray, faded gold',
     lighting: 'low-key cinematic light, practical lantern glow, distant ambient city light',
     atmosphere: 'rain, fog, night air, urban silence, restrained tension',
+    sceneRules: 'Present-day urban vigilance: rooftops, streets, bridges, stations, apartments, churches, offices, rain or fog. Lantern may appear. No medieval weapons, castles or fantasy battlefields.',
     negative: GLOBAL_NEGATIVE,
     referenceKey: 'references/archetypes/the-watchman.png',
   },
@@ -78,6 +80,7 @@ Never melodramatic, never fantasy-ranger cosplay.
     palette: 'ash gray, black, cold blue-gray, muted silver',
     lighting: 'dim natural light, overcast sky, cold dawn or dusk',
     atmosphere: 'wilderness, distance, isolation, wind, stone, silence',
+    sceneRules: 'Grounded wilderness or edge-of-city isolation. Black wolf may appear naturally. No fantasy ranger gear, magic, medieval ruins or heroic posing.',
     negative: GLOBAL_NEGATIVE,
     referenceKey: 'references/archetypes/the-exile.png',
   },
@@ -95,6 +98,7 @@ No fantasy-paladin design. No ornate game armor. No rage pose.
     palette: 'charcoal black, burnt ash gray, deep ember orange, dark metallic, faded gold',
     lighting: 'ember backlight through smoke, restrained warm highlights, sacred light through darkness',
     atmosphere: 'ash, smoke, aftermath, ruined ground, disciplined intensity',
+    sceneRules: 'Aftermath, ash, heat, industrial ruins, burned structures or hard training environments. Fire is restrained and physical. No magic fire, giant swords, medieval battlefield or fantasy armor spectacle.',
     negative: GLOBAL_NEGATIVE,
     referenceKey: 'references/archetypes/the-fire-warrior.png',
   },
@@ -110,6 +114,7 @@ The tension is visible through expression and posture, not melodrama.
     palette: 'black, soft gray, muted crimson accents, dim silver',
     lighting: 'shadow-heavy interior light, selective highlights, intimate cinematic contrast',
     atmosphere: 'private war, secrecy, temptation, psychological tension',
+    sceneRules: 'Present-day private environments: apartment, hallway, car, hotel room, city street, church corridor. Temptation is psychological and believable. No supernatural seduction effects or fantasy imagery.',
     negative: GLOBAL_NEGATIVE,
     referenceKey: 'references/archetypes/the-tempted-saint.png',
   },
@@ -126,6 +131,7 @@ No vanity, no superhero stance, no bodybuilding-poster exaggeration.
     palette: 'black, steel gray, faded gold, muted white',
     lighting: 'hard directional cinematic light with disciplined contrast',
     atmosphere: 'self-mastery, battle-readiness, discipline, controlled strength',
+    sceneRules: 'Present-day discipline and self-mastery: gym, early-morning apartment, rain-soaked street, stairs, training space, empty arena or austere room. No swords, shields, medieval battlefield or superhero staging. Crown only if subtle and symbolically justified.',
     negative: GLOBAL_NEGATIVE,
     referenceKey: 'references/archetypes/the-conqueror.png',
   },
@@ -141,6 +147,7 @@ Mission-oriented rather than glamorous.
     palette: 'slate, black, dark earth, muted gold',
     lighting: 'grounded work light or subdued morning light with cinematic depth',
     atmosphere: 'work, structure, responsibility, legacy, resilience',
+    sceneRules: 'Present-day construction, workshop, desk, jobsite, warehouse, home project or city infrastructure. Use believable tools and materials. No medieval forge, fantasy architecture or ceremonial weapons.',
     negative: GLOBAL_NEGATIVE,
     referenceKey: 'references/archetypes/the-builder.png',
   },
@@ -156,6 +163,7 @@ His posture communicates endurance, protection and sacrifice.
     palette: 'black, gray, deep muted bronze, faded gold',
     lighting: 'somber low-key light with restrained warm highlights',
     atmosphere: 'responsibility, pain, protection, sacrifice, endurance',
+    sceneRules: 'Present-day protective responsibility: apartment, hospital corridor, rainy street, home doorway, vehicle, rooftop observation or family environment. No sword, shield, medieval armor, fantasy warrior pose or miniature family symbolism. Protection should be shown through posture, distance, wear, environment and believable human stakes.',
     negative: GLOBAL_NEGATIVE,
     referenceKey: 'references/archetypes/the-wounded-protector.png',
   },
@@ -171,6 +179,7 @@ Dark and disturbing without demonic caricature or supernatural spectacle.
     palette: 'deep black, sickly gray, muted ember, dirty faded gold',
     lighting: 'harsh chiaroscuro and directional practical light',
     atmosphere: 'warning, confrontation, dread, uncompromising truth',
+    sceneRules: 'Present-day unsettling realism: alley, abandoned room, rooftop, empty church, street corner, industrial interior. Disturbing through expression and atmosphere, not monsters, occult ritual or supernatural spectacle.',
     negative: GLOBAL_NEGATIVE,
     referenceKey: 'references/archetypes/the-mad-prophet.png',
   },
@@ -186,6 +195,7 @@ Its danger feels intimate and plausible.
     palette: 'black, smoke gray, cold silver-blue',
     lighting: 'low visibility, soft-edged shadows, minimal cold highlights',
     atmosphere: 'deception, suggestion, mental fog, delay, uncertainty',
+    sceneRules: 'Present-day psychological intrusion: office, bedroom, transit, mirror, phone-lit room, hallway or crowd. Threat is subtle and human-scale. No demon form, horns, magic smoke or fantasy creature design.',
     negative: GLOBAL_NEGATIVE,
     referenceKey: 'references/enemies/the-whisperer.png',
   },
@@ -201,6 +211,7 @@ Never tacky, never fantasy cosplay, never exaggerated pin-up styling.
     palette: 'black, scarlet, muted crimson, dim gold',
     lighting: 'soft dangerous glamour light constrained by deep shadow',
     atmosphere: 'desire, seduction, counterfeit intimacy, quiet danger',
+    sceneRules: 'Present-day luxury or intimate spaces: hotel, lounge, apartment, restaurant, car, corridor. Seduction is elegant and plausible. No fantasy throne room, sorceress costume, magical aura or pin-up exaggeration.',
     negative: GLOBAL_NEGATIVE,
     referenceKey: 'references/enemies/the-scarlet-queen.png',
   },
@@ -216,6 +227,7 @@ The threat is replacement and distortion rather than brute force.
     palette: 'black, gunmetal, dim silver, shadow blue',
     lighting: 'cold dramatic light with identity-distorting shadow',
     atmosphere: 'identity attack, imitation, confusion, counterfeit purpose',
+    sceneRules: 'Present-day identity conflict: mirror, boardroom, office, apartment, stage, hallway, city street. Use doubles, reflections, replacement or social power subtly. No fantasy king, medieval throne or magical transformation.',
     negative: GLOBAL_NEGATIVE,
     referenceKey: 'references/enemies/the-usurper.png',
   },
@@ -232,6 +244,7 @@ It should feel ancient, heavy and overwhelming, not like a fantasy boss creature
     palette: 'black, abyssal blue, dark metallic gray, cold silver',
     lighting: 'storm light, oppressive cloud mass, narrow cold highlights',
     atmosphere: 'pride, scale, oppression, elevation, impending collapse',
+    sceneRules: 'Leviathan may be symbolic and immense, but integrate it into realistic storm, sea, skyline or architectural scale. Avoid fantasy-boss staging, glowing eyes, magic attacks or game-monster composition.',
     negative: GLOBAL_NEGATIVE,
     referenceKey: 'references/enemies/leviathan.png',
   },
@@ -247,6 +260,7 @@ No spectacle and no generic fantasy imagery.
     palette: 'black, charcoal, steel blue, muted gray, faded gold',
     lighting: 'low-key cinematic realism',
     atmosphere: 'moody, restrained, symbolic, vigilant',
+    sceneRules: 'Default to present-day 2026 environments. Human-scale, plausible, cinematic situations. No medieval weapons, fantasy architecture, magical effects, superhero posing or literal miniature metaphors.',
     negative: GLOBAL_NEGATIVE,
   },
 };
