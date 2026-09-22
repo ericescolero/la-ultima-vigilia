@@ -5,7 +5,7 @@ export type VisualKey =
   | 'the-tempted-saint'
   | 'the-conqueror'
   | 'the-builder'
-  | 'the-wounded-protector'
+  | 'the-guardian'
   | 'the-mad-prophet'
   | 'the-whisperer'
   | 'the-scarlet-queen'
@@ -157,20 +157,22 @@ Mission-oriented rather than glamorous.
     referenceKey: 'references/archetypes/the-builder.png',
   },
 
-  'the-wounded-protector': {
-    key: 'the-wounded-protector',
-    label: 'The Wounded Protector',
+  'the-guardian': {
+    key: 'the-guardian',
+    label: 'The Guardian',
     identity: `
-A protective masculine figure who carries visible cost without collapse.
-Battle-worn and burdened. Strength exists in service of responsibility.
-His posture communicates endurance, protection and sacrifice.
+A protective masculine figure defined by responsibility, vigilance, sacrifice and endurance.
+Battle-worn but stable, burdened without collapsing.
+His strength exists to guard what has been entrusted to him: family, mission, convictions and people.
+His posture communicates readiness, restraint, protection and quiet authority.
+He is not a superhero and not a medieval knight.
     `.trim(),
     palette: 'black, gray, deep muted bronze, faded gold',
     lighting: 'somber low-key light with restrained warm highlights',
-    atmosphere: 'responsibility, pain, protection, sacrifice, endurance',
-    sceneRules: 'Present-day protective responsibility: apartment, hospital corridor, rainy street, home doorway, vehicle, rooftop observation or family environment. No sword, shield, medieval armor, fantasy warrior pose or miniature family symbolism. Protection should be shown through posture, distance, wear, environment and believable human stakes.',
+    atmosphere: 'responsibility, vigilance, protection, sacrifice, endurance',
+    sceneRules: 'Present-day protective responsibility: apartment, hospital corridor, rainy street, home doorway, vehicle, rooftop observation, family environment, church entrance, parking structure or workplace. Protection should be shown through posture, positioning, distance, wear, environment and believable human stakes. No sword, shield, medieval armor, fantasy warrior pose or miniature family symbolism.',
     negative: GLOBAL_NEGATIVE,
-    referenceKey: 'references/archetypes/the-wounded-protector.png',
+    referenceKey: 'references/archetypes/the-guardian.png',
   },
 
   'the-mad-prophet': {
@@ -287,10 +289,10 @@ export function normalizeVisualKey(value: string | null | undefined): VisualKey 
     'conqueror': 'the-conqueror',
     'the builder': 'the-builder',
     'builder': 'the-builder',
-    'the wounded protector': 'the-wounded-protector',
-    'wounded protector': 'the-wounded-protector',
-    'the guardian': 'the-wounded-protector',
-    'guardian': 'the-wounded-protector',
+    'the guardian': 'the-guardian',
+    'guardian': 'the-guardian',
+    'the wounded protector': 'the-guardian',
+    'wounded protector': 'the-guardian',
     'the mad prophet': 'the-mad-prophet',
     'mad prophet': 'the-mad-prophet',
     'the whisperer': 'the-whisperer',
