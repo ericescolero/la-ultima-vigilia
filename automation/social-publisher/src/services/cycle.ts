@@ -10,6 +10,7 @@ import {
 } from '../db/queries';
 import { generatePostPackage } from './ai';
 import { generateAndStoreImage } from './image';
+import { buildCanonicalImagePlan } from './promptBuilder';
 import { publishQueueItem } from './publisher';
 
 export async function runContentCycle(
@@ -30,10 +31,30 @@ export async function runContentCycle(
 
   try {
     const generated = await generatePostPackage(env, item);
-    const image = await generateAndStoreImage(env, generated.image_prompt);
+    const imagePlan = buildCanonicalImagePlan(item, generated);
 
-    await saveGeneratedPost(env.DB, queueId, generated, image.key, image.url);
+    const image = await generateAndStoreImage(
+      env,
+      imagePlan.prompt,
+      imagePlan.subjectReferenceKey,
+      imagePlan.styleReferenceKey,
+    );
+
+    await saveGeneratedPost(
+      env.DB,
+      queueId,
+      generated,
+      imagePlan.prompt,
+      image.key,
+      image.url,
+    );
     await markContentUsed(env.DB, item.id);
+
+    console.log('Image generated', {
+      queueId,
+      profile: imagePlan.profile.key,
+      referencesUsed: image.referencesUsed,
+    });
 
     const autoPublish = env.AUTO_PUBLISH.toLowerCase() === 'true';
 
