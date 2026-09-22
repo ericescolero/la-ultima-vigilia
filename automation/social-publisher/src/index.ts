@@ -34,8 +34,24 @@ export default {
       if (!isAuthorized(request, env)) return json({ error: 'unauthorized' }, 401);
 
       if (request.method === 'POST' && url.pathname === '/admin/run-now') {
+        const rawContentItemId = url.searchParams.get('contentItemId');
+        const contentItemId =
+          rawContentItemId == null ? undefined : Number(rawContentItemId);
+
+        if (
+          rawContentItemId != null &&
+          (!Number.isInteger(contentItemId) || Number(contentItemId) <= 0)
+        ) {
+          return json({ ok: false, error: 'contentItemId must be a positive integer' }, 400);
+        }
+
         try {
-          const result = await runContentCycle(env, 'manual');
+          const result = await runContentCycle(
+            env,
+            'manual',
+            new Date().toISOString(),
+            contentItemId,
+          );
           return json({ ok: true, ...result });
         } catch (error) {
           return json({ ok: false, error: errorMessage(error) }, 500);
@@ -58,6 +74,11 @@ export default {
       }
 
       if (request.method === 'GET' && url.pathname === '/admin/queue') {
+        const requestedLimit = Number(url.searchParams.get('limit') ?? '50');
+        const limit = Number.isFinite(requestedLimit)
+          ? Math.min(50, Math.max(1, Math.trunc(requestedLimit)))
+          : 50;
+
         const result = await env.DB.prepare(`
           SELECT
             q.id,
@@ -80,8 +101,8 @@ export default {
           FROM publish_queue q
           JOIN content_items c ON c.id = q.content_item_id
           ORDER BY q.id DESC
-          LIMIT 50
-        `).all();
+          LIMIT ?
+        `).bind(limit).all();
 
         return json({ ok: true, rows: result.results });
       }
@@ -127,7 +148,7 @@ export default {
       endpoints: [
         '/health',
         '/media/*',
-        '/admin/run-now',
+        '/admin/run-now?contentItemId=:id',
         '/admin/publish/:id',
         '/admin/queue',
         '/admin/references',
