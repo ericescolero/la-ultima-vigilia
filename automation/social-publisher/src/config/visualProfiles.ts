@@ -76,16 +76,16 @@ His presence is quiet, observant and serious.
 A hardened male scout, pathfinder, rescuer and guide who left Babylon after refusing compromise.
 He operates independently through the frozen Wilderness: snow-covered forests, abandoned roads,
 mountain passes, ruined settlements, cabins and old rail lines.
-Weathered dark cloak, layered survival garments, rugged boots and battle-worn realism.
-A massive black wolf travels with him as an angelic companion sent by God:
-silent, vigilant, loyal, ancient and protective.
+Weathered dark cloak, layered survival garments, rugged boots and weathered realism.
+A large black wolf travels with him as a calm, vigilant companion:
+silent, loyal, intelligent and protective.
 Lone Wolf is restrained, observant, hyper-independent and spiritually awake.
 Never fantasy-ranger cosplay, never a generic medieval hero.
     `.trim(),
     palette: 'ash gray, black, cold blue-gray, muted silver, restrained moonlit white',
     lighting: 'cold natural light, moonlight, overcast dawn or dusk, restrained lantern or firelight',
     atmosphere: 'snow, frozen wind, wilderness silence, isolation, vigilance, survival, covenant',
-    sceneRules: 'Snowy Wilderness continuity: frozen mountains, pine forests, fog valleys, abandoned roads, ruined towns, cabins, rail lines and storm-battered trails. The massive black wolf may accompany him naturally and should feel intelligent, vigilant and protective. Lone Wolf functions as scout, pathfinder, rescuer and guide. No generic fantasy ranger styling, magic spell effects, ornate medieval hero gear or triumphant superhero posing.',
+    sceneRules: 'Snowy Wilderness continuity: frozen mountains, pine forests, fog valleys, abandoned roads, ruined towns, cabins, rail lines and storm-battered trails. The large black wolf may accompany him naturally and should feel intelligent, vigilant and protective. Lone Wolf functions as scout, pathfinder, rescuer and guide. Keep him on secure ground: trail, broad ridge, mountain pass, clearing, road, cabin exterior or wide overlook. Never place him on a cliff edge, rooftop edge, bridge edge, rail tracks or any pose that could read as self-harm, imminent falling or reckless danger. No generic fantasy ranger styling, magic spell effects, ornate medieval hero gear or triumphant superhero posing.',
     negative: GLOBAL_NEGATIVE,
     referenceKey: 'references/archetypes/lone-wolf.png',
   },
