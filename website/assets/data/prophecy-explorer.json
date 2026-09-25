@@ -1,0 +1,2641 @@
+{
+  "schema_version": "1.0",
+  "language": "es",
+  "scope": "approved-public-release-candidate",
+  "public_export": true,
+  "release_eligible": true,
+  "deployment_authorized": false,
+  "page": {
+    "title": "Mapa Profético | La Última Vigilia",
+    "description": "Explora una línea profética interactiva de P00 a P16 con eventos, clasificaciones, referencias bíblicas y conteos proféticos del marco escatológico de La Última Vigilia.",
+    "eyebrow": "ARCHIVO PROFÉTICO",
+    "heading": "Mapa Profético Interactivo",
+    "lead": "Explora la secuencia profética del proyecto, distingue texto bíblico de interpretación y navega los eventos desde la era actual hasta la nueva creación.",
+    "notice_title": "Cómo leer este mapa",
+    "notice_body": "Este recurso distingue entre texto explícito de la Escritura, armonización, interpretación, cronología del proyecto y asuntos no resueltos. Las etiquetas muestran el nivel de cada afirmación; no todas las relaciones tienen el mismo grado de certeza.",
+    "doctrine_boundary": "La Escritura es la autoridad máxima. Las armonizaciones y cronologías identificadas aquí pertenecen al marco interpretativo de La Última Vigilia y no se presentan como texto bíblico explícito."
+  },
+  "ui": {
+    "overview": "Resumen",
+    "detailed": "Detallado",
+    "search": "Buscar",
+    "search_placeholder": "Evento, fase, referencia bíblica…",
+    "reset": "Restablecer vista",
+    "scripture_filter": "Texto bíblico",
+    "project_filter": "Capa interpretativa",
+    "badges": "Etiquetas de clasificación",
+    "feasts": "Anclas de fiestas",
+    "counts": "Conteos proféticos",
+    "unresolved": "No resueltos",
+    "lanes": "Visibilidad de líneas",
+    "sequence": "SECUENCIA CANÓNICA",
+    "overview_heading": "Panorama P00–P16",
+    "detailed_kicker": "MATRIZ DE LÍNEAS",
+    "detailed_heading": "Línea profética detallada",
+    "counts_kicker": "CONTEOS PROFÉTICOS",
+    "counts_heading": "Duración y sincronización",
+    "results": "RESULTADOS",
+    "result_heading": "Registros coincidentes",
+    "detail": "DETALLE",
+    "close": "Cerrar panel de detalle",
+    "event_id": "ID del evento",
+    "phase": "Fase",
+    "lanes_label": "Línea(s)",
+    "type": "Tipo",
+    "anchor": "Ancla",
+    "duration_status": "Estado de duración",
+    "visual_precision": "Precisión visual",
+    "scripture_refs": "Referencias bíblicas",
+    "classification": "Clasificación",
+    "relationships": "Relaciones",
+    "no_relationships": "Sin relación explícita de predecesor/sucesor.",
+    "count_id": "ID del conteo",
+    "value": "Valor",
+    "status": "Estado",
+    "endpoints": "Extremos",
+    "visible_events": "eventos visibles",
+    "more_detailed": "más en vista Detallada",
+    "no_events": "Ningún evento coincide con los filtros actuales.",
+    "no_results": "No hay eventos coincidentes.",
+    "data_error": "No se pudo cargar el mapa profético.",
+    "data_ready_suffix": "esquema",
+    "source_note": "Datos de publicación derivados del registro privado. La interfaz no crea doctrina nueva."
+  },
+  "phases": [
+    {
+      "id": "P00",
+      "label": "Current Age / Preparation",
+      "anchor": "pre-shevua",
+      "implementation_note": "Conceptual preparation; no final-shevua claim",
+      "deep_link": "phase:P00",
+      "label_es": "Era Actual / Preparación",
+      "anchor_es": "antes de la última semana"
+    },
+    {
+      "id": "P01",
+      "label": "Covenant / Shevua Opens",
+      "anchor": "Yom Kippur / Tishri 10",
+      "implementation_note": "Ark/covenant opening anchor",
+      "deep_link": "phase:P01",
+      "label_es": "Pacto / Inicio de la Última Semana",
+      "anchor_es": "Yom Kippur / Tishri 10"
+    },
+    {
+      "id": "P02",
+      "label": "Altar / Offerings",
+      "anchor": "Hanukkah → Tevet 3",
+      "implementation_note": "Dedication and restored-oblation markers",
+      "deep_link": "phase:P02",
+      "label_es": "Altar / Ofrendas",
+      "anchor_es": "Hanukkah → Tevet 3"
+    },
+    {
+      "id": "P03",
+      "label": "First-Half Seals",
+      "anchor": "Seals 1–6",
+      "implementation_note": "First-half judgment/condition openings",
+      "deep_link": "phase:P03",
+      "label_es": "Sellos de la Primera Mitad",
+      "anchor_es": "Sellos 1–6"
+    },
+    {
+      "id": "P04",
+      "label": "Seal 7 / Trumpets 1–4",
+      "anchor": "late first half",
+      "implementation_note": "Connected thermonuclear-war complex",
+      "deep_link": "phase:P04",
+      "label_es": "Sello 7 / Trompetas 1–4",
+      "anchor_es": "final de la primera mitad"
+    },
+    {
+      "id": "P05",
+      "label": "Castdown / Trumpet 5 / Abomination",
+      "anchor": "Purim → Nisan 10",
+      "implementation_note": "Midpoint transition cluster",
+      "deep_link": "phase:P05",
+      "label_es": "Expulsión / Trompeta 5 / Abominación",
+      "anchor_es": "Purim → Nisan 10"
+    },
+    {
+      "id": "P06",
+      "label": "Beast Authority / Great Tribulation",
+      "anchor": "Nisan 10 onward",
+      "implementation_note": "Formal Beast authority and persecution",
+      "deep_link": "phase:P06",
+      "label_es": "Autoridad de la Bestia / Gran Tribulación",
+      "anchor_es": "desde Nisan 10"
+    },
+    {
+      "id": "P07",
+      "label": "Two Witnesses / Trumpet 6",
+      "anchor": "Nisan-15 marker onward",
+      "implementation_note": "Witness testimony and Trumpet-6 period",
+      "deep_link": "phase:P07",
+      "label_es": "Dos Testigos / Trompeta 6",
+      "anchor_es": "desde marcador de Nisan 15"
+    },
+    {
+      "id": "P08",
+      "label": "Last Trump / Gathering",
+      "anchor": "Yom Teruah transition",
+      "implementation_note": "Post-Trib cosmic signs and Trumpet-7 gathering",
+      "deep_link": "phase:P08",
+      "label_es": "Última Trompeta / Reunión",
+      "anchor_es": "transición de Yom Teruah"
+    },
+    {
+      "id": "P09",
+      "label": "Bowl Wrath / Babylon Endgame",
+      "anchor": "Yom Teruah → Yom Kippur",
+      "implementation_note": "Seven bowls principally",
+      "deep_link": "phase:P09",
+      "label_es": "Ira de las Copas / Final de Babilonia",
+      "anchor_es": "Yom Teruah → Yom Kippur"
+    },
+    {
+      "id": "P10",
+      "label": "Bowl Cycle Completes",
+      "anchor": "Yom Kippur / Tishri 10",
+      "implementation_note": "Formal Beast authority expiry approximately",
+      "deep_link": "phase:P10",
+      "label_es": "Ciclo de Copas Completado",
+      "anchor_es": "Yom Kippur / Tishri 10"
+    },
+    {
+      "id": "P11",
+      "label": "Marriage Supper",
+      "anchor": "Sukkot / Tishri 15",
+      "implementation_note": "Marriage Supper; 1,290 endpoint",
+      "deep_link": "phase:P11",
+      "label_es": "Cena de las Bodas",
+      "anchor_es": "Sukkot / Tishri 15"
+    },
+    {
+      "id": "P12",
+      "label": "Physical Return / Armageddon",
+      "anchor": "Shemini Atzeret / Tishri 22",
+      "implementation_note": "Revelation-19 ground return",
+      "deep_link": "phase:P12",
+      "label_es": "Retorno Físico / Armagedón",
+      "anchor_es": "Shemini Atzeret / Tishri 22"
+    },
+    {
+      "id": "P13",
+      "label": "1,335 Endpoint",
+      "anchor": "Hanukkah / Kislev 25",
+      "implementation_note": "Millennial Temple dedication association",
+      "deep_link": "phase:P13",
+      "label_es": "Extremo de 1,335",
+      "anchor_es": "Hanukkah / Kislev 25"
+    },
+    {
+      "id": "P14",
+      "label": "Millennium",
+      "anchor": "1,000 years",
+      "implementation_note": "First-resurrection saints reign",
+      "deep_link": "phase:P14",
+      "label_es": "Milenio",
+      "anchor_es": "1,000 años"
+    },
+    {
+      "id": "P15",
+      "label": "Final Rebellion",
+      "anchor": "end of Millennium",
+      "implementation_note": "Satan released; Gog-Magog rebellion",
+      "deep_link": "phase:P15",
+      "label_es": "Rebelión Final",
+      "anchor_es": "fin del Milenio"
+    },
+    {
+      "id": "P16",
+      "label": "Great White Throne / New Creation",
+      "anchor": "final judgment onward",
+      "implementation_note": "Remaining dead judged; New Creation",
+      "deep_link": "phase:P16",
+      "label_es": "Gran Trono Blanco / Nueva Creación",
+      "anchor_es": "juicio final en adelante"
+    }
+  ],
+  "lanes": [
+    {
+      "id": "L01",
+      "label": "Feast / calendar anchors",
+      "deep_link": "lane:L01",
+      "label_es": "Fiestas / anclas de calendario"
+    },
+    {
+      "id": "L02",
+      "label": "Covenant / Temple / offerings",
+      "deep_link": "lane:L02",
+      "label_es": "Pacto / Templo / ofrendas"
+    },
+    {
+      "id": "L03",
+      "label": "Seals",
+      "deep_link": "lane:L03",
+      "label_es": "Sellos"
+    },
+    {
+      "id": "L04",
+      "label": "Trumpets",
+      "deep_link": "lane:L04",
+      "label_es": "Trompetas"
+    },
+    {
+      "id": "L05",
+      "label": "Satan / Revelation 12",
+      "deep_link": "lane:L05",
+      "label_es": "Satanás / Apocalipsis 12"
+    },
+    {
+      "id": "L06",
+      "label": "Beast / Man of Sin / Mark",
+      "deep_link": "lane:L06",
+      "label_es": "Bestia / Hombre de Pecado / Marca"
+    },
+    {
+      "id": "L07",
+      "label": "Two Witnesses",
+      "deep_link": "lane:L07",
+      "label_es": "Dos Testigos"
+    },
+    {
+      "id": "L08",
+      "label": "Woman / covenant people",
+      "deep_link": "lane:L08",
+      "label_es": "Mujer / pueblo del pacto"
+    },
+    {
+      "id": "L09",
+      "label": "Church / saints",
+      "deep_link": "lane:L09",
+      "label_es": "Iglesia / santos"
+    },
+    {
+      "id": "L10",
+      "label": "Bowls / Babylon",
+      "deep_link": "lane:L10",
+      "label_es": "Copas / Babilonia"
+    },
+    {
+      "id": "L11",
+      "label": "Christ / coming phases",
+      "deep_link": "lane:L11",
+      "label_es": "Cristo / fases de su venida"
+    },
+    {
+      "id": "L12",
+      "label": "Daniel / prophetic counts",
+      "deep_link": "lane:L12",
+      "label_es": "Daniel / conteos proféticos"
+    },
+    {
+      "id": "L13",
+      "label": "Millennium / final judgment",
+      "deep_link": "lane:L13",
+      "label_es": "Milenio / juicio final"
+    }
+  ],
+  "classifications": [
+    {
+      "code": "TXT",
+      "name": "Explicit Scripture",
+      "meaning": "The cited biblical text directly states/describes the atomic claim.",
+      "public_wording_rule": "'Scripture states/describes...' is permitted for that exact claim.",
+      "name_es": "Texto explícito",
+      "meaning_es": "El texto bíblico citado declara o describe directamente la afirmación."
+    },
+    {
+      "code": "HAR",
+      "name": "Scriptural harmonization",
+      "meaning": "The project links multiple passages/events into one theological relationship.",
+      "public_wording_rule": "Say 'the project harmonizes/reads these together...' not 'the verse explicitly says they are identical.'",
+      "name_es": "Armonización bíblica",
+      "meaning_es": "El proyecto vincula varios pasajes o eventos en una relación teológica."
+    },
+    {
+      "code": "INT",
+      "name": "Owner-confirmed interpretation",
+      "meaning": "Adopted project meaning where the text does not directly name the identification/mechanism.",
+      "public_wording_rule": "Say 'the project interprets/identifies...'",
+      "name_es": "Interpretación confirmada",
+      "meaning_es": "Significado adoptado por el proyecto cuando el texto no nombra directamente la identificación o mecanismo."
+    },
+    {
+      "code": "CHR",
+      "name": "Owner-confirmed chronology",
+      "meaning": "Adopted event order, feast anchor, count placement, or sequence relationship.",
+      "public_wording_rule": "Say 'the project chronology places...'",
+      "name_es": "Cronología confirmada",
+      "meaning_es": "Orden de eventos, ancla de fiesta, conteo o relación secuencial adoptada por el proyecto."
+    },
+    {
+      "code": "HIS",
+      "name": "Historically supported tradition / observation",
+      "meaning": "Historical source/tradition supports an association.",
+      "public_wording_rule": "Say 'historical evidence/tradition shows...' not 'Scripture proves...'",
+      "name_es": "Apoyo histórico",
+      "meaning_es": "Una fuente o tradición histórica respalda una asociación."
+    },
+    {
+      "code": "PROV",
+      "name": "Research provenance",
+      "meaning": "Records who taught, preserved, or influenced an interpretation.",
+      "public_wording_rule": "Attribute the source; provenance is not doctrinal authority.",
+      "name_es": "Procedencia de investigación",
+      "meaning_es": "Registra quién enseñó, preservó o influyó una interpretación."
+    },
+    {
+      "code": "SPEC",
+      "name": "Speculative / story-useful",
+      "meaning": "Permitted possibility for research/narrative, not active doctrine.",
+      "public_wording_rule": "Use 'may/could/possible'; never present as established prophecy.",
+      "name_es": "Especulativo",
+      "meaning_es": "Posibilidad permitida para investigación o narrativa; no doctrina activa."
+    },
+    {
+      "code": "UNR",
+      "name": "Unresolved",
+      "meaning": "The project explicitly has not solved or established the claim.",
+      "public_wording_rule": "State that it is unresolved/rejected as a certainty; do not silently close it.",
+      "name_es": "No resuelto",
+      "meaning_es": "El proyecto explícitamente no ha establecido o resuelto la afirmación."
+    }
+  ],
+  "events": [
+    {
+      "id": "CURRENT_AGE",
+      "label": "Current Age / Preparation",
+      "sort_key": 10,
+      "phase_id": "P00",
+      "lane_ids": [
+        "L05",
+        "L06",
+        "L09"
+      ],
+      "event_type": "era",
+      "anchor": "pre-shevua",
+      "classifications": {
+        "primary": "INT",
+        "secondary": [
+          "SPEC"
+        ]
+      },
+      "duration_status": "owner_locked_nonmetric",
+      "scripture_refs": [],
+      "predecessors": [],
+      "successors": [
+        "SHEVUA_OPENS"
+      ],
+      "visual_precision": "phase_only",
+      "deep_link": "event:CURRENT_AGE",
+      "label_es": "Era Actual / Preparación",
+      "anchor_es": "antes de la última semana"
+    },
+    {
+      "id": "SHEVUA_OPENS",
+      "label": "Final Shevua Opens / Ark-Covenant Confirmation",
+      "sort_key": 20,
+      "phase_id": "P01",
+      "lane_ids": [
+        "L01",
+        "L02",
+        "L12"
+      ],
+      "event_type": "anchor",
+      "anchor": "Yom Kippur / Tishri 10",
+      "classifications": {
+        "primary": "CHR",
+        "secondary": [
+          "INT"
+        ]
+      },
+      "duration_status": "fixed_anchor",
+      "scripture_refs": [
+        "Daniel 9:27 project interpretation"
+      ],
+      "predecessors": [
+        "CURRENT_AGE"
+      ],
+      "successors": [
+        "ALTAR_DEDICATION"
+      ],
+      "visual_precision": "fixed_anchor",
+      "deep_link": "event:SHEVUA_OPENS",
+      "label_es": "Se Abre la Última Semana / Confirmación del Pacto-Arca",
+      "anchor_es": "Yom Kippur / Tishri 10"
+    },
+    {
+      "id": "ALTAR_DEDICATION",
+      "label": "Altar Dedication Begins",
+      "sort_key": 30,
+      "phase_id": "P02",
+      "lane_ids": [
+        "L01",
+        "L02"
+      ],
+      "event_type": "anchor",
+      "anchor": "Hanukkah / Kislev 25",
+      "classifications": {
+        "primary": "CHR",
+        "secondary": []
+      },
+      "duration_status": "fixed_anchor",
+      "scripture_refs": [],
+      "predecessors": [
+        "SHEVUA_OPENS"
+      ],
+      "successors": [
+        "OBLATIONS_BEGIN"
+      ],
+      "visual_precision": "fixed_anchor",
+      "deep_link": "event:ALTAR_DEDICATION",
+      "label_es": "Comienza la Dedicación del Altar",
+      "anchor_es": "Hanukkah / Kislev 25"
+    },
+    {
+      "id": "OBLATIONS_BEGIN",
+      "label": "Restored Oblations Begin",
+      "sort_key": 40,
+      "phase_id": "P02",
+      "lane_ids": [
+        "L01",
+        "L02",
+        "L12"
+      ],
+      "event_type": "anchor",
+      "anchor": "Tevet 3",
+      "classifications": {
+        "primary": "CHR",
+        "secondary": [
+          "INT"
+        ]
+      },
+      "duration_status": "unresolved_sync",
+      "scripture_refs": [
+        "Daniel 8 project interpretation"
+      ],
+      "predecessors": [
+        "ALTAR_DEDICATION"
+      ],
+      "successors": [
+        "SEAL_1"
+      ],
+      "visual_precision": "dashed_sync",
+      "deep_link": "event:OBLATIONS_BEGIN",
+      "label_es": "Comienzan las Ofrendas Restauradas",
+      "anchor_es": "Tevet 3"
+    },
+    {
+      "id": "SEAL_1",
+      "label": "Seal 1 — Conquering Rider",
+      "sort_key": 100,
+      "phase_id": "P03",
+      "lane_ids": [
+        "L03"
+      ],
+      "event_type": "judgment_opening",
+      "anchor": "first half",
+      "classifications": {
+        "primary": "TXT",
+        "secondary": [
+          "INT"
+        ]
+      },
+      "duration_status": "owner_locked_nonmetric",
+      "scripture_refs": [
+        "Revelation 6:1-2"
+      ],
+      "predecessors": [
+        "OBLATIONS_BEGIN"
+      ],
+      "successors": [
+        "SEAL_2"
+      ],
+      "visual_precision": "phase_only",
+      "deep_link": "event:SEAL_1",
+      "label_es": "Sello 1 — Jinete Conquistador",
+      "anchor_es": "primera mitad"
+    },
+    {
+      "id": "SEAL_2",
+      "label": "Seal 2 — War / Peace Removed",
+      "sort_key": 110,
+      "phase_id": "P03",
+      "lane_ids": [
+        "L03"
+      ],
+      "event_type": "judgment_opening",
+      "anchor": "first half",
+      "classifications": {
+        "primary": "TXT",
+        "secondary": [
+          "SPEC"
+        ]
+      },
+      "duration_status": "owner_locked_nonmetric",
+      "scripture_refs": [
+        "Revelation 6:3-4"
+      ],
+      "predecessors": [
+        "SEAL_1"
+      ],
+      "successors": [
+        "SEAL_3"
+      ],
+      "visual_precision": "phase_only",
+      "deep_link": "event:SEAL_2",
+      "label_es": "Sello 2 — Guerra / Paz Quitada",
+      "anchor_es": "primera mitad"
+    },
+    {
+      "id": "SEAL_3",
+      "label": "Seal 3 — Scarcity / Economic Distress",
+      "sort_key": 120,
+      "phase_id": "P03",
+      "lane_ids": [
+        "L03"
+      ],
+      "event_type": "judgment_opening",
+      "anchor": "first half",
+      "classifications": {
+        "primary": "TXT",
+        "secondary": [
+          "SPEC"
+        ]
+      },
+      "duration_status": "owner_locked_nonmetric",
+      "scripture_refs": [
+        "Revelation 6:5-6"
+      ],
+      "predecessors": [
+        "SEAL_2"
+      ],
+      "successors": [
+        "SEAL_4"
+      ],
+      "visual_precision": "phase_only",
+      "deep_link": "event:SEAL_3",
+      "label_es": "Sello 3 — Escasez / Angustia Económica",
+      "anchor_es": "primera mitad"
+    },
+    {
+      "id": "SEAL_4",
+      "label": "Seal 4 — Death / One-Fourth Killed",
+      "sort_key": 130,
+      "phase_id": "P03",
+      "lane_ids": [
+        "L03"
+      ],
+      "event_type": "judgment_opening",
+      "anchor": "first half",
+      "classifications": {
+        "primary": "TXT",
+        "secondary": []
+      },
+      "duration_status": "owner_locked_nonmetric",
+      "scripture_refs": [
+        "Revelation 6:7-8"
+      ],
+      "predecessors": [
+        "SEAL_3"
+      ],
+      "successors": [
+        "SEAL_5"
+      ],
+      "visual_precision": "phase_only",
+      "deep_link": "event:SEAL_4",
+      "label_es": "Sello 4 — Muerte / Muere una Cuarta Parte",
+      "anchor_es": "primera mitad"
+    },
+    {
+      "id": "SEAL_5",
+      "label": "Seal 5 — Martyrs Await Vindication",
+      "sort_key": 140,
+      "phase_id": "P03",
+      "lane_ids": [
+        "L03",
+        "L09"
+      ],
+      "event_type": "vision",
+      "anchor": "first half",
+      "classifications": {
+        "primary": "TXT",
+        "secondary": [
+          "INT"
+        ]
+      },
+      "duration_status": "owner_locked_nonmetric",
+      "scripture_refs": [
+        "Revelation 6:9-11"
+      ],
+      "predecessors": [
+        "SEAL_4"
+      ],
+      "successors": [
+        "SEAL_6"
+      ],
+      "visual_precision": "phase_only",
+      "deep_link": "event:SEAL_5",
+      "label_es": "Sello 5 — Mártires Esperan Vindicación",
+      "anchor_es": "primera mitad"
+    },
+    {
+      "id": "SEAL_6",
+      "label": "Seal 6 — Thermonuclear Catastrophe",
+      "sort_key": 150,
+      "phase_id": "P03",
+      "lane_ids": [
+        "L03"
+      ],
+      "event_type": "judgment_opening",
+      "anchor": "late first half",
+      "classifications": {
+        "primary": "TXT",
+        "secondary": [
+          "INT"
+        ]
+      },
+      "duration_status": "owner_locked_nonmetric",
+      "scripture_refs": [
+        "Revelation 6:12-17"
+      ],
+      "predecessors": [
+        "SEAL_5"
+      ],
+      "successors": [
+        "REV7_NONLOCAL_VISION",
+        "SEAL_7"
+      ],
+      "visual_precision": "soft_span",
+      "deep_link": "event:SEAL_6",
+      "label_es": "Sello 6 — Catástrofe Termonuclear",
+      "anchor_es": "final de la primera mitad"
+    },
+    {
+      "id": "REV7_NONLOCAL_VISION",
+      "label": "Revelation 7 — Nonlocal Vision",
+      "sort_key": 155,
+      "phase_id": "P03",
+      "lane_ids": [
+        "L09"
+      ],
+      "event_type": "vision",
+      "anchor": "nonlocal relative to seals",
+      "classifications": {
+        "primary": "TXT",
+        "secondary": [
+          "INT"
+        ]
+      },
+      "duration_status": "not_applicable",
+      "scripture_refs": [
+        "Revelation 7"
+      ],
+      "predecessors": [
+        "SEAL_6"
+      ],
+      "successors": [
+        "SEAL_7"
+      ],
+      "visual_precision": "nonlocal",
+      "deep_link": "event:REV7_NONLOCAL_VISION",
+      "label_es": "Apocalipsis 7 — Visión No Local",
+      "anchor_es": "no local respecto a los sellos"
+    },
+    {
+      "id": "HOLY_INNOCENTS_144000",
+      "label": "144,000 Identified as Holy Innocents",
+      "sort_key": 156,
+      "phase_id": "P03",
+      "lane_ids": [
+        "L09"
+      ],
+      "event_type": "interpretive_identity",
+      "anchor": "nonlocal vision",
+      "classifications": {
+        "primary": "INT",
+        "secondary": [
+          "HIS"
+        ]
+      },
+      "duration_status": "not_applicable",
+      "scripture_refs": [
+        "Revelation 7:1-8",
+        "historical liturgy"
+      ],
+      "predecessors": [
+        "REV7_NONLOCAL_VISION"
+      ],
+      "successors": [],
+      "visual_precision": "nonlocal",
+      "deep_link": "event:HOLY_INNOCENTS_144000",
+      "label_es": "144,000 Identificados como los Santos Inocentes",
+      "anchor_es": "visión no local"
+    },
+    {
+      "id": "SEAL_7",
+      "label": "Seal 7 — Silence / Trumpet Transition",
+      "sort_key": 160,
+      "phase_id": "P04",
+      "lane_ids": [
+        "L03",
+        "L04"
+      ],
+      "event_type": "transition",
+      "anchor": "late first half",
+      "classifications": {
+        "primary": "TXT",
+        "secondary": [
+          "CHR"
+        ]
+      },
+      "duration_status": "owner_locked_nonmetric",
+      "scripture_refs": [
+        "Revelation 8:1-6"
+      ],
+      "predecessors": [
+        "SEAL_6"
+      ],
+      "successors": [
+        "TRUMPET_1"
+      ],
+      "visual_precision": "phase_only",
+      "deep_link": "event:SEAL_7",
+      "label_es": "Sello 7 — Silencio / Transición a las Trompetas",
+      "anchor_es": "final de la primera mitad"
+    },
+    {
+      "id": "TRUMPET_1",
+      "label": "Trumpet 1 — Hail / Fire / Blood / Vegetation",
+      "sort_key": 170,
+      "phase_id": "P04",
+      "lane_ids": [
+        "L04"
+      ],
+      "event_type": "judgment",
+      "anchor": "late first half",
+      "classifications": {
+        "primary": "TXT",
+        "secondary": [
+          "INT"
+        ]
+      },
+      "duration_status": "owner_locked_nonmetric",
+      "scripture_refs": [
+        "Revelation 8:7"
+      ],
+      "predecessors": [
+        "SEAL_7"
+      ],
+      "successors": [
+        "TRUMPET_2"
+      ],
+      "visual_precision": "soft_span",
+      "deep_link": "event:TRUMPET_1",
+      "label_es": "Trompeta 1 — Granizo / Fuego / Sangre / Vegetación",
+      "anchor_es": "final de la primera mitad"
+    },
+    {
+      "id": "TRUMPET_2",
+      "label": "Trumpet 2 — Burning Mountain / Sea",
+      "sort_key": 180,
+      "phase_id": "P04",
+      "lane_ids": [
+        "L04"
+      ],
+      "event_type": "judgment",
+      "anchor": "late first half",
+      "classifications": {
+        "primary": "TXT",
+        "secondary": [
+          "INT"
+        ]
+      },
+      "duration_status": "owner_locked_nonmetric",
+      "scripture_refs": [
+        "Revelation 8:8-9"
+      ],
+      "predecessors": [
+        "TRUMPET_1"
+      ],
+      "successors": [
+        "TRUMPET_3"
+      ],
+      "visual_precision": "soft_span",
+      "deep_link": "event:TRUMPET_2",
+      "label_es": "Trompeta 2 — Montaña Ardiente / Mar",
+      "anchor_es": "final de la primera mitad"
+    },
+    {
+      "id": "TRUMPET_3",
+      "label": "Trumpet 3 — Wormwood / Freshwater",
+      "sort_key": 190,
+      "phase_id": "P04",
+      "lane_ids": [
+        "L04"
+      ],
+      "event_type": "judgment",
+      "anchor": "late first half",
+      "classifications": {
+        "primary": "TXT",
+        "secondary": [
+          "INT"
+        ]
+      },
+      "duration_status": "owner_locked_nonmetric",
+      "scripture_refs": [
+        "Revelation 8:10-11"
+      ],
+      "predecessors": [
+        "TRUMPET_2"
+      ],
+      "successors": [
+        "TRUMPET_4"
+      ],
+      "visual_precision": "soft_span",
+      "deep_link": "event:TRUMPET_3",
+      "label_es": "Trompeta 3 — Ajenjo / Agua Dulce",
+      "anchor_es": "final de la primera mitad"
+    },
+    {
+      "id": "TRUMPET_4",
+      "label": "Trumpet 4 — One-Third Darkening",
+      "sort_key": 200,
+      "phase_id": "P04",
+      "lane_ids": [
+        "L04"
+      ],
+      "event_type": "judgment",
+      "anchor": "late first half",
+      "classifications": {
+        "primary": "TXT",
+        "secondary": [
+          "INT"
+        ]
+      },
+      "duration_status": "owner_locked_nonmetric",
+      "scripture_refs": [
+        "Revelation 8:12"
+      ],
+      "predecessors": [
+        "TRUMPET_3"
+      ],
+      "successors": [
+        "OBLATIONS_CEASE"
+      ],
+      "visual_precision": "soft_span",
+      "deep_link": "event:TRUMPET_4",
+      "label_es": "Trompeta 4 — Oscurecimiento de una Tercera Parte",
+      "anchor_es": "final de la primera mitad"
+    },
+    {
+      "id": "OBLATIONS_CEASE",
+      "label": "Oblations Cease",
+      "sort_key": 210,
+      "phase_id": "P05",
+      "lane_ids": [
+        "L01",
+        "L02",
+        "L12"
+      ],
+      "event_type": "anchor",
+      "anchor": "Purim / Adar 15",
+      "classifications": {
+        "primary": "CHR",
+        "secondary": []
+      },
+      "duration_status": "fixed_anchor",
+      "scripture_refs": [
+        "Daniel 12:11 project chronology"
+      ],
+      "predecessors": [
+        "TRUMPET_4"
+      ],
+      "successors": [
+        "REV12_HEAVENLY_WAR"
+      ],
+      "visual_precision": "fixed_anchor",
+      "deep_link": "event:OBLATIONS_CEASE",
+      "label_es": "Cesan las Ofrendas",
+      "anchor_es": "Purim / Adar 15"
+    },
+    {
+      "id": "REV12_HEAVENLY_WAR",
+      "label": "Revelation 12 Heavenly War",
+      "sort_key": 220,
+      "phase_id": "P05",
+      "lane_ids": [
+        "L05",
+        "L08"
+      ],
+      "event_type": "heavenly_transition",
+      "anchor": "Purim → Nisan 10 transition",
+      "classifications": {
+        "primary": "TXT",
+        "secondary": [
+          "CHR"
+        ]
+      },
+      "duration_status": "owner_locked_nonmetric",
+      "scripture_refs": [
+        "Revelation 12:7-9"
+      ],
+      "predecessors": [
+        "OBLATIONS_CEASE"
+      ],
+      "successors": [
+        "SATAN_CAST_DOWN"
+      ],
+      "visual_precision": "phase_only",
+      "deep_link": "event:REV12_HEAVENLY_WAR",
+      "label_es": "Guerra Celestial de Apocalipsis 12",
+      "anchor_es": "transición Purim → Nisan 10"
+    },
+    {
+      "id": "SATAN_CAST_DOWN",
+      "label": "Satan Cast Down / Heavenly Position Lost",
+      "sort_key": 230,
+      "phase_id": "P05",
+      "lane_ids": [
+        "L05"
+      ],
+      "event_type": "heavenly_transition",
+      "anchor": "Purim → Nisan 10 transition",
+      "classifications": {
+        "primary": "TXT",
+        "secondary": [
+          "HAR",
+          "INT"
+        ]
+      },
+      "duration_status": "owner_locked_nonmetric",
+      "scripture_refs": [
+        "Revelation 12:7-10",
+        "2 Thessalonians 2 harmonization"
+      ],
+      "predecessors": [
+        "REV12_HEAVENLY_WAR"
+      ],
+      "successors": [
+        "TRUMPET_5",
+        "MAN_OF_SIN_EMPOWERED"
+      ],
+      "visual_precision": "phase_only",
+      "deep_link": "event:SATAN_CAST_DOWN",
+      "label_es": "Satanás Expulsado / Pierde su Posición Celestial",
+      "anchor_es": "transición Purim → Nisan 10"
+    },
+    {
+      "id": "TRUMPET_5",
+      "label": "Trumpet 5 — Abyss / Locust Torment",
+      "sort_key": 240,
+      "phase_id": "P05",
+      "lane_ids": [
+        "L04",
+        "L05",
+        "L06"
+      ],
+      "event_type": "judgment",
+      "anchor": "midpoint transition",
+      "classifications": {
+        "primary": "TXT",
+        "secondary": [
+          "INT",
+          "HAR"
+        ]
+      },
+      "duration_status": "explicit",
+      "scripture_refs": [
+        "Revelation 9:1-11"
+      ],
+      "predecessors": [
+        "SATAN_CAST_DOWN"
+      ],
+      "successors": [
+        "MAN_OF_SIN_EMPOWERED",
+        "ABOMINATION"
+      ],
+      "visual_precision": "explicit_duration",
+      "deep_link": "event:TRUMPET_5",
+      "label_es": "Trompeta 5 — Abismo / Tormento de Langostas",
+      "anchor_es": "transición del punto medio"
+    },
+    {
+      "id": "MAN_OF_SIN_EMPOWERED",
+      "label": "Decisive Satanic Empowerment of Man of Sin",
+      "sort_key": 245,
+      "phase_id": "P05",
+      "lane_ids": [
+        "L05",
+        "L06"
+      ],
+      "event_type": "interpretive_transition",
+      "anchor": "midpoint transition",
+      "classifications": {
+        "primary": "INT",
+        "secondary": []
+      },
+      "duration_status": "owner_locked_nonmetric",
+      "scripture_refs": [
+        "2 Thessalonians 2",
+        "Revelation 12/13 harmonization"
+      ],
+      "predecessors": [
+        "SATAN_CAST_DOWN",
+        "TRUMPET_5"
+      ],
+      "successors": [
+        "ABOMINATION"
+      ],
+      "visual_precision": "phase_only",
+      "deep_link": "event:MAN_OF_SIN_EMPOWERED",
+      "label_es": "Empoderamiento Satánico Decisivo del Hombre de Pecado",
+      "anchor_es": "transición del punto medio"
+    },
+    {
+      "id": "ABOMINATION",
+      "label": "Abomination / Public Beast Revelation",
+      "sort_key": 250,
+      "phase_id": "P05",
+      "lane_ids": [
+        "L01",
+        "L02",
+        "L06",
+        "L12"
+      ],
+      "event_type": "anchor",
+      "anchor": "Nisan / Aviv 10",
+      "classifications": {
+        "primary": "CHR",
+        "secondary": [
+          "INT"
+        ]
+      },
+      "duration_status": "fixed_anchor",
+      "scripture_refs": [
+        "Daniel/Matthew/2 Thessalonians project chronology"
+      ],
+      "predecessors": [
+        "MAN_OF_SIN_EMPOWERED",
+        "TRUMPET_5"
+      ],
+      "successors": [
+        "BEAST_FORMAL_AUTHORITY_START",
+        "GREAT_TRIBULATION_START"
+      ],
+      "visual_precision": "fixed_anchor",
+      "deep_link": "event:ABOMINATION",
+      "label_es": "Abominación / Revelación Pública de la Bestia",
+      "anchor_es": "Nisan / Aviv 10"
+    },
+    {
+      "id": "BEAST_FORMAL_AUTHORITY_START",
+      "label": "Beast Formal 42-Month Authority Begins",
+      "sort_key": 255,
+      "phase_id": "P06",
+      "lane_ids": [
+        "L06",
+        "L12"
+      ],
+      "event_type": "span_start",
+      "anchor": "Nisan 10",
+      "classifications": {
+        "primary": "CHR",
+        "secondary": [
+          "TXT",
+          "INT"
+        ]
+      },
+      "duration_status": "demonstrated_project_model",
+      "scripture_refs": [
+        "Revelation 13:5"
+      ],
+      "predecessors": [
+        "ABOMINATION"
+      ],
+      "successors": [
+        "BEAST_FORMAL_AUTHORITY_EXPIRES"
+      ],
+      "visual_precision": "metric_exact_project",
+      "deep_link": "event:BEAST_FORMAL_AUTHORITY_START",
+      "label_es": "Comienzan los 42 Meses de Autoridad Formal de la Bestia",
+      "anchor_es": "Nisan 10"
+    },
+    {
+      "id": "GREAT_TRIBULATION_START",
+      "label": "Great Tribulation Begins",
+      "sort_key": 260,
+      "phase_id": "P06",
+      "lane_ids": [
+        "L06",
+        "L08",
+        "L09"
+      ],
+      "event_type": "period_start",
+      "anchor": "Trumpet-5 / Abomination transition",
+      "classifications": {
+        "primary": "CHR",
+        "secondary": [
+          "INT",
+          "HAR"
+        ]
+      },
+      "duration_status": "owner_locked_nonmetric",
+      "scripture_refs": [
+        "Matthew 24",
+        "Revelation 13 project harmonization"
+      ],
+      "predecessors": [
+        "ABOMINATION"
+      ],
+      "successors": [
+        "SECOND_BEAST_RISES",
+        "TWO_WITNESSES_ARRIVAL"
+      ],
+      "visual_precision": "fixed_anchor",
+      "deep_link": "event:GREAT_TRIBULATION_START",
+      "label_es": "Comienza la Gran Tribulación",
+      "anchor_es": "transición Trompeta 5 / Abominación"
+    },
+    {
+      "id": "SECOND_BEAST_RISES",
+      "label": "Second Beast Appears",
+      "sort_key": 263,
+      "phase_id": "P06",
+      "lane_ids": [
+        "L06"
+      ],
+      "event_type": "religious_system_transition",
+      "anchor": "Beast-authority phase",
+      "classifications": {
+        "primary": "TXT",
+        "secondary": [
+          "HAR"
+        ]
+      },
+      "duration_status": "owner_locked_nonmetric",
+      "scripture_refs": [
+        "Revelation 13:11-12",
+        "Revelation 19:20 harmonization"
+      ],
+      "predecessors": [
+        "GREAT_TRIBULATION_START"
+      ],
+      "successors": [
+        "SECOND_BEAST_SIGNS"
+      ],
+      "visual_precision": "phase_only",
+      "deep_link": "event:SECOND_BEAST_RISES",
+      "label_es": "Aparece la Segunda Bestia",
+      "anchor_es": "fase de autoridad de la Bestia"
+    },
+    {
+      "id": "SECOND_BEAST_SIGNS",
+      "label": "Second Beast Performs Signs / Fire from Heaven",
+      "sort_key": 265,
+      "phase_id": "P06",
+      "lane_ids": [
+        "L06"
+      ],
+      "event_type": "sign_deception",
+      "anchor": "Beast-authority phase",
+      "classifications": {
+        "primary": "TXT",
+        "secondary": []
+      },
+      "duration_status": "owner_locked_nonmetric",
+      "scripture_refs": [
+        "Revelation 13:13-14"
+      ],
+      "predecessors": [
+        "SECOND_BEAST_RISES"
+      ],
+      "successors": [
+        "IMAGE_OF_BEAST_ENFORCEMENT"
+      ],
+      "visual_precision": "phase_only",
+      "deep_link": "event:SECOND_BEAST_SIGNS",
+      "label_es": "La Segunda Bestia Hace Señales / Fuego del Cielo",
+      "anchor_es": "fase de autoridad de la Bestia"
+    },
+    {
+      "id": "IMAGE_OF_BEAST_ENFORCEMENT",
+      "label": "Image of the Beast Speaks / Worship Enforced",
+      "sort_key": 267,
+      "phase_id": "P06",
+      "lane_ids": [
+        "L06"
+      ],
+      "event_type": "worship_enforcement",
+      "anchor": "Beast-authority phase",
+      "classifications": {
+        "primary": "TXT",
+        "secondary": []
+      },
+      "duration_status": "owner_locked_nonmetric",
+      "scripture_refs": [
+        "Revelation 13:14-15"
+      ],
+      "predecessors": [
+        "SECOND_BEAST_SIGNS"
+      ],
+      "successors": [
+        "MARK_ENFORCEMENT"
+      ],
+      "visual_precision": "phase_only",
+      "deep_link": "event:IMAGE_OF_BEAST_ENFORCEMENT",
+      "label_es": "La Imagen de la Bestia Habla / Adoración Impuesta",
+      "anchor_es": "fase de autoridad de la Bestia"
+    },
+    {
+      "id": "MARK_ENFORCEMENT",
+      "label": "Compulsory Mark Enforcement",
+      "sort_key": 270,
+      "phase_id": "P06",
+      "lane_ids": [
+        "L06"
+      ],
+      "event_type": "system_transition",
+      "anchor": "after overt Beast revelation",
+      "classifications": {
+        "primary": "TXT",
+        "secondary": [
+          "CHR",
+          "INT"
+        ]
+      },
+      "duration_status": "approximate",
+      "scripture_refs": [
+        "Revelation 13:16-18"
+      ],
+      "predecessors": [
+        "IMAGE_OF_BEAST_ENFORCEMENT"
+      ],
+      "successors": [
+        "TRUMPET_6"
+      ],
+      "visual_precision": "soft_span",
+      "deep_link": "event:MARK_ENFORCEMENT",
+      "label_es": "Imposición Obligatoria de la Marca",
+      "anchor_es": "después de la revelación abierta de la Bestia"
+    },
+    {
+      "id": "WOMAN_PROTECTION_PERIOD",
+      "label": "Woman / Covenant People 1,260-Day Protection-Persecution Period",
+      "sort_key": 275,
+      "phase_id": "P06",
+      "lane_ids": [
+        "L08"
+      ],
+      "event_type": "span",
+      "anchor": "future final 3.5 years",
+      "classifications": {
+        "primary": "TXT",
+        "secondary": [
+          "INT",
+          "HAR"
+        ]
+      },
+      "duration_status": "explicit",
+      "scripture_refs": [
+        "Revelation 12:6,14"
+      ],
+      "predecessors": [
+        "GREAT_TRIBULATION_START"
+      ],
+      "successors": [],
+      "visual_precision": "explicit_duration",
+      "deep_link": "event:WOMAN_PROTECTION_PERIOD",
+      "label_es": "Período de 1,260 Días de Protección-Persecución de la Mujer / Pueblo del Pacto",
+      "anchor_es": "últimos 3.5 años futuros"
+    },
+    {
+      "id": "TWO_WITNESSES_ARRIVAL",
+      "label": "Moses + Elijah Arrival Marker",
+      "sort_key": 280,
+      "phase_id": "P07",
+      "lane_ids": [
+        "L01",
+        "L07"
+      ],
+      "event_type": "anchor",
+      "anchor": "Nisan / Aviv 15 / Passover",
+      "classifications": {
+        "primary": "CHR",
+        "secondary": [
+          "INT",
+          "PROV"
+        ]
+      },
+      "duration_status": "unresolved_sync",
+      "scripture_refs": [
+        "Revelation 11",
+        "project chronology"
+      ],
+      "predecessors": [
+        "GREAT_TRIBULATION_START"
+      ],
+      "successors": [
+        "TWO_WITNESSES_TESTIMONY"
+      ],
+      "visual_precision": "dashed_sync",
+      "deep_link": "event:TWO_WITNESSES_ARRIVAL",
+      "label_es": "Marcador de Llegada de Moisés + Elías",
+      "anchor_es": "Nisan / Aviv 15 / Pascua"
+    },
+    {
+      "id": "TWO_WITNESSES_TESTIMONY",
+      "label": "Two Witnesses 1,260-Day Testimony",
+      "sort_key": 285,
+      "phase_id": "P07",
+      "lane_ids": [
+        "L07",
+        "L12"
+      ],
+      "event_type": "span",
+      "anchor": "final 3.5-year framework",
+      "classifications": {
+        "primary": "TXT",
+        "secondary": [
+          "INT"
+        ]
+      },
+      "duration_status": "explicit",
+      "scripture_refs": [
+        "Revelation 11:3-6"
+      ],
+      "predecessors": [
+        "TWO_WITNESSES_ARRIVAL"
+      ],
+      "successors": [
+        "TWO_WITNESSES_DEATH"
+      ],
+      "visual_precision": "explicit_duration_with_unresolved_anchor",
+      "deep_link": "event:TWO_WITNESSES_TESTIMONY",
+      "label_es": "Testimonio de 1,260 Días de los Dos Testigos",
+      "anchor_es": "marco de los últimos 3.5 años"
+    },
+    {
+      "id": "TRUMPET_6",
+      "label": "Trumpet 6 — Euphrates / 200-Million Army",
+      "sort_key": 290,
+      "phase_id": "P07",
+      "lane_ids": [
+        "L04",
+        "L09"
+      ],
+      "event_type": "judgment",
+      "anchor": "final 3.5 years",
+      "classifications": {
+        "primary": "TXT",
+        "secondary": [
+          "INT"
+        ]
+      },
+      "duration_status": "owner_locked_nonmetric",
+      "scripture_refs": [
+        "Revelation 9:13-19"
+      ],
+      "predecessors": [
+        "MARK_ENFORCEMENT"
+      ],
+      "successors": [
+        "TWO_WITNESSES_DEATH",
+        "MATTHEW_24_COSMIC_SIGNS"
+      ],
+      "visual_precision": "phase_only",
+      "deep_link": "event:TRUMPET_6",
+      "label_es": "Trompeta 6 — Éufrates / Ejército de 200 Millones",
+      "anchor_es": "últimos 3.5 años"
+    },
+    {
+      "id": "TWO_WITNESSES_DEATH",
+      "label": "Two Witnesses Killed After Testimony",
+      "sort_key": 300,
+      "phase_id": "P08",
+      "lane_ids": [
+        "L07"
+      ],
+      "event_type": "event",
+      "anchor": "immediately before Yom Teruah transition",
+      "classifications": {
+        "primary": "TXT",
+        "secondary": [
+          "CHR"
+        ]
+      },
+      "duration_status": "explicit",
+      "scripture_refs": [
+        "Revelation 11:7-10"
+      ],
+      "predecessors": [
+        "TWO_WITNESSES_TESTIMONY",
+        "TRUMPET_6"
+      ],
+      "successors": [
+        "TWO_WITNESSES_RESURRECTION"
+      ],
+      "visual_precision": "explicit_duration",
+      "deep_link": "event:TWO_WITNESSES_DEATH",
+      "label_es": "Los Dos Testigos Mueren Después de su Testimonio",
+      "anchor_es": "inmediatamente antes de la transición de Yom Teruah"
+    },
+    {
+      "id": "MATTHEW_24_COSMIC_SIGNS",
+      "label": "Post-Tribulation Cosmic Signs",
+      "sort_key": 305,
+      "phase_id": "P08",
+      "lane_ids": [
+        "L09",
+        "L11"
+      ],
+      "event_type": "event",
+      "anchor": "after Great Tribulation / before gathering",
+      "classifications": {
+        "primary": "TXT",
+        "secondary": [
+          "HAR"
+        ]
+      },
+      "duration_status": "owner_locked_nonmetric",
+      "scripture_refs": [
+        "Matthew 24:29"
+      ],
+      "predecessors": [
+        "TRUMPET_6"
+      ],
+      "successors": [
+        "SON_OF_MAN_SKY_APPEARANCE"
+      ],
+      "visual_precision": "fixed_sequence",
+      "deep_link": "event:MATTHEW_24_COSMIC_SIGNS",
+      "label_es": "Señales Cósmicas Después de la Tribulación",
+      "anchor_es": "después de la Gran Tribulación / antes de la reunión"
+    },
+    {
+      "id": "TWO_WITNESSES_RESURRECTION",
+      "label": "Two Witnesses Raised and Ascend",
+      "sort_key": 310,
+      "phase_id": "P08",
+      "lane_ids": [
+        "L07"
+      ],
+      "event_type": "event",
+      "anchor": "Yom Teruah transition",
+      "classifications": {
+        "primary": "TXT",
+        "secondary": [
+          "CHR",
+          "HAR"
+        ]
+      },
+      "duration_status": "fixed_anchor",
+      "scripture_refs": [
+        "Revelation 11:11-12"
+      ],
+      "predecessors": [
+        "TWO_WITNESSES_DEATH"
+      ],
+      "successors": [
+        "TRUMPET_7"
+      ],
+      "visual_precision": "fixed_anchor",
+      "deep_link": "event:TWO_WITNESSES_RESURRECTION",
+      "label_es": "Los Dos Testigos Resucitan y Ascienden",
+      "anchor_es": "transición de Yom Teruah"
+    },
+    {
+      "id": "SON_OF_MAN_SKY_APPEARANCE",
+      "label": "Visible Son of Man Appears in Sky",
+      "sort_key": 315,
+      "phase_id": "P08",
+      "lane_ids": [
+        "L11",
+        "L09"
+      ],
+      "event_type": "event",
+      "anchor": "after cosmic signs",
+      "classifications": {
+        "primary": "TXT",
+        "secondary": [
+          "HAR",
+          "INT"
+        ]
+      },
+      "duration_status": "fixed_sequence",
+      "scripture_refs": [
+        "Matthew 24:30"
+      ],
+      "predecessors": [
+        "MATTHEW_24_COSMIC_SIGNS"
+      ],
+      "successors": [
+        "TRUMPET_7",
+        "RAPTURE_GATHERING"
+      ],
+      "visual_precision": "fixed_sequence",
+      "deep_link": "event:SON_OF_MAN_SKY_APPEARANCE",
+      "label_es": "El Hijo del Hombre Aparece Visiblemente en el Cielo",
+      "anchor_es": "después de las señales cósmicas"
+    },
+    {
+      "id": "TRUMPET_7",
+      "label": "Trumpet 7 / Last Trump",
+      "sort_key": 320,
+      "phase_id": "P08",
+      "lane_ids": [
+        "L04",
+        "L09",
+        "L11"
+      ],
+      "event_type": "transition",
+      "anchor": "Yom Teruah / Tishri 1",
+      "classifications": {
+        "primary": "HAR",
+        "secondary": [
+          "INT",
+          "CHR"
+        ]
+      },
+      "duration_status": "fixed_anchor",
+      "scripture_refs": [
+        "Revelation 11",
+        "1 Corinthians 15",
+        "1 Thessalonians 4",
+        "Matthew 24 harmonization"
+      ],
+      "predecessors": [
+        "TWO_WITNESSES_RESURRECTION",
+        "SON_OF_MAN_SKY_APPEARANCE"
+      ],
+      "successors": [
+        "DEAD_BELIEVERS_RESURRECTED",
+        "LIVING_BELIEVERS_TRANSFORMED",
+        "RAPTURE_GATHERING",
+        "BOWL_1"
+      ],
+      "visual_precision": "fixed_anchor",
+      "deep_link": "event:TRUMPET_7",
+      "label_es": "Trompeta 7 / Última Trompeta",
+      "anchor_es": "Yom Teruah / Tishri 1"
+    },
+    {
+      "id": "DEAD_BELIEVERS_RESURRECTED",
+      "label": "Dead Believers Resurrected",
+      "sort_key": 325,
+      "phase_id": "P08",
+      "lane_ids": [
+        "L09",
+        "L11"
+      ],
+      "event_type": "resurrection",
+      "anchor": "Trumpet 7",
+      "classifications": {
+        "primary": "TXT",
+        "secondary": [
+          "HAR"
+        ]
+      },
+      "duration_status": "fixed_sequence",
+      "scripture_refs": [
+        "1 Thessalonians 4:16",
+        "1 Corinthians 15"
+      ],
+      "predecessors": [
+        "TRUMPET_7"
+      ],
+      "successors": [
+        "RAPTURE_GATHERING"
+      ],
+      "visual_precision": "fixed_sequence",
+      "deep_link": "event:DEAD_BELIEVERS_RESURRECTED",
+      "label_es": "Creyentes Muertos Resucitados",
+      "anchor_es": "Trompeta 7"
+    },
+    {
+      "id": "LIVING_BELIEVERS_TRANSFORMED",
+      "label": "Living Believers Transformed",
+      "sort_key": 330,
+      "phase_id": "P08",
+      "lane_ids": [
+        "L09",
+        "L11"
+      ],
+      "event_type": "transformation",
+      "anchor": "Trumpet 7",
+      "classifications": {
+        "primary": "TXT",
+        "secondary": [
+          "HAR"
+        ]
+      },
+      "duration_status": "fixed_sequence",
+      "scripture_refs": [
+        "1 Corinthians 15:51-52"
+      ],
+      "predecessors": [
+        "TRUMPET_7"
+      ],
+      "successors": [
+        "RAPTURE_GATHERING"
+      ],
+      "visual_precision": "fixed_sequence",
+      "deep_link": "event:LIVING_BELIEVERS_TRANSFORMED",
+      "label_es": "Creyentes Vivos Transformados",
+      "anchor_es": "Trompeta 7"
+    },
+    {
+      "id": "RAPTURE_GATHERING",
+      "label": "Saints Gathered to Christ in the Air",
+      "sort_key": 335,
+      "phase_id": "P08",
+      "lane_ids": [
+        "L09",
+        "L11"
+      ],
+      "event_type": "gathering",
+      "anchor": "Yom Teruah / Trumpet 7",
+      "classifications": {
+        "primary": "TXT",
+        "secondary": [
+          "HAR",
+          "INT",
+          "CHR"
+        ]
+      },
+      "duration_status": "fixed_anchor",
+      "scripture_refs": [
+        "Matthew 24:31",
+        "1 Thessalonians 4:17"
+      ],
+      "predecessors": [
+        "DEAD_BELIEVERS_RESURRECTED",
+        "LIVING_BELIEVERS_TRANSFORMED",
+        "TRUMPET_7"
+      ],
+      "successors": [
+        "BOWL_1"
+      ],
+      "visual_precision": "fixed_anchor",
+      "deep_link": "event:RAPTURE_GATHERING",
+      "label_es": "Los Santos son Reunidos con Cristo en el Aire",
+      "anchor_es": "Yom Teruah / Trompeta 7"
+    },
+    {
+      "id": "BOWL_1",
+      "label": "Bowl 1 — Sores on Mark-Bearers",
+      "sort_key": 340,
+      "phase_id": "P09",
+      "lane_ids": [
+        "L10"
+      ],
+      "event_type": "judgment",
+      "anchor": "after Trumpet 7",
+      "classifications": {
+        "primary": "TXT",
+        "secondary": [
+          "CHR"
+        ]
+      },
+      "duration_status": "owner_locked_nonmetric",
+      "scripture_refs": [
+        "Revelation 16:1-2"
+      ],
+      "predecessors": [
+        "RAPTURE_GATHERING"
+      ],
+      "successors": [
+        "BOWL_2"
+      ],
+      "visual_precision": "phase_only",
+      "deep_link": "event:BOWL_1",
+      "label_es": "Copa 1 — Llagas sobre los que Llevan la Marca",
+      "anchor_es": "después de la Trompeta 7"
+    },
+    {
+      "id": "BOWL_2",
+      "label": "Bowl 2 — Sea Judgment",
+      "sort_key": 350,
+      "phase_id": "P09",
+      "lane_ids": [
+        "L10"
+      ],
+      "event_type": "judgment",
+      "anchor": "bowl phase",
+      "classifications": {
+        "primary": "TXT",
+        "secondary": []
+      },
+      "duration_status": "owner_locked_nonmetric",
+      "scripture_refs": [
+        "Revelation 16:3"
+      ],
+      "predecessors": [
+        "BOWL_1"
+      ],
+      "successors": [
+        "BOWL_3"
+      ],
+      "visual_precision": "phase_only",
+      "deep_link": "event:BOWL_2",
+      "label_es": "Copa 2 — Juicio sobre el Mar",
+      "anchor_es": "fase de las copas"
+    },
+    {
+      "id": "BOWL_3",
+      "label": "Bowl 3 — Freshwater Judgment",
+      "sort_key": 360,
+      "phase_id": "P09",
+      "lane_ids": [
+        "L10"
+      ],
+      "event_type": "judgment",
+      "anchor": "bowl phase",
+      "classifications": {
+        "primary": "TXT",
+        "secondary": []
+      },
+      "duration_status": "owner_locked_nonmetric",
+      "scripture_refs": [
+        "Revelation 16:4-7"
+      ],
+      "predecessors": [
+        "BOWL_2"
+      ],
+      "successors": [
+        "BOWL_4"
+      ],
+      "visual_precision": "phase_only",
+      "deep_link": "event:BOWL_3",
+      "label_es": "Copa 3 — Juicio sobre el Agua Dulce",
+      "anchor_es": "fase de las copas"
+    },
+    {
+      "id": "BOWL_4",
+      "label": "Bowl 4 — Solar Scorching",
+      "sort_key": 370,
+      "phase_id": "P09",
+      "lane_ids": [
+        "L10"
+      ],
+      "event_type": "judgment",
+      "anchor": "bowl phase",
+      "classifications": {
+        "primary": "TXT",
+        "secondary": []
+      },
+      "duration_status": "owner_locked_nonmetric",
+      "scripture_refs": [
+        "Revelation 16:8-9"
+      ],
+      "predecessors": [
+        "BOWL_3"
+      ],
+      "successors": [
+        "BOWL_5"
+      ],
+      "visual_precision": "phase_only",
+      "deep_link": "event:BOWL_4",
+      "label_es": "Copa 4 — Abrasamiento Solar",
+      "anchor_es": "fase de las copas"
+    },
+    {
+      "id": "BOWL_5",
+      "label": "Bowl 5 — Darkness over Beast Kingdom",
+      "sort_key": 380,
+      "phase_id": "P09",
+      "lane_ids": [
+        "L10",
+        "L06"
+      ],
+      "event_type": "judgment",
+      "anchor": "bowl phase",
+      "classifications": {
+        "primary": "TXT",
+        "secondary": []
+      },
+      "duration_status": "owner_locked_nonmetric",
+      "scripture_refs": [
+        "Revelation 16:10-11"
+      ],
+      "predecessors": [
+        "BOWL_4"
+      ],
+      "successors": [
+        "BOWL_6"
+      ],
+      "visual_precision": "phase_only",
+      "deep_link": "event:BOWL_5",
+      "label_es": "Copa 5 — Tinieblas sobre el Reino de la Bestia",
+      "anchor_es": "fase de las copas"
+    },
+    {
+      "id": "BOWL_6",
+      "label": "Bowl 6 — Euphrates / Armageddon Mobilization",
+      "sort_key": 390,
+      "phase_id": "P09",
+      "lane_ids": [
+        "L10"
+      ],
+      "event_type": "judgment_transition",
+      "anchor": "bowl phase",
+      "classifications": {
+        "primary": "TXT",
+        "secondary": [
+          "HAR",
+          "INT"
+        ]
+      },
+      "duration_status": "owner_locked_nonmetric",
+      "scripture_refs": [
+        "Revelation 16:12-16"
+      ],
+      "predecessors": [
+        "BOWL_5"
+      ],
+      "successors": [
+        "ARMAGEDDON_MOBILIZATION",
+        "BOWL_7"
+      ],
+      "visual_precision": "phase_only",
+      "deep_link": "event:BOWL_6",
+      "label_es": "Copa 6 — Éufrates / Movilización hacia Armagedón",
+      "anchor_es": "fase de las copas"
+    },
+    {
+      "id": "ARMAGEDDON_MOBILIZATION",
+      "label": "Kings Gather toward Armageddon",
+      "sort_key": 395,
+      "phase_id": "P09",
+      "lane_ids": [
+        "L10",
+        "L06"
+      ],
+      "event_type": "mobilization",
+      "anchor": "Bowl 6",
+      "classifications": {
+        "primary": "TXT",
+        "secondary": [
+          "CHR"
+        ]
+      },
+      "duration_status": "owner_locked_nonmetric",
+      "scripture_refs": [
+        "Revelation 16:13-16"
+      ],
+      "predecessors": [
+        "BOWL_6"
+      ],
+      "successors": [
+        "BOWL_7",
+        "REV19_RETURN"
+      ],
+      "visual_precision": "phase_only",
+      "deep_link": "event:ARMAGEDDON_MOBILIZATION",
+      "label_es": "Los Reyes se Reúnen hacia Armagedón",
+      "anchor_es": "Copa 6"
+    },
+    {
+      "id": "BEAST_TURNS_ON_BABYLON",
+      "label": "Beast Coalition Turns on Babylon / Prostitute Order",
+      "sort_key": 397,
+      "phase_id": "P09",
+      "lane_ids": [
+        "L06",
+        "L10"
+      ],
+      "event_type": "system_betrayal",
+      "anchor": "bowl/endgame period",
+      "classifications": {
+        "primary": "HAR",
+        "secondary": [
+          "INT",
+          "CHR"
+        ]
+      },
+      "duration_status": "approximate",
+      "scripture_refs": [
+        "Revelation 17:15-18 + project Babylon identity"
+      ],
+      "predecessors": [
+        "RAPTURE_GATHERING"
+      ],
+      "successors": [
+        "BABYLON_DESTROYED"
+      ],
+      "visual_precision": "soft_span",
+      "deep_link": "event:BEAST_TURNS_ON_BABYLON",
+      "label_es": "La Coalición de la Bestia se Vuelve contra Babilonia / Orden de la Prostituta",
+      "anchor_es": "período de copas / fase final"
+    },
+    {
+      "id": "BABYLON_DESTROYED",
+      "label": "Babylon Endgame Destruction",
+      "sort_key": 400,
+      "phase_id": "P09",
+      "lane_ids": [
+        "L10"
+      ],
+      "event_type": "system_judgment",
+      "anchor": "bowl/endgame period",
+      "classifications": {
+        "primary": "TXT",
+        "secondary": [
+          "CHR",
+          "HAR"
+        ]
+      },
+      "duration_status": "approximate",
+      "scripture_refs": [
+        "Revelation 17-18"
+      ],
+      "predecessors": [
+        "BEAST_TURNS_ON_BABYLON"
+      ],
+      "successors": [
+        "BOWL_CYCLE_COMPLETE"
+      ],
+      "visual_precision": "soft_span",
+      "deep_link": "event:BABYLON_DESTROYED",
+      "label_es": "Destrucción Final de Babilonia",
+      "anchor_es": "período de copas / fase final"
+    },
+    {
+      "id": "BOWL_7",
+      "label": "Bowl 7 — Bowl Sequence Completed",
+      "sort_key": 410,
+      "phase_id": "P09",
+      "lane_ids": [
+        "L10"
+      ],
+      "event_type": "judgment",
+      "anchor": "end of bowl sequence",
+      "classifications": {
+        "primary": "TXT",
+        "secondary": []
+      },
+      "duration_status": "owner_locked_nonmetric",
+      "scripture_refs": [
+        "Revelation 16:17-21"
+      ],
+      "predecessors": [
+        "BOWL_6"
+      ],
+      "successors": [
+        "BOWL_CYCLE_COMPLETE"
+      ],
+      "visual_precision": "phase_only",
+      "deep_link": "event:BOWL_7",
+      "label_es": "Copa 7 — Secuencia de Copas Completada",
+      "anchor_es": "fin de la secuencia de copas"
+    },
+    {
+      "id": "BOWL_CYCLE_COMPLETE",
+      "label": "Seven-Bowl Cycle Completes",
+      "sort_key": 420,
+      "phase_id": "P10",
+      "lane_ids": [
+        "L01",
+        "L10",
+        "L06"
+      ],
+      "event_type": "transition",
+      "anchor": "Yom Kippur / Tishri 10",
+      "classifications": {
+        "primary": "CHR",
+        "secondary": [
+          "TXT"
+        ]
+      },
+      "duration_status": "fixed_anchor",
+      "scripture_refs": [
+        "Revelation 16 project feast chronology"
+      ],
+      "predecessors": [
+        "BOWL_7",
+        "BABYLON_DESTROYED"
+      ],
+      "successors": [
+        "BEAST_FORMAL_AUTHORITY_EXPIRES",
+        "MARRIAGE_SUPPER"
+      ],
+      "visual_precision": "fixed_anchor",
+      "deep_link": "event:BOWL_CYCLE_COMPLETE",
+      "label_es": "Se Completa el Ciclo de las Siete Copas",
+      "anchor_es": "Yom Kippur / Tishri 10"
+    },
+    {
+      "id": "BEAST_FORMAL_AUTHORITY_EXPIRES",
+      "label": "Beast Formal Authority Expires",
+      "sort_key": 425,
+      "phase_id": "P10",
+      "lane_ids": [
+        "L06",
+        "L12"
+      ],
+      "event_type": "span_end",
+      "anchor": "Yom Kippur / Tishri 10 approximately",
+      "classifications": {
+        "primary": "CHR",
+        "secondary": [
+          "INT"
+        ]
+      },
+      "duration_status": "demonstrated_project_model",
+      "scripture_refs": [
+        "Revelation 13:5 project count"
+      ],
+      "predecessors": [
+        "BEAST_FORMAL_AUTHORITY_START",
+        "BOWL_CYCLE_COMPLETE"
+      ],
+      "successors": [
+        "MARRIAGE_SUPPER",
+        "REV19_RETURN"
+      ],
+      "visual_precision": "metric_exact_project_with_approx_feast_label",
+      "deep_link": "event:BEAST_FORMAL_AUTHORITY_EXPIRES",
+      "label_es": "Expira la Autoridad Formal de la Bestia",
+      "anchor_es": "aproximadamente Yom Kippur / Tishri 10"
+    },
+    {
+      "id": "MARRIAGE_SUPPER",
+      "label": "Marriage Supper of the Lamb",
+      "sort_key": 430,
+      "phase_id": "P11",
+      "lane_ids": [
+        "L01",
+        "L09",
+        "L11",
+        "L12"
+      ],
+      "event_type": "event",
+      "anchor": "Sukkot / Tishri 15",
+      "classifications": {
+        "primary": "TXT",
+        "secondary": [
+          "CHR"
+        ]
+      },
+      "duration_status": "fixed_anchor",
+      "scripture_refs": [
+        "Revelation 19:7-9"
+      ],
+      "predecessors": [
+        "BOWL_CYCLE_COMPLETE"
+      ],
+      "successors": [
+        "REV19_RETURN"
+      ],
+      "visual_precision": "fixed_anchor",
+      "deep_link": "event:MARRIAGE_SUPPER",
+      "label_es": "Cena de las Bodas del Cordero",
+      "anchor_es": "Sukkot / Tishri 15"
+    },
+    {
+      "id": "REV19_RETURN",
+      "label": "Revelation 19 Physical Ground Return / Conquest",
+      "sort_key": 440,
+      "phase_id": "P12",
+      "lane_ids": [
+        "L01",
+        "L11",
+        "L06",
+        "L09"
+      ],
+      "event_type": "return",
+      "anchor": "Shemini Atzeret / Tishri 22",
+      "classifications": {
+        "primary": "INT",
+        "secondary": [
+          "HAR",
+          "CHR"
+        ]
+      },
+      "duration_status": "fixed_anchor",
+      "scripture_refs": [
+        "Revelation 19:11-21"
+      ],
+      "predecessors": [
+        "MARRIAGE_SUPPER",
+        "ARMAGEDDON_MOBILIZATION"
+      ],
+      "successors": [
+        "BEAST_FALSE_PROPHET_JUDGMENT",
+        "SATAN_BOUND"
+      ],
+      "visual_precision": "fixed_anchor",
+      "deep_link": "event:REV19_RETURN",
+      "label_es": "Apocalipsis 19 — Retorno Físico a Tierra / Conquista",
+      "anchor_es": "Shemini Atzeret / Tishri 22"
+    },
+    {
+      "id": "BEAST_FALSE_PROPHET_JUDGMENT",
+      "label": "Beast and False Prophet Cast into Lake of Fire",
+      "sort_key": 445,
+      "phase_id": "P12",
+      "lane_ids": [
+        "L06",
+        "L11"
+      ],
+      "event_type": "judgment",
+      "anchor": "Revelation-19 conquest",
+      "classifications": {
+        "primary": "TXT",
+        "secondary": [
+          "CHR"
+        ]
+      },
+      "duration_status": "fixed_sequence",
+      "scripture_refs": [
+        "Revelation 19:20"
+      ],
+      "predecessors": [
+        "REV19_RETURN"
+      ],
+      "successors": [
+        "SATAN_BOUND"
+      ],
+      "visual_precision": "fixed_sequence",
+      "deep_link": "event:BEAST_FALSE_PROPHET_JUDGMENT",
+      "label_es": "Bestia y Falso Profeta Lanzados al Lago de Fuego",
+      "anchor_es": "conquista de Apocalipsis 19"
+    },
+    {
+      "id": "SATAN_BOUND",
+      "label": "Satan Bound",
+      "sort_key": 450,
+      "phase_id": "P12",
+      "lane_ids": [
+        "L05",
+        "L13"
+      ],
+      "event_type": "judgment_transition",
+      "anchor": "after Revelation-19 conquest",
+      "classifications": {
+        "primary": "TXT",
+        "secondary": [
+          "CHR"
+        ]
+      },
+      "duration_status": "fixed_sequence",
+      "scripture_refs": [
+        "Revelation 20:1-3"
+      ],
+      "predecessors": [
+        "REV19_RETURN",
+        "BEAST_FALSE_PROPHET_JUDGMENT"
+      ],
+      "successors": [
+        "MILLENNIAL_TEMPLE_DEDICATION",
+        "MILLENNIUM_REIGN"
+      ],
+      "visual_precision": "fixed_sequence",
+      "deep_link": "event:SATAN_BOUND",
+      "label_es": "Satanás Atado",
+      "anchor_es": "después de la conquista de Apocalipsis 19"
+    },
+    {
+      "id": "MILLENNIAL_TEMPLE_DEDICATION",
+      "label": "Millennial Temple Dedication / 1,335 Endpoint",
+      "sort_key": 460,
+      "phase_id": "P13",
+      "lane_ids": [
+        "L01",
+        "L02",
+        "L12",
+        "L13"
+      ],
+      "event_type": "anchor",
+      "anchor": "Hanukkah / Kislev 25",
+      "classifications": {
+        "primary": "CHR",
+        "secondary": [
+          "INT"
+        ]
+      },
+      "duration_status": "demonstrated_project_model",
+      "scripture_refs": [
+        "Daniel 12:12 project chronology"
+      ],
+      "predecessors": [
+        "SATAN_BOUND"
+      ],
+      "successors": [
+        "MILLENNIUM_REIGN"
+      ],
+      "visual_precision": "fixed_anchor",
+      "deep_link": "event:MILLENNIAL_TEMPLE_DEDICATION",
+      "label_es": "Dedicación del Templo Milenial / Extremo de 1,335",
+      "anchor_es": "Hanukkah / Kislev 25"
+    },
+    {
+      "id": "MILLENNIUM_REIGN",
+      "label": "Literal Millennium / Saints Reign",
+      "sort_key": 470,
+      "phase_id": "P14",
+      "lane_ids": [
+        "L09",
+        "L13"
+      ],
+      "event_type": "era",
+      "anchor": "1,000 years",
+      "classifications": {
+        "primary": "TXT",
+        "secondary": [
+          "INT",
+          "HAR"
+        ]
+      },
+      "duration_status": "explicit",
+      "scripture_refs": [
+        "Revelation 20:1-6"
+      ],
+      "predecessors": [
+        "SATAN_BOUND",
+        "MILLENNIAL_TEMPLE_DEDICATION"
+      ],
+      "successors": [
+        "SATAN_RELEASED"
+      ],
+      "visual_precision": "explicit_duration_scale_break",
+      "deep_link": "event:MILLENNIUM_REIGN",
+      "label_es": "Milenio Literal / Reinado de los Santos",
+      "anchor_es": "1,000 años"
+    },
+    {
+      "id": "SATAN_RELEASED",
+      "label": "Satan Released after Millennium",
+      "sort_key": 480,
+      "phase_id": "P15",
+      "lane_ids": [
+        "L05",
+        "L13"
+      ],
+      "event_type": "transition",
+      "anchor": "end of Millennium",
+      "classifications": {
+        "primary": "TXT",
+        "secondary": []
+      },
+      "duration_status": "fixed_sequence",
+      "scripture_refs": [
+        "Revelation 20:7"
+      ],
+      "predecessors": [
+        "MILLENNIUM_REIGN"
+      ],
+      "successors": [
+        "FINAL_GOG_MAGOG"
+      ],
+      "visual_precision": "fixed_sequence",
+      "deep_link": "event:SATAN_RELEASED",
+      "label_es": "Satanás Liberado Después del Milenio",
+      "anchor_es": "fin del Milenio"
+    },
+    {
+      "id": "FINAL_GOG_MAGOG",
+      "label": "Final Gog-Magog Rebellion",
+      "sort_key": 490,
+      "phase_id": "P15",
+      "lane_ids": [
+        "L13"
+      ],
+      "event_type": "rebellion",
+      "anchor": "after Satan released",
+      "classifications": {
+        "primary": "TXT",
+        "secondary": [
+          "HAR",
+          "INT"
+        ]
+      },
+      "duration_status": "fixed_sequence",
+      "scripture_refs": [
+        "Revelation 20:8-9"
+      ],
+      "predecessors": [
+        "SATAN_RELEASED"
+      ],
+      "successors": [
+        "FINAL_REBELLION_DESTROYED"
+      ],
+      "visual_precision": "fixed_sequence",
+      "deep_link": "event:FINAL_GOG_MAGOG",
+      "label_es": "Rebelión Final de Gog-Magog",
+      "anchor_es": "después de la liberación de Satanás"
+    },
+    {
+      "id": "FINAL_REBELLION_DESTROYED",
+      "label": "Final Rebellion Destroyed by Fire from God",
+      "sort_key": 500,
+      "phase_id": "P15",
+      "lane_ids": [
+        "L13"
+      ],
+      "event_type": "judgment",
+      "anchor": "end of final rebellion",
+      "classifications": {
+        "primary": "TXT",
+        "secondary": []
+      },
+      "duration_status": "fixed_sequence",
+      "scripture_refs": [
+        "Revelation 20:9"
+      ],
+      "predecessors": [
+        "FINAL_GOG_MAGOG"
+      ],
+      "successors": [
+        "SATAN_FINAL_JUDGMENT"
+      ],
+      "visual_precision": "fixed_sequence",
+      "deep_link": "event:FINAL_REBELLION_DESTROYED",
+      "label_es": "Rebelión Final Destruida por Fuego de Dios",
+      "anchor_es": "fin de la rebelión final"
+    },
+    {
+      "id": "SATAN_FINAL_JUDGMENT",
+      "label": "Satan Cast into Lake of Fire",
+      "sort_key": 510,
+      "phase_id": "P15",
+      "lane_ids": [
+        "L05",
+        "L13"
+      ],
+      "event_type": "judgment",
+      "anchor": "after final rebellion",
+      "classifications": {
+        "primary": "TXT",
+        "secondary": []
+      },
+      "duration_status": "fixed_sequence",
+      "scripture_refs": [
+        "Revelation 20:10"
+      ],
+      "predecessors": [
+        "FINAL_REBELLION_DESTROYED"
+      ],
+      "successors": [
+        "GREAT_WHITE_THRONE"
+      ],
+      "visual_precision": "fixed_sequence",
+      "deep_link": "event:SATAN_FINAL_JUDGMENT",
+      "label_es": "Satanás Lanzado al Lago de Fuego",
+      "anchor_es": "después de la rebelión final"
+    },
+    {
+      "id": "REMAINING_DEAD_RESURRECTED",
+      "label": "Remaining Dead Raised for Final Judgment",
+      "sort_key": 520,
+      "phase_id": "P16",
+      "lane_ids": [
+        "L13"
+      ],
+      "event_type": "resurrection",
+      "anchor": "Great White Throne phase",
+      "classifications": {
+        "primary": "TXT",
+        "secondary": [
+          "INT"
+        ]
+      },
+      "duration_status": "fixed_sequence",
+      "scripture_refs": [
+        "Revelation 20:11-13"
+      ],
+      "predecessors": [
+        "SATAN_FINAL_JUDGMENT"
+      ],
+      "successors": [
+        "GREAT_WHITE_THRONE"
+      ],
+      "visual_precision": "fixed_sequence",
+      "deep_link": "event:REMAINING_DEAD_RESURRECTED",
+      "label_es": "Los Demás Muertos Resucitan para el Juicio Final",
+      "anchor_es": "fase del Gran Trono Blanco"
+    },
+    {
+      "id": "GREAT_WHITE_THRONE",
+      "label": "Great White Throne Judgment",
+      "sort_key": 530,
+      "phase_id": "P16",
+      "lane_ids": [
+        "L13"
+      ],
+      "event_type": "judgment",
+      "anchor": "after Millennium/final rebellion",
+      "classifications": {
+        "primary": "TXT",
+        "secondary": []
+      },
+      "duration_status": "fixed_sequence",
+      "scripture_refs": [
+        "Revelation 20:11-15"
+      ],
+      "predecessors": [
+        "REMAINING_DEAD_RESURRECTED"
+      ],
+      "successors": [
+        "NEW_CREATION"
+      ],
+      "visual_precision": "fixed_sequence",
+      "deep_link": "event:GREAT_WHITE_THRONE",
+      "label_es": "Juicio del Gran Trono Blanco",
+      "anchor_es": "después del Milenio / rebelión final"
+    },
+    {
+      "id": "NEW_CREATION",
+      "label": "New Heaven / New Earth",
+      "sort_key": 540,
+      "phase_id": "P16",
+      "lane_ids": [
+        "L13"
+      ],
+      "event_type": "final_state",
+      "anchor": "after final judgment",
+      "classifications": {
+        "primary": "TXT",
+        "secondary": []
+      },
+      "duration_status": "fixed_sequence",
+      "scripture_refs": [
+        "Revelation 21-22"
+      ],
+      "predecessors": [
+        "GREAT_WHITE_THRONE"
+      ],
+      "successors": [],
+      "visual_precision": "fixed_sequence",
+      "deep_link": "event:NEW_CREATION",
+      "label_es": "Cielo Nuevo / Tierra Nueva",
+      "anchor_es": "después del juicio final"
+    }
+  ],
+  "counts": [
+    {
+      "id": "COUNT_DANIEL_1150",
+      "label": "Daniel 8 — 1,150 Offering-Days",
+      "value": 1150,
+      "unit": "offering-days",
+      "start_event_id": "OBLATIONS_BEGIN",
+      "end_event_id": "OBLATIONS_CEASE",
+      "classifications": [
+        "INT",
+        "PROV"
+      ],
+      "count_status": "unresolved_sync",
+      "deep_link": "count:DANIEL_1150",
+      "label_es": "Daniel 8 — 1,150 Días de Ofrendas",
+      "unit_es": "días de ofrendas",
+      "status_es": "sincronización no resuelta"
+    },
+    {
+      "id": "COUNT_BEAST_1260",
+      "label": "Beast Authority — 42 Months / 1,260 Days",
+      "value": 1260,
+      "unit": "prophetic-days",
+      "start_event_id": "BEAST_FORMAL_AUTHORITY_START",
+      "end_event_id": "BEAST_FORMAL_AUTHORITY_EXPIRES",
+      "classifications": [
+        "TXT",
+        "INT",
+        "CHR"
+      ],
+      "count_status": "demonstrated_project_model",
+      "deep_link": "count:BEAST_1260",
+      "label_es": "Autoridad de la Bestia — 42 Meses / 1,260 Días",
+      "unit_es": "días proféticos",
+      "status_es": "demostrado dentro del modelo del proyecto"
+    },
+    {
+      "id": "COUNT_WITNESSES_1260",
+      "label": "Two Witnesses — 1,260-Day Testimony",
+      "value": 1260,
+      "unit": "days",
+      "start_event_id": "TWO_WITNESSES_TESTIMONY",
+      "end_event_id": "TWO_WITNESSES_DEATH",
+      "classifications": [
+        "TXT",
+        "CHR",
+        "UNR"
+      ],
+      "count_status": "unresolved_sync",
+      "deep_link": "count:WITNESSES_1260",
+      "label_es": "Dos Testigos — 1,260 Días de Testimonio",
+      "unit_es": "días",
+      "status_es": "sincronización no resuelta"
+    },
+    {
+      "id": "COUNT_DANIEL_1290",
+      "label": "Daniel 12:11 — 1,290 Days",
+      "value": 1290,
+      "unit": "prophetic-days",
+      "start_event_id": "OBLATIONS_CEASE",
+      "end_event_id": "MARRIAGE_SUPPER",
+      "classifications": [
+        "INT",
+        "CHR"
+      ],
+      "count_status": "demonstrated_project_model",
+      "deep_link": "count:DANIEL_1290",
+      "label_es": "Daniel 12:11 — 1,290 Días",
+      "unit_es": "días proféticos",
+      "status_es": "demostrado dentro del modelo del proyecto"
+    },
+    {
+      "id": "COUNT_DANIEL_1335",
+      "label": "Daniel 12:12 — 1,335 Days",
+      "value": 1335,
+      "unit": "prophetic-days",
+      "start_event_id": "ABOMINATION",
+      "end_event_id": "MILLENNIAL_TEMPLE_DEDICATION",
+      "classifications": [
+        "INT",
+        "CHR"
+      ],
+      "count_status": "demonstrated_project_model",
+      "deep_link": "count:DANIEL_1335",
+      "label_es": "Daniel 12:12 — 1,335 Días",
+      "unit_es": "días proféticos",
+      "status_es": "demostrado dentro del modelo del proyecto"
+    }
+  ],
+  "facets": {
+    "classification_codes": [
+      "TXT",
+      "HAR",
+      "INT",
+      "CHR",
+      "HIS",
+      "PROV",
+      "SPEC",
+      "UNR"
+    ],
+    "phase_ids": [
+      "P00",
+      "P01",
+      "P02",
+      "P03",
+      "P04",
+      "P05",
+      "P06",
+      "P07",
+      "P08",
+      "P09",
+      "P10",
+      "P11",
+      "P12",
+      "P13",
+      "P14",
+      "P15",
+      "P16"
+    ],
+    "lane_ids": [
+      "L01",
+      "L02",
+      "L03",
+      "L04",
+      "L05",
+      "L06",
+      "L07",
+      "L08",
+      "L09",
+      "L10",
+      "L11",
+      "L12",
+      "L13"
+    ],
+    "duration_statuses": [
+      "owner_locked_nonmetric",
+      "fixed_anchor",
+      "unresolved_sync",
+      "not_applicable",
+      "explicit",
+      "demonstrated_project_model",
+      "approximate",
+      "fixed_sequence"
+    ],
+    "visual_precisions": [
+      "phase_only",
+      "fixed_anchor",
+      "dashed_sync",
+      "soft_span",
+      "nonlocal",
+      "explicit_duration",
+      "metric_exact_project",
+      "explicit_duration_with_unresolved_anchor",
+      "fixed_sequence",
+      "metric_exact_project_with_approx_feast_label",
+      "explicit_duration_scale_break"
+    ]
+  },
+  "public_release": {
+    "export_id": "prophetic-explorer-es-v1",
+    "destination": "ericescolero/la-ultima-vigilia",
+    "route": "/prophecy/",
+    "authorization_part": 29,
+    "deployment_authorized": false
+  }
+}
