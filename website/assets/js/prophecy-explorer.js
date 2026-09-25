@@ -3,6 +3,7 @@
 
   const DATA_URL = "/assets/data/prophecy-explorer.json";
   const PROJECT_CLASSES = new Set(["HAR", "INT", "CHR", "HIS", "PROV", "SPEC", "UNR"]);
+  const MOBILE_TIMELINE_MEDIA = window.matchMedia("(max-width: 719px)");
   const OVERVIEW_TYPES = new Set([
     "anchor",
     "transition",
@@ -158,6 +159,18 @@
         trapInspectorFocus(event);
       }
     });
+
+    const rerenderDetailedForBreakpoint = () => {
+      if (state.data && state.mode === "detailed") {
+        renderDetailed();
+        renderSelection();
+      }
+    };
+    if (typeof MOBILE_TIMELINE_MEDIA.addEventListener === "function") {
+      MOBILE_TIMELINE_MEDIA.addEventListener("change", rerenderDetailedForBreakpoint);
+    } else if (typeof MOBILE_TIMELINE_MEDIA.addListener === "function") {
+      MOBILE_TIMELINE_MEDIA.addListener(rerenderDetailedForBreakpoint);
+    }
   }
 
   function validateData(data) {
@@ -291,9 +304,12 @@
         block: "center"
       });
     } else {
-      document.querySelector(`.prophecy-timeline-phase[data-phase="${cssEscape(phaseId)}"]`)?.scrollIntoView({
+      const selector = MOBILE_TIMELINE_MEDIA.matches
+        ? `.prophecy-mobile-phase[data-phase="${cssEscape(phaseId)}"]`
+        : `.prophecy-timeline-phase[data-phase="${cssEscape(phaseId)}"]`;
+      document.querySelector(selector)?.scrollIntoView({
         behavior: "smooth",
-        block: "nearest",
+        block: MOBILE_TIMELINE_MEDIA.matches ? "start" : "nearest",
         inline: "center"
       });
     }
@@ -392,6 +408,13 @@
   function renderDetailed() {
     const visible = visibleEvents();
     el.timeline.innerHTML = "";
+
+    if (MOBILE_TIMELINE_MEDIA.matches) {
+      renderMobileDetailed(visible);
+      return;
+    }
+
+    el.timeline.className = "prophecy-timeline";
     el.detailedSummary.textContent = `${visible.length} eventos visibles · ${state.visibleLanes.size} líneas`;
 
     const corner = document.createElement("div");
@@ -430,6 +453,72 @@
         for (const event of events) cell.append(makeEventButton(event));
         el.timeline.append(cell);
       }
+    }
+  }
+
+  function renderMobileDetailed(visible) {
+    el.timeline.className = "prophecy-timeline prophecy-mobile-timeline";
+    el.detailedSummary.textContent = `${visible.length} eventos visibles · agrupados por fase`;
+
+    for (const phase of state.data.phases) {
+      const events = visible
+        .filter((event) => event.phase_id === phase.id)
+        .sort((a, b) => a.sort_key - b.sort_key);
+
+      if (!events.length) continue;
+
+      const section = document.createElement("section");
+      section.className = "prophecy-mobile-phase";
+      section.dataset.phase = phase.id;
+
+      const head = document.createElement("div");
+      head.className = "prophecy-mobile-phase-head";
+
+      const copy = document.createElement("div");
+      const id = document.createElement("div");
+      id.className = "prophecy-mobile-phase-id";
+      id.textContent = phase.id;
+
+      const title = document.createElement("h3");
+      title.textContent = phase.label_es;
+
+      const anchor = document.createElement("div");
+      anchor.className = "prophecy-mobile-phase-anchor";
+      anchor.textContent = phase.anchor_es;
+      if (!state.showFeasts) anchor.classList.add("prophecy-hide-feast");
+
+      copy.append(id, title, anchor);
+
+      const count = document.createElement("span");
+      count.className = "prophecy-mobile-phase-count";
+      count.textContent = events.length === 1 ? "1 evento" : `${events.length} eventos`;
+
+      head.append(copy, count);
+      section.append(head);
+
+      const list = document.createElement("div");
+      list.className = "prophecy-mobile-events";
+
+      for (const event of events) {
+        const button = makeEventButton(event);
+        const lanes = document.createElement("span");
+        lanes.className = "prophecy-mobile-lanes";
+        lanes.textContent = event.lane_ids
+          .map((laneId) => {
+            const lane = state.data.lanes.find((item) => item.id === laneId);
+            return lane ? `${lane.id} · ${lane.label_es}` : laneId;
+          })
+          .join(" · ");
+        button.append(lanes);
+        list.append(button);
+      }
+
+      section.append(list);
+      el.timeline.append(section);
+    }
+
+    if (!el.timeline.children.length) {
+      el.timeline.innerHTML = '<div class="prophecy-empty">Ningún evento coincide con los filtros actuales.</div>';
     }
   }
 
