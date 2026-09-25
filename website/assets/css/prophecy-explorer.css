@@ -265,6 +265,7 @@
 }
 
 .prophecy-phase-button {
+  display: block;
   flex: 0 0 auto;
   min-height: 0;
   padding: .55rem .65rem;
@@ -345,8 +346,19 @@
 .prophecy-count-grid,
 .prophecy-search-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(255px, 1fr));
-  gap: .75rem;
+  gap: .85rem;
+}
+
+.prophecy-overview-grid {
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+}
+
+.prophecy-count-grid {
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+}
+
+.prophecy-search-grid {
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
 }
 
 .prophecy-phase-card,
@@ -405,6 +417,7 @@
 }
 
 .prophecy-event {
+  display: block;
   width: 100%;
   min-height: 0;
   padding: .62rem .68rem;
@@ -414,6 +427,8 @@
   background: rgba(0, 0, 0, .36);
   box-shadow: none;
   font-family: var(--sans);
+  letter-spacing: 0;
+  line-height: 1.4;
   text-align: left;
   text-transform: none;
 }
@@ -862,10 +877,16 @@
 }
 
 .prophecy-count-card {
+  display: block;
+  width: 100%;
+  min-width: 0;
   min-height: 0;
-  padding: .85rem;
+  padding: 1rem;
   color: var(--bone);
   box-shadow: none;
+  font-family: var(--sans);
+  letter-spacing: 0;
+  line-height: 1.4;
   text-align: left;
   text-transform: none;
 }
@@ -880,9 +901,12 @@
 }
 
 .prophecy-count-card h3 {
-  margin-top: .3rem;
+  margin-top: .35rem;
+  overflow-wrap: break-word;
+  word-break: normal;
   font-family: var(--sans);
-  font-size: .83rem;
+  font-size: .92rem;
+  line-height: 1.35;
   letter-spacing: .01em;
   text-transform: none;
   -webkit-text-fill-color: initial;
@@ -892,16 +916,25 @@
 }
 
 .prophecy-count-value {
-  margin-top: .55rem;
+  display: block;
+  margin-top: .65rem;
   color: var(--gold-bright);
   font-family: var(--hero-serif);
-  font-size: 1.45rem;
+  font-size: clamp(1.25rem, 2vw, 1.55rem);
+  line-height: 1.15;
+  letter-spacing: 0;
 }
 
 .prophecy-count-meta {
-  margin-top: .35rem;
+  display: block;
+  margin-top: .45rem;
+  overflow-wrap: anywhere;
+  word-break: break-word;
   color: var(--prophecy-muted);
-  font-size: .68rem;
+  font-family: var(--sans);
+  font-size: .72rem;
+  line-height: 1.45;
+  letter-spacing: 0;
 }
 
 .prophecy-results {
