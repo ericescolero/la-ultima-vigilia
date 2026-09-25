@@ -296,21 +296,23 @@
   function selectPhase(phaseId, updateHash) {
     if (!state.data.phases.some((phase) => phase.id === phaseId)) return;
     state.selectedPhase = phaseId;
-    renderSelection();
 
     if (state.mode === "overview") {
+      renderSelection();
       document.querySelector(`.prophecy-phase-card[data-phase="${cssEscape(phaseId)}"]`)?.scrollIntoView({
         behavior: "smooth",
         block: "center"
       });
     } else {
+      renderDetailed();
+      renderSelection();
       const selector = MOBILE_TIMELINE_MEDIA.matches
         ? `.prophecy-mobile-phase[data-phase="${cssEscape(phaseId)}"]`
-        : `.prophecy-timeline-phase[data-phase="${cssEscape(phaseId)}"]`;
+        : `.prophecy-desktop-phase-detail[data-phase="${cssEscape(phaseId)}"]`;
       document.querySelector(selector)?.scrollIntoView({
         behavior: "smooth",
         block: MOBILE_TIMELINE_MEDIA.matches ? "start" : "nearest",
-        inline: "center"
+        inline: "nearest"
       });
     }
 
@@ -414,46 +416,150 @@
       return;
     }
 
-    el.timeline.className = "prophecy-timeline";
-    el.detailedSummary.textContent = `${visible.length} eventos visibles · ${state.visibleLanes.size} líneas`;
+    renderDesktopPhaseDetail(visible);
+  }
 
-    const corner = document.createElement("div");
-    corner.className = "prophecy-timeline-corner";
-    corner.textContent = "Línea / Fase";
-    el.timeline.append(corner);
+  function renderDesktopPhaseDetail(visible) {
+    const phase = state.data.phases.find((item) => item.id === state.selectedPhase)
+      || state.data.phases[0];
+    const phaseEvents = visible
+      .filter((event) => event.phase_id === phase.id)
+      .sort((a, b) => a.sort_key - b.sort_key);
 
-    for (const phase of state.data.phases) {
-      const head = document.createElement("button");
-      head.type = "button";
-      head.className = "prophecy-timeline-phase";
-      head.dataset.phase = phase.id;
-      head.innerHTML = `<strong>${escapeHtml(phase.id)}</strong><span>${escapeHtml(phase.label_es)}</span><small class="${state.showFeasts ? "" : "prophecy-hide-feast"}">${escapeHtml(phase.anchor_es)}</small>`;
-      head.addEventListener("click", () => selectPhase(phase.id, true));
-      el.timeline.append(head);
+    el.timeline.className = "prophecy-timeline prophecy-phase-detail";
+    el.detailedSummary.textContent = `${phaseEvents.length} eventos en ${phase.id} · ${state.visibleLanes.size} líneas activas`;
+
+    const shell = document.createElement("section");
+    shell.className = "prophecy-desktop-phase-detail";
+    shell.dataset.phase = phase.id;
+
+    const head = document.createElement("div");
+    head.className = "prophecy-detail-phase-head";
+
+    const copy = document.createElement("div");
+    copy.className = "prophecy-detail-phase-copy";
+
+    const kicker = document.createElement("div");
+    kicker.className = "prophecy-detail-phase-kicker";
+    kicker.textContent = `${phase.id} · FASE SELECCIONADA`;
+
+    const title = document.createElement("h3");
+    title.textContent = phase.label_es;
+
+    const anchor = document.createElement("div");
+    anchor.className = "prophecy-detail-phase-anchor";
+    anchor.textContent = phase.anchor_es;
+    if (!state.showFeasts) anchor.classList.add("prophecy-hide-feast");
+
+    copy.append(kicker, title, anchor);
+
+    const phaseNav = document.createElement("div");
+    phaseNav.className = "prophecy-detail-phase-nav";
+    const phaseIndex = state.data.phases.findIndex((item) => item.id === phase.id);
+
+    if (phaseIndex > 0) {
+      phaseNav.append(makePhaseStepButton(
+        state.data.phases[phaseIndex - 1],
+        "← Anterior"
+      ));
+    }
+    if (phaseIndex < state.data.phases.length - 1) {
+      phaseNav.append(makePhaseStepButton(
+        state.data.phases[phaseIndex + 1],
+        "Siguiente →"
+      ));
     }
 
-    for (const lane of state.data.lanes) {
-      if (!state.visibleLanes.has(lane.id)) continue;
+    head.append(copy, phaseNav);
+    shell.append(head);
 
-      const label = document.createElement("div");
-      label.className = "prophecy-lane-label";
-      label.innerHTML = `<strong>${escapeHtml(lane.id)}</strong><span>${escapeHtml(lane.label_es)}</span>`;
-      el.timeline.append(label);
+    if (!phaseEvents.length) {
+      const empty = document.createElement("div");
+      empty.className = "prophecy-empty";
+      empty.textContent = "Ningún evento de esta fase coincide con los filtros actuales.";
+      shell.append(empty);
+      el.timeline.append(shell);
+      return;
+    }
 
-      for (const phase of state.data.phases) {
-        const cell = document.createElement("div");
-        cell.className = "prophecy-timeline-cell";
-        cell.dataset.phase = phase.id;
-        cell.dataset.phaseLabel = `${phase.id} · ${phase.label_es}`;
+    const laneOrder = new Map(state.data.lanes.map((lane, index) => [lane.id, index]));
+    const groups = new Map();
 
-        const events = visible
-          .filter((event) => event.phase_id === phase.id && event.lane_ids.includes(lane.id))
-          .sort((a, b) => a.sort_key - b.sort_key);
+    for (const event of phaseEvents) {
+      const visibleEventLanes = event.lane_ids
+        .filter((laneId) => state.visibleLanes.has(laneId))
+        .sort((a, b) => (laneOrder.get(a) ?? 999) - (laneOrder.get(b) ?? 999));
+      const primaryLaneId = visibleEventLanes[0] || "UNASSIGNED";
 
-        for (const event of events) cell.append(makeEventButton(event));
-        el.timeline.append(cell);
+      if (!groups.has(primaryLaneId)) groups.set(primaryLaneId, []);
+      groups.get(primaryLaneId).push({ event, visibleEventLanes });
+    }
+
+    const grid = document.createElement("div");
+    grid.className = "prophecy-detail-lane-grid";
+
+    for (const [laneId, entries] of [...groups.entries()].sort((a, b) => {
+      return (laneOrder.get(a[0]) ?? 999) - (laneOrder.get(b[0]) ?? 999);
+    })) {
+      const lane = state.data.lanes.find((item) => item.id === laneId);
+      const group = document.createElement("section");
+      group.className = "prophecy-detail-lane-group";
+
+      const groupHead = document.createElement("div");
+      groupHead.className = "prophecy-detail-lane-head";
+
+      const laneTitle = document.createElement("div");
+      laneTitle.className = "prophecy-detail-lane-title";
+      laneTitle.innerHTML = lane
+        ? `<strong>${escapeHtml(lane.id)}</strong><span>${escapeHtml(lane.label_es)}</span>`
+        : "<strong>—</strong><span>Sin línea asignada</span>";
+
+      const laneCount = document.createElement("span");
+      laneCount.className = "prophecy-detail-lane-count";
+      laneCount.textContent = entries.length === 1 ? "1 evento" : `${entries.length} eventos`;
+
+      groupHead.append(laneTitle, laneCount);
+      group.append(groupHead);
+
+      const list = document.createElement("div");
+      list.className = "prophecy-detail-event-list";
+
+      for (const { event, visibleEventLanes } of entries) {
+        const button = makeEventButton(event);
+        button.classList.add("prophecy-detail-event");
+
+        if (visibleEventLanes.length > 1) {
+          const cross = document.createElement("span");
+          cross.className = "prophecy-detail-cross-lanes";
+          cross.textContent = "También: " + visibleEventLanes
+            .slice(1)
+            .map((id) => {
+              const other = state.data.lanes.find((item) => item.id === id);
+              return other ? `${other.id} · ${other.label_es}` : id;
+            })
+            .join(" · ");
+          button.append(cross);
+        }
+
+        list.append(button);
       }
+
+      group.append(list);
+      grid.append(group);
     }
+
+    shell.append(grid);
+    el.timeline.append(shell);
+  }
+
+  function makePhaseStepButton(phase, label) {
+    const button = document.createElement("button");
+    button.type = "button";
+    button.className = "prophecy-control prophecy-phase-step";
+    button.textContent = `${label} · ${phase.id}`;
+    button.setAttribute("aria-label", `${label}: ${phase.id}, ${phase.label_es}`);
+    button.addEventListener("click", () => selectPhase(phase.id, true));
+    return button;
   }
 
   function renderMobileDetailed(visible) {
@@ -659,6 +765,9 @@
     if (!event) return;
 
     state.selectedPhase = event.phase_id;
+    if (state.mode === "detailed" && !MOBILE_TIMELINE_MEDIA.matches) {
+      renderDetailed();
+    }
     renderSelection();
     el.inspectorKicker.textContent = "EVENTO";
     el.inspectorTitle.textContent = event.label_es;
