@@ -65,3 +65,18 @@ Authoritative file(s):
 ### 2026-10-04 — Watchman branch normalized
 
 The active `watchman-universe-brain/phase-1-import` history was fast-forwarded into `main`. Route current canon, theology, story, and production work to `watchman-universe-brain/main`. Treat the old branch name as historical/cleanup debt rather than a separate source of truth.
+
+### 2026-10-04 — Bounded social community growth
+
+Domain: social / community
+
+Feedback: Eric requested ongoing community management, relevant group/page comments and likes, follower growth work, and durable guidance in the owning repositories.
+
+Durable rule: Use thoughtful, relevant participation as the LUV identity on Facebook/Instagram; preserve existing publishing and incoming-check windows. No spam, invented endorsements, personal-profile fallback, private conversation exports, or moderation/spending changes. Separate LUV from LTF and Nuvaro. Treat growth as an observed goal, not a guaranteed outcome.
+
+Authoritative files:
+
+- `community/COMMUNITY_MANAGEMENT_PLAYBOOK.md`
+- `community/COMMUNITY_OUTCOMES.md`
+
+The external community-growth schedule was verified enabled on 2026-10-05 UTC, with its first scheduled local day on 2026-10-05. The repository documents that plan; execution and publication must still be verified separately.
