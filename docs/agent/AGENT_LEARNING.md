@@ -60,3 +60,8 @@ Durable rule:
 Authoritative file(s):
 
 - `path`
+
+
+### 2026-10-04 — Watchman branch normalized
+
+The active `watchman-universe-brain/phase-1-import` history was fast-forwarded into `main`. Route current canon, theology, story, and production work to `watchman-universe-brain/main`. Treat the old branch name as historical/cleanup debt rather than a separate source of truth.
