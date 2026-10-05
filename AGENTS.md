@@ -30,9 +30,9 @@ This repository owns the public website, published Field Manuals, public content
 
 Repository: `ericescolero/watchman-universe-brain`
 
-Current active development line: `phase-1-import`
+Canonical branch: `main`
 
-This is the primary current source for Watchman canon, worldbuilding, character continuity, theology/eschatology governance, story development, production rules, and owner decisions.
+This is the primary current source for Watchman canon, worldbuilding, character continuity, theology/eschatology governance, story development, production rules, and owner decisions. The former `phase-1-import` line has been promoted to `main`.
 
 Read its own root `AGENTS.md` and follow its more specific routing rules when entering that repository.
 
