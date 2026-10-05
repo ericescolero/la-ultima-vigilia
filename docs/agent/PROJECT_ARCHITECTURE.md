@@ -31,7 +31,7 @@ Owns:
 
 Repository: `ericescolero/watchman-universe-brain`
 
-Current active development line: `phase-1-import`.
+Canonical branch: `main`.
 
 Owns current:
 
@@ -50,7 +50,7 @@ Owns current:
 - Field Manual production rules;
 - channel-role guidance.
 
-Its own `AGENTS.md` is authoritative inside that repository.
+The former `phase-1-import` development line was fast-forwarded into `main` on 2026-10-04. Its own `AGENTS.md` is authoritative inside that repository.
 
 ### 3. Social publisher
 
